@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.0</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -18,11 +18,11 @@
     <div class="max-w-6xl mx-auto mb-6">
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
-                <h1 class="text-xl md:text-3xl font-bold text-blue-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • ETF全自動實時同步端</p>
+                <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 終極全功能智慧雷達</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">● 雲端全自動連線</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 雙軌數據同步中</span>
                 <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
             </div>
         </div>
@@ -66,8 +66,8 @@
         </div>
         <div class="card p-4 border-l-4 border-red-500">
             <p class="text-xs text-slate-400">📈 戰略基準總損益</p>
-            <p class="text-lg md:text-2xl font-bold text-red-400 mt-1">+$169,425 <span class="text-xs font-normal text-slate-400">元</span></p>
-            <p class="text-[10px] text-red-400 mt-0.5">+7.95% 全軍回報</p>
+            <p class="text-lg md:text-2xl font-bold text-red-500 mt-1">+$169,425 <span class="text-xs font-normal text-slate-400">元</span></p>
+            <p class="text-[10px] text-red-400 mt-0.5">+7.95% 全軍大賺回報</p>
         </div>
         <div class="card p-4">
             <p class="text-xs text-slate-400">🏛️ 基準總資產現值</p>
@@ -82,13 +82,13 @@
 
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📊 各部隊原始本金配置比例</h3><div class="h-64"><canvas id="pieChart"></canvas></div></div>
-        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 各部隊原始損益對照基準</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
+        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 各部隊原始損益對照 (紅賺 / 藍深蹲)</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
     </div>
 
-    <div class="max-w-6xl mx-auto card p-4 overflow-hidden mb-12">
+    <div class="max-w-6xl mx-auto card p-4 overflow-hidden mb-6">
         <div class="flex items-center justify-between mb-4">
-            <h3 class="text-sm font-medium text-amber-400 flex items-center gap-2">🔥 7 隻基金對應之全球指標 ETF 實時監控牆 (100%全自動更新)</h3>
-            <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded">美股開盤即時跳動 / 內建防呆休市機制</span>
+            <h3 class="text-sm font-medium text-amber-400 flex items-center gap-2">🔥 上層：7 隻對應指標 ETF 實時報價牆 (100%全自動更新)</h3>
+            <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded">美股標準：綠漲紅跌</span>
         </div>
         
         <div class="tradingview-widget-container">
@@ -100,12 +100,12 @@
               "showChart": true,
               "locale": "zh_TW",
               "width": "100%",
-              "height": 550,
+              "height": 500,
               "isTransparent": true,
               "showSymbolLogo": true,
               "tabs": [
                 {
-                  "title": "前線部隊實時追蹤 (基金精準對齊全球指標 ETF)",
+                  "title": "前線部隊實時追蹤 (全球指標 ETF 走勢對齊)",
                   "symbols": [
                     { "s": "AMEX:EWJ", "d": "109007 野村日本策略 ➡️ 對應【日股大盤ETF】" },
                     { "s": "NASDAQ:IBB", "d": "ALI003 安聯全球生技 ➡️ 對應【全球生技ETF】" },
@@ -120,9 +120,26 @@
             }
             </script>
         </div>
+    </div>
 
-        <div class="mt-6 border-t border-slate-800 pt-4 flex flex-wrap gap-2 justify-center" id="strategy-buttons">
-            </div>
+    <div class="max-w-6xl mx-auto card p-4 overflow-hidden mb-12">
+        <h3 class="text-sm font-medium text-amber-400 mb-4 flex items-center gap-2">📋 下層：中文化部隊實時對照與戰略決策表 (台灣習慣：紅賺藍賠)</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs md:text-sm">
+                <thead>
+                    <tr class="border-b border-slate-700 text-slate-400 bg-slate-800/50">
+                        <th class="p-3 w-20">代號</th>
+                        <th class="p-3">基金品項官方完整全銜</th>
+                        <th class="p-3 text-right w-32">原始投資本金</th>
+                        <th class="p-3 text-right w-32">基準戰略損益</th>
+                        <th class="p-3 text-right w-24">參考回報率</th>
+                        <th class="p-3 text-center w-28">現狀分析</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800" id="fund-table-body">
+                    </tbody>
+            </table>
+        </div>
     </div>
 
     <div id="analysis-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
@@ -146,25 +163,42 @@
     <script>
         document.getElementById('update-time').innerText = '雷達最後校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
         
-        // 原始配置數據庫
+        // 核心數據庫：包含代號、中文全銜、原始投入本金、損益與分析
         const fundData = [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p><p><span class="text-slate-400">現狀：連動日本大型製造業與金融股，在日圓震盪中走勢極具參考價值。</span></p></div>` },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍頭 ETF)</p><p><span class="text-slate-400">現狀：全球生技新藥審查風向標，點擊上方監控牆可秒看生技板塊最新死活。</span></p></div>` },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀：全面盯緊美股科技巨頭與AI晶片龍頭，每日走勢100%全自動對齊科技核心。</span></p></div>` },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀：60萬最大作戰主力。鎖死台幣匯率風險，透過上方監控牆可無時差掌握美股主升段脈動。</span></p></div>` },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p><p><span class="text-slate-400">現狀：全市場極罕見、專屬對齊印度中小型黑馬企業的實時看板，最具真實含金量參考。</span></p></div>` },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p><p><span class="text-slate-400">現狀：精準追蹤軟體大突破、輝達晶片生態系與自動化工廠，每日自動更新最新報價。</span></p></div>` },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p><p><span class="text-slate-400">現狀：做為美國全產業股債平衡的定海神針，透過 SPY 大盤走勢可秒懂防守傘安全係數。</span></p></div>` }
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p><p><span class="text-slate-400">現狀評估：目前微幅獲利中。日本央行貨幣政策微調，日圓波動加劇，但價值型股票（金融、大型製造業）具備強大防禦力，抗震效果顯著。</span></p></div>` },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍頭 ETF)</p><p><span class="text-slate-400">現狀評估：處於短期防守深蹲期。新藥審查節奏放緩導致板塊回檔，但產業基底穩健，估值已達歷史低位，下方防禦空間扎實。</span></p></div>` },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀評估：穩定輸出中。科技巨頭財報優於預期，AI晶片與雲端基建需求依舊極度狂熱，資產多重配置有效降低高科技股的震盪幅度。</span></p></div>` },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀評估：戰果極其輝煌，獲利突破10萬大關！台幣避險級別成功鎖住匯率風險，完美吃下美股科技股主升段波段回報。</span></p></div>` },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p><p><span class="text-slate-400">現狀評估：穩健墊高。印度內需基建與製造業轉移紅利持續發酵，中小企業活力充沛，在大盤高檔震盪中走出獨立行情。</span></p></div>` },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p><p><span class="text-slate-400">現狀評估：表現極佳，逼近雙位數回報！全球工廠自動化升級與機器人軟體大突破，與安聯AI核心中軍形成完美的犄角之勢。</span></p></div>` },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p><p><span class="text-slate-400">現狀評估：發揮中流砥柱效果。美股輪動健康，大型股震盪時，高股息與優質債券部位立刻撐住防線，回報率穩步上升。</span></p></div>` }
         ];
 
-        // 自動生成戰略按鈕
-        const btnContainer = document.getElementById('strategy-buttons');
+        // 動態渲染下方的中文化明細對照表
+        const tbody = document.getElementById('fund-table-body');
         fundData.forEach((fund, index) => {
-            const btn = document.createElement('button');
-            btn.className = "bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium py-1.5 px-3 rounded-xl text-xs transition-all active:scale-95 border border-slate-700";
-            btn.innerText = `🔍 查閱 ${fund.id} 決策`;
-            btn.onclick = () => openModal(index);
-            btnContainer.appendChild(btn);
+            const row = document.createElement('tr'); 
+            row.className = "hover:bg-slate-800/30 transition-colors";
+            
+            const isProfit = fund.profit >= 0; 
+            const profitText = (isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元';
+            // 🎯 核心校正：正數變紅色(ef4444)，負數變藍色(3b82f6)
+            const profitClass = isProfit ? 'text-red-500 font-semibold' : 'text-blue-400 font-semibold'; 
+            const rateClass = isProfit ? 'text-red-500' : 'text-blue-400';
+            
+            row.innerHTML = `
+                <td class="p-3 font-mono text-slate-400 font-medium">${fund.id}</td>
+                <td class="p-3 text-slate-200 font-medium text-xs md:text-sm">${fund.name}</td>
+                <td class="p-3 text-right font-mono text-slate-300">$${fund.capital.toLocaleString()} 元</td>
+                <td class="p-3 text-right font-mono ${profitClass}">${profitText}</td>
+                <td class="p-3 text-right font-mono ${rateClass}">${fund.rate}</td>
+                <td class="p-3 text-center">
+                    <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-full text-xs transition-colors shadow-lg active:scale-95" onclick="openModal(${index})">
+                        🎯 戰略分析
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(row);
         });
 
         function openModal(index) {
@@ -184,11 +218,12 @@
             document.body.classList.remove('modal-active');
         }
 
-        // 渲染基礎靜態圖表
+        // 渲染基礎圖表 (配色已全面同步為：紅賺 / 藍深蹲)
         const ctxPie = document.getElementById('pieChart').getContext('2d');
         new Chart(ctxPie, { type: 'doughnut', data: { labels: fundData.map(f => f.id), datasets: [{ data: fundData.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
+        
         const ctxBar = document.getElementById('barChart').getContext('2d');
-        new Chart(ctxBar, { type: 'bar', data: { labels: fundData.map(f => f.id), datasets: [{ label: '基準損益 (元)', data: fundData.map(f => f.profit), backgroundColor: fundData.map(f => f.profit >= 0 ? '#f87171' : '#60a5fa'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
+        new Chart(ctxBar, { type: 'bar', data: { labels: fundData.map(f => f.id), datasets: [{ label: '基準損益 (元)', data: fundData.map(f => f.profit), backgroundColor: fundData.map(f => f.profit >= 0 ? '#ef4444' : '#3b82f6'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
     </script>
 </body>
 </html>
