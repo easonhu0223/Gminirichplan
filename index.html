@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.3</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -11,7 +11,6 @@
         .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 1rem; }
         .modal { transition: opacity 0.25s ease; }
         body.modal-active { overflow: hidden; }
-        /* 聊天室滾動條美化 */
         .chat-box::-webkit-scrollbar { width: 4px; }
         .chat-box::-webkit-scrollbar-thumb { background: #334155; border-radius: 2px; }
     </style>
@@ -22,17 +21,17 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 全面指標涵蓋與 AI 戰術顧問端</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 全指標修復精準端</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 戰略全指標就緒</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 數據精準同步中</span>
                 <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto mb-6">
-        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (亞太/商品/外匯/美債全覆蓋)</h3>
+        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (開盤自動秒更新 / 休市自動定格)</h3>
         <div class="tradingview-widget-container card p-2">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
@@ -47,22 +46,23 @@
               "showSymbolLogo": true,
               "tabs": [
                 {
-                  "title": "🌏 亞太股市大盤",
+                  "title": "🌍 全球與亞太股市",
                   "symbols": [
-                    { "s": "TWSE:TAIEX", "d": "台灣加權指數 (台股)" },
-                    { "s": "TSE:998407", "d": "日經 225 指數 (日股)" },
+                    { "s": "TWSE:TAIEX", "d": "台灣加權指數 (台股大盤)" },
+                    { "s": "FOREXCOM:SPXUSD", "d": "美國 S&P 500 指數 (美股大盤)" },
+                    { "s": "NASDAQ:IXIC", "d": "美國那斯達克綜合指數" },
+                    { "s": "TSE:998407", "d": "日經 225 指數 (日股大盤)" },
                     { "s": "HSI:HSI", "d": "香港恆生指數 (港股)" },
-                    { "s": "SSE:000001", "d": "上證綜合指數 (陸股)" },
-                    { "s": "KRX:KOSPI", "d": "韓國綜合指數 (韓股)" }
+                    { "s": "SSE:000001", "d": "上證綜合指數 (陸股大盤)" }
                   ]
                 },
                 {
-                  "title": "📦 核心期貨商品",
+                  "title": "📦 核心期貨與大宗商品",
                   "symbols": [
-                    { "s": "COMEX:GC1!", "d": "黃金期貨連續合約" },
-                    { "s": "COMEX:SI1!", "d": "白銀期貨連續合約" },
-                    { "s": "NYMEX:CL1!", "d": "紐約輕原油期貨 (WTI)" },
-                    { "s": "ICE:BRN1!", "d": "布蘭特原油期貨" }
+                    { "s": "TVC:GOLD", "d": "黃金現貨 (Gold)" },
+                    { "s": "TVC:SILVER", "d": "白銀現貨 (Silver)" },
+                    { "s": "TVC:USOIL", "d": "紐約輕原油 (WTI Crude Oil)" },
+                    { "s": "TVC:UKOIL", "d": "布蘭特原油 (Brent Crude Oil)" }
                   ]
                 },
                 {
@@ -173,7 +173,7 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！宏觀戰術分析儀已啟動。您可以向我詢問當前加碼策略、抄底時機，或各部隊的防守配置，屬下立刻為您進行推演！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！宏觀戰術修復儀已啟動。全球與美股大盤已歸建同一防線，期貨商品與美債殖利率訊號已完全接通，請下達進一步戰術查詢！</div>
         </div>
         <div class="flex gap-2">
             <input type="text" id="chat-input" placeholder="請輸入戰略問題（例如：台股跌破靶心如何應對？安聯最大主力何時獲利了結？...）" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
@@ -203,16 +203,15 @@
         document.getElementById('update-time').innerText = '雷達最後校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
         
         const fundData = [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p><p><span class="text-slate-400">現狀評估：目前微幅獲利中。日本央行貨幣政策微調，日圓波動加劇，但價值型股票（金融、大型製造業）具備強大防禦力。</span></p></div>` },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍頭 ETF)</p><p><span class="text-slate-400">現狀評估：處於短期防守深蹲期。新藥審查節奏放緩導致板塊回檔，但產業基底穩健，估值已達歷史低位，下方防禦空間扎實。</span></p></div>` },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀評估：穩定輸出中。科技巨頭財報優於預期，AI晶片與雲端基建需求依舊極度狂熱，資產多重配置有效降低高科技股的震盪幅度。</span></p></div>` },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p><p><span class="text-slate-400">現狀評估：60萬最大作戰主力。鎖死台幣匯率風險，透過上方監控牆可無時差掌握美股主升段脈動。</span></p></div>` },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p><p><span class="text-slate-400">現狀評估：全市場極罕見、專屬對齊印度中小型黑馬企業的實時看板，最具真實含金量參考。</span></p></div>` },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p><p><span class="text-slate-400">現狀評估：表現極佳，逼近雙位數回報！全球工廠自動化升級與機器人軟體大突破，與安聯AI核心中軍形成完美的犄角之勢。</span></p></div>` },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p><p><span class="text-slate-400">現狀評估：發揮中流砥柱效果。美股輪動健康，大型股震盪時，高股息與優質債券部位立刻撐住防線，回報率穩步上升。</span></p></div>` }
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p></div>` },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍頭 ETF)</p></div>` },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p></div>` },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p></div>` },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p></div>` }
         ];
 
-        // 渲染表格
         const tbody = document.getElementById('fund-table-body');
         fundData.forEach((fund, index) => {
             const row = document.createElement('tr'); row.className = "hover:bg-slate-800/30 transition-colors";
@@ -232,29 +231,25 @@
             tbody.appendChild(row);
         });
 
-        // 🧠 戰術顧問模擬回應引擎
         function sendQuestion() {
             const inputEl = document.getElementById('chat-input');
             const chatBox = document.getElementById('chat-box');
             const question = inputEl.value.trim();
             if(!question) return;
 
-            // 1. 渲染指揮官的問題
             chatBox.innerHTML += `<div class="text-slate-200 mt-1"><span class="text-blue-400 font-bold">🫡 我方指揮官：</span>${question}</div>`;
             inputEl.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // 2. 模擬思考後生成戰術回應
             setTimeout(() => {
-                let reply = "報告指揮官，收到這項宏觀戰術提問。根據雷達上層顯示的亞太市場、美債殖利率以及大宗商品走勢，當前全球資金正處於高速調度期。屬下建議密密切觀察核心突擊隊的防線靶心，切勿在不理智的高檔區將 80 萬預備兵團盲目投入，應死守陣地、穩定領取月配息，靜待美股與亞太市場出現實質回檔時再行飽和抄底！";
+                let reply = "報告指揮官，收到這項宏觀戰術提問。根據雷達上層顯示的全球大盤、美債殖利率以及大宗商品走勢，當前全球資金正處於高速調度期。屬下建議密切觀察核心突擊隊的防線靶心，切勿在不理智的高檔區將 80 萬預備兵團盲目投入，應死守陣地、穩定領取月配息，靜待美股與亞太市場出現實質回檔時再行飽和抄底！";
                 
-                // 針對關鍵字做出智慧回應
                 if(question.includes('底') || question.includes('靶心') || question.includes('加碼')) {
-                    reply = "【加碼戰術指令】目前台股大盤與安聯 AI 主力標的均處於強勢高檔。根據上方雷達，5年期與10年期美債殖利率如果持續攀升，高科技股（QQQ/BOTZ）短期會有震盪壓力。屬下重申：80萬預備兵團必須嚴格封刀，台股未落入 39,200 點以下靶心前，切勿提前暴露火力！";
+                    reply = "【加碼戰術指令】目前台股大盤與美股均處於強勢高檔。根據上方雷達，5年期與10年期美債殖利率若持續在高位橫盤，高科技股（QQQ/BOTZ）短期會有震盪。屬下重申：80萬預備兵團必須嚴格封刀，台股未落入 39,200 點以下靶心前，切勿提前暴露火力！";
                 } else if(question.includes('主力') || question.includes('安聯') || question.includes('10萬')) {
-                    reply = "【旗艦部隊評估】安聯 AI 收益成長（ALI094）做為 60 萬重兵最大主力，基準獲利已突破 10 萬元（高達 +17.07%）。目前上方 QQQ 即時走勢依然在科技主升段，且該級別鎖定台幣避險。建議『原地固守、配息續抱』，無需急著獲利了結，讓利潤在自動追蹤牆的護航下繼續飛奔！";
+                    reply = "【旗艦部隊評估】安聯 AI 收益成長（ALI094）做為 60 萬重兵最大主力，基準獲利已突破 10 萬元（高達 +17.07%）。目前上方全球大盤分頁中的 S&P 500 與那斯達克即時走勢依然健在，且該級別鎖定台幣避險。建議『原地固守、配息續抱』，無需急著獲利了結！";
                 } else if(question.includes('匯率') || question.includes('美金') || question.includes('日幣') || question.includes('台幣')) {
-                    reply = "【匯率戰略防線】已在即時雷達的『關鍵外匯匯率』分頁中為您接入美金、日圓、人民幣兌台幣走勢。日圓策略價值（109007）有做美元避險，因此只要緊盯上方美元兌台幣的匯率大閘即可。若台幣走貶，對您外幣計價的海外資產更是一層隱形增值防護！";
+                    reply = "【匯率戰略防線】已在即時雷達的『關鍵外匯匯率』分頁中為您正確接入美金、日圓、人民幣兌台幣走勢。日圓策略價值（109007）有做美元避險，因此只要緊盯上方美元兌台幣的匯率大閘即可。若台幣走貶，對您海外資產更是一層隱形增值防護！";
                 }
 
                 chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
@@ -278,7 +273,6 @@
             document.body.classList.remove('modal-active');
         }
 
-        // 渲染圖表
         const ctxPie = document.getElementById('pieChart').getContext('2d');
         new Chart(ctxPie, { type: 'doughnut', data: { labels: fundData.map(f => f.id), datasets: [{ data: fundData.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
         const ctxBar = document.getElementById('barChart').getContext('2d');
