@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最高指揮部 · 全球宏觀聯合作戰總部</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --navy-900:#0a1628; --navy-800:#0f1f3d; --navy-700:#15294f;
+    --navy-600:#1c3563; --navy-500:#243f78;
+    --gold:#c9a04a; --gold-bright:#e8c168; --gold-dim:#8a6f30;
+    --cream:#f5ecd7; --paper:#e8dfc7;
+    --red:#c43e3e; --green:#3d8a5a;
+    --line:rgba(201,160,74,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{background:var(--navy-900);color:var(--cream);font-family:"Noto Serif TC",serif;-webkit-font-smoothing:antialiased}
+  body{
+    background:
+      radial-gradient(ellipse at top left, rgba(201,160,74,.08), transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(36,63,120,.4), transparent 60%),
+      var(--navy-900);
+    min-height:100vh; padding:24px 16px 60px; position:relative; overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(rgba(201,160,74,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,160,74,.04) 1px, transparent 1px);
+    background-size:48px 48px;
+  }
+  .wrap{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+
+  .header{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(15,31,61,.9), rgba(10,22,40,.95));
+    padding:28px 24px 22px; position:relative; margin-bottom:20px;
+  }
+  .header::before,.header::after{content:"";position:absolute;width:14px;height:14px;border:1px solid var(--gold)}
+  .header::before{top:-1px;left:-1px;border-right:none;border-bottom:none}
+  .header::after{bottom:-1px;right:-1px;border-left:none;border-top:none}
+  .crest{font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  .title{font-size:clamp(28px,5vw,42px);font-weight:900;letter-spacing:.05em;color:var(--cream);line-height:1.1}
+  .title .shield{color:var(--gold);margin-right:8px}
+  .subtitle{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:15px;color:var(--paper);margin-top:8px;opacity:.8}
+  .status{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:12px;letter-spacing:.2em;color:var(--gold)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 12px var(--gold-bright);animation:pulse 1.8s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .ticker{margin-top:14px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--paper);opacity:.55;border-top:1px dashed var(--line);padding-top:10px;white-space:nowrap;overflow:hidden}
+  .ticker span{display:inline-block;animation:scroll 30s linear infinite;padding-left:100%}
+  @keyframes scroll{to{transform:translateX(-100%)}}
+
+  .section-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:13px;letter-spacing:.35em;text-transform:uppercase;
+    color:var(--gold);margin:32px 0 14px;display:flex;align-items:center;gap:14px;
+  }
+  .section-title::before,.section-title::after{content:"";flex:1;height:1px;background:var(--line)}
+  .section-title span{padding:0 4px}
+
+  .kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:720px){.kpi-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.kpi-grid{grid-template-columns:1fr}}
+  .kpi{
+    border:1px solid var(--line);
+    background:linear-gradient(160deg, rgba(28,53,99,.4), rgba(15,31,61,.6));
+    padding:20px 18px;position:relative;overflow:hidden;
+  }
+  .kpi::before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--gold),var(--gold-dim))}
+  .kpi-label{font-size:12px;letter-spacing:.2em;color:var(--gold);opacity:.85;margin-bottom:6px}
+  .kpi-value{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:32px;color:var(--cream);letter-spacing:.02em;line-height:1.1}
+  .kpi-value .unit{font-size:14px;color:var(--gold);margin-left:6px;font-family:"Noto Serif TC",serif}
+  .kpi-value.up{color:#a8dcbb}
+  .kpi-sub{margin-top:8px;font-size:12px;color:var(--paper);opacity:.75}
+  .kpi-sub.up{color:#7dc89a}
+
+  .alert{
+    margin-top:18px;border:1px solid var(--gold);border-left:4px solid var(--gold);
+    background:linear-gradient(90deg, rgba(201,160,74,.15), rgba(15,31,61,.4));
+    padding:16px 18px;font-size:14px;line-height:1.7;color:var(--cream);position:relative;
+  }
+  .alert-tag{display:inline-block;background:var(--gold);color:var(--navy-900);font-weight:700;font-size:11px;letter-spacing:.2em;padding:3px 10px;margin-bottom:8px}
+  .alert b{color:var(--gold-bright);font-weight:700}
+
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.charts{grid-template-columns:1fr}}
+  .panel{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(15,31,61,.5), rgba(10,22,40,.5));
+    padding:20px 18px;position:relative;
+  }
+  .panel-title{
+    font-family:"Cormorant Garamond",serif;font-size:18px;font-weight:600;
+    color:var(--gold-bright);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+    border-bottom:1px solid var(--line);padding-bottom:10px
+  }
+  .panel-title::before{content:"◆";color:var(--gold);font-size:10px}
+  .chart-wrap{position:relative;height:320px}
+
+  .table-wrap{border:1px solid var(--line);overflow-x:auto;background:rgba(10,22,40,.4)}
+  table{width:100%;border-collapse:collapse;min-width:900px}
+  thead{background:linear-gradient(180deg,var(--navy-700),var(--navy-800))}
+  th{
+    font-family:"Cormorant Garamond",serif;font-weight:600;font-size:12px;letter-spacing:.15em;
+    color:var(--gold);text-transform:uppercase;
+    padding:14px 12px;text-align:left;border-bottom:1px solid var(--gold);white-space:nowrap;
+  }
+  td{padding:14px 12px;font-size:13px;color:var(--cream);border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:hover{background:rgba(201,160,74,.06)}
+  tbody tr:last-child td{border-bottom:none}
+  td.code{font-family:"JetBrains Mono",monospace;color:var(--gold-bright);font-weight:500;white-space:nowrap}
+  td.name{min-width:240px;line-height:1.5}
+  td.ccy{font-size:11px;color:var(--paper);opacity:.7;white-space:nowrap}
+  td.num{font-family:"JetBrains Mono",monospace;text-align:right;white-space:nowrap}
+  td.up{color:#7dc89a;font-family:"JetBrains Mono",monospace;text-align:right;font-weight:500;white-space:nowrap}
+  td.down{color:#e07a7a;font-family:"JetBrains Mono",monospace;text-align:right;font-weight:500;white-space:nowrap}
+  td.mission{font-size:12px;color:var(--paper);opacity:.85;line-height:1.5;min-width:200px}
+  tfoot td{background:rgba(201,160,74,.08);font-weight:700;color:var(--gold-bright);border-top:1px solid var(--gold)}
+
+  .footer{
+    margin-top:40px;text-align:center;font-family:"Cormorant Garamond",serif;
+    font-style:italic;font-size:13px;color:var(--paper);opacity:.5;letter-spacing:.1em
+  }
+  .footer .seal{color:var(--gold);font-size:18px;margin:0 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <div class="crest">— Supreme Command · Joint Operations —</div>
+    <h1 class="title"><span class="shield">🛡️</span>最高指揮部</h1>
+    <p class="subtitle">Global Macro Joint Operations Headquarters · 隨身手持端</p>
+    <div class="status"><span class="dot"></span>數據通道解鎖 · LIVE</div>
+    <div class="ticker"><span>📡 全球前線宏觀即時戰況 · 自動跳動更新 · NASDAQ ▲ · S&amp;P500 ▲ · 台股加權 39,180 · 日經 ▼ · 上證 ─ · 美10Y 4.32% · DXY 104.1 · 黃金 2,385 · 原油 78.4 · 比特幣 67,200 · </span></div>
+  </header>
+
+  <div class="section-title"><span>核心戰況 / Core Status</span></div>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-label">🪙 全軍投入總本金</div>
+      <div class="kpi-value">2,130,000<span class="unit">元</span></div>
+      <div class="kpi-sub">7 檔基金 · 全線部署</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">💰 全軍淨賺金額</div>
+      <div class="kpi-value up">+170,058<span class="unit">元</span></div>
+      <div class="kpi-sub up">▲ +7.98% 全軍回報</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">🏛️ 預估總資產現值</div>
+      <div class="kpi-value">2,300,058<span class="unit">元</span></div>
+      <div class="kpi-sub">11.5 萬機動款安全待命</div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <div class="alert-tag">🎯 抄底獵人警戒線守則</div>
+    台股大盤靶心 <b>39,200 ~ 39,500 點</b>　|　安聯台灣科技靶心 <b>640 ~ 660 元</b><br>
+    現狀嚴重超漲,80 萬突擊兵團下達「<b>最高封刀令</b>」,絕不盲目追高!
+  </div>
+
+  <div class="section-title"><span>火力部署 / Allocation &amp; P&amp;L</span></div>
+  <div class="charts">
+    <div class="panel">
+      <div class="panel-title">📊 各部隊原始本金配置比例</div>
+      <div class="chart-wrap"><canvas id="pieChart"></canvas></div>
+    </div>
+    <div class="panel">
+      <div class="panel-title">📈 各部隊實質淨賺 / 深蹲金額</div>
+      <div class="chart-wrap"><canvas id="barChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="section-title"><span>前線部隊明細實時總表 / Battalion Roster</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>代號</th>
+          <th>基金品項官方完整全銜</th>
+          <th>計價幣別</th>
+          <th style="text-align:right">原始本金</th>
+          <th style="text-align:right">最新真實損益</th>
+          <th style="text-align:right">回報率</th>
+          <th>狀態與戰略任務</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td>
+          <td class="code">109007</td>
+          <td class="name">野村(愛爾蘭)-日本策略價值(T美元避險)</td>
+          <td class="ccy">美元 / 台幣</td>
+          <td class="num">100,000</td>
+          <td class="up">📈 +1,453</td>
+          <td class="up">+1.45%</td>
+          <td class="mission">日本牛市價值股雙軌卡位<br><span style="opacity:.6;font-size:11px">(不含息)</span></td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td class="code">ALI003</td>
+          <td class="name">安聯全球生技趨勢基金-新臺幣</td>
+          <td class="ccy">台幣</td>
+          <td class="num">100,000</td>
+          <td class="down">📉 -4,388</td>
+          <td class="down">-4.39%</td>
+          <td class="mission">戰略深蹲,靜待年底反爬大秀<br><span style="opacity:.6;font-size:11px">(含息)</span></td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td class="code">ALI092</td>
+          <td class="name">安聯AI收益成長多重資產-B2(月配)-台幣</td>
+          <td class="ccy">台幣</td>
+          <td class="num">300,000</td>
+          <td class="up">📈 +11,375</td>
+          <td class="up">+3.79%</td>
+          <td class="mission">核心AI旗艦重裝,收割月配息<br><span style="opacity:.6;font-size:11px">(綜合)</span></td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="code">ALI094</td>
+          <td class="name">安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
+          <td class="ccy">台幣</td>
+          <td class="num">600,000</td>
+          <td class="up">📈 +102,395</td>
+          <td class="up">+17.07%</td>
+          <td class="mission">AI避險雙軌重兵,擴大戰果中<br><span style="opacity:.6;font-size:11px">(含息)</span></td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td class="code">CIT016</td>
+          <td class="name">群益印度中小基金-新台幣</td>
+          <td class="ccy">台幣</td>
+          <td class="num">130,000</td>
+          <td class="up">📈 +3,910</td>
+          <td class="up">+3.01%</td>
+          <td class="mission">新興市場高爆發,卡位人口紅利<br><span style="opacity:.6;font-size:11px">(綜合)</span></td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td class="code">FSI011</td>
+          <td class="name">第一金全球AI機器人及自動化-新臺幣</td>
+          <td class="ccy">台幣</td>
+          <td class="num">300,000</td>
+          <td class="up">📈 +22,629</td>
+          <td class="up">+7.54%</td>
+          <td class="mission">AI與自動化雙劍合璧主攻部隊<br><span style="opacity:.6;font-size:11px">(含息)</span></td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="code">JPM041</td>
+          <td class="name">摩根大美國領先收成多重資產-月配-台幣</td>
+          <td class="ccy">台幣</td>
+          <td class="num">600,000</td>
+          <td class="up">📈 +32,684</td>
+          <td class="up">+5.45%</td>
+          <td class="mission">美國多元資產平衡傘,穩健護航<br><span style="opacity:.6;font-size:11px">(含息)</span></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4">總計 / TOTAL</td>
+          <td class="num">2,130,000</td>
+          <td class="num" style="color:#7dc89a">+170,058</td>
+          <td class="num" style="color:#7dc89a">+7.98%</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span class="seal">✦</span> Vigilantia · Disciplina · Victoria <span class="seal">✦</span>
+  </div>
+</div>
+
+<script>
+  const GOLD = '#c9a04a', GOLD_BRIGHT = '#e8c168', CREAM = '#f5ecd7';
+  const palette = ['#c9a04a','#5b8fb9','#3d8a5a','#b96a3e','#8a6fa8','#e8c168','#3d6db9'];
+
+  Chart.defaults.font.family = '"Noto Serif TC", serif';
+  Chart.defaults.color = CREAM;
+  Chart.defaults.borderColor = 'rgba(201,160,74,.15)';
+
+  const labels = [
+    '①109007 野村日本策略價值',
+    '②ALI003 安聯全球生技',
+    '③ALI092 安聯AI收益B2',
+    '④ALI094 安聯AI收益HB避險',
+    '⑤CIT016 群益印度中小',
+    '⑥FSI011 第一金全球AI機器人',
+    '⑦JPM041 摩根美國領先收成'
+  ];
+  const capital = [100000, 100000, 300000, 600000, 130000, 300000, 600000];
+  const pnl     = [1453, -4388, 11375, 102395, 3910, 22629, 32684];
+
+  new Chart(document.getElementById('pieChart'), {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: capital,
+        backgroundColor: palette,
+        borderColor: '#0a1628',
+        borderWidth: 2,
+        hoverOffset: 8
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '55%',
+      plugins: {
+        legend: { position: 'bottom', labels: { font:{size:10}, boxWidth:12, padding:8, color: CREAM } },
+        tooltip: {
+          backgroundColor:'#0f1f3d', borderColor:GOLD, borderWidth:1,
+          titleColor:GOLD_BRIGHT, bodyColor:CREAM, padding:10,
+          callbacks: {
+            label: (ctx) => {
+              const total = ctx.dataset.data.reduce((a,b)=>a+b,0);
+              const pct = (ctx.parsed/total*100).toFixed(1);
+              return ` ${ctx.parsed.toLocaleString()} 元 (${pct}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: ['①109007','②ALI003','③ALI092','④ALI094','⑤CIT016','⑥FSI011','⑦JPM041'],
+      datasets: [{
+        label: '損益(元)',
+        data: pnl,
+        backgroundColor: (ctx) => ctx.parsed.y >= 0 ? 'rgba(61,138,90,.75)' : 'rgba(196,62,62,.75)',
+        borderColor: (ctx) => ctx.parsed.y >= 0 ? '#3d8a5a' : '#c43e3e',
+        borderWidth: 1.5,
+        borderRadius: 2
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display:false },
+        tooltip: {
+          backgroundColor:'#0f1f3d', borderColor:GOLD, borderWidth:1,
+          titleColor:GOLD_BRIGHT, bodyColor:CREAM, padding:10,
+          callbacks: { label: (ctx) => ` ${ctx.parsed.y >= 0 ? '+' : ''}${ctx.parsed.y.toLocaleString()} 元` }
+        }
+      },
+      scales: {
+        x: { ticks:{color:CREAM, font:{family:'JetBrains Mono',size:10}}, grid:{display:false} },
+        y: {
+          ticks:{ color:CREAM, font:{family:'JetBrains Mono',size:10}, callback: (v) => v.toLocaleString() },
+          grid:{color:'rgba(201,160,74,.1)'}
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>
