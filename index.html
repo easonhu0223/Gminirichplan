@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀基金雷達</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background-color: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
         .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 1rem; }
+        /* 彈窗動畫效果 */
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow: hidden; }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen">
@@ -20,30 +23,52 @@
                 <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 隨身手持端</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">● 專屬權限鎖定</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">● 數據通道正常</span>
                 <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto mb-6">
-        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (開盤自動即時跳動更新)</h3>
+        <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-medium text-amber-400 flex items-center gap-2">📡 全球前線宏觀即時戰況 (開盤自動秒更新)</h3>
+            <span class="text-[11px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">提示：未開市即顯示休市價格 / 載入中顯示資料更新中</span>
+        </div>
+        
         <div class="tradingview-widget-container card p-2">
             <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
             {
-            "symbols": [
-                { "proName": "FOREXCOM:SPXUSD", "title": "美股 S&P 500" },
-                { "proName": "NASDAQ:IXIC", "title": "美股 那斯達克" },
-                { "proName": "TWSE:TAIEX", "title": "台股加權指數" },
-                { "proName": "FX_IDC:USDTWD", "title": "美金 / 台幣" },
-                { "proName": "NYMEX:CL1!", "title": "紐約原油期貨" },
-                { "proName": "CBOT:ZN1!", "title": "美國10年債期貨" }
-            ],
-            "isTransparent": true,
-            "showSymbolLogo": true,
-            "colorTheme": "dark",
-            "locale": "zh_TW"
+              "colorTheme": "dark",
+              "dateRange": "1D",
+              "showChart": false,
+              "locale": "zh_TW",
+              "width": "100%",
+              "height": 400,
+              "isTransparent": true,
+              "showSymbolLogo": true,
+              "showFloatingTooltip": false,
+              "tabs": [
+                {
+                  "title": "股市大盤 (台股+美股四大)",
+                  "symbols": [
+                    { "s": "TWSE:TAIEX", "d": "台灣加權指數 (台股位置)" },
+                    { "s": "FOREXCOM:DJI", "d": "道瓊工業指數 (美股)" },
+                    { "s": "FOREXCOM:SPXUSD", "d": "標普 S&P 500 (美股)" },
+                    { "s": "NASDAQ:IXIC", "d": "那斯達克指數 (美股)" },
+                    { "s": "PHLX:SOX", "d": "費城半導體指數 (美股)" }
+                  ]
+                },
+                {
+                  "title": "外匯 / 債券 / 原油期貨",
+                  "symbols": [
+                    { "s": "FX_IDC:USDTWD", "d": "美元 / 新台幣 (美金對台)" },
+                    { "s": "NYMEX:CL1!", "d": "紐約輕原油期貨 (原油)" },
+                    { "s": "TVC:US10Y", "d": "美國10年期公債殖利率 (美債券)" },
+                    { "s": "CBOT:ZN1!", "d": "美國10年期公債期貨 (美債期)" }
+                  ]
+                }
+              ]
             }
             </script>
         </div>
@@ -82,8 +107,8 @@
         <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 各部隊實質淨賺/深蹲金額</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
     </div>
 
-    <div class="max-w-6xl mx-auto card p-4 overflow-hidden">
-        <h3 class="text-sm font-medium text-slate-300 mb-4">📋 前線部隊明細實時總表 (文字評估可手動微調)</h3>
+    <div class="max-w-6xl mx-auto card p-4 overflow-hidden mb-12">
+        <h3 class="text-sm font-medium text-slate-300 mb-4">📋 前線部隊明細實時總表</h3>
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs md:text-sm">
                 <thead>
@@ -93,7 +118,7 @@
                         <th class="p-3 text-right">原始投資本金</th>
                         <th class="p-3 text-right">真實最新損益</th>
                         <th class="p-3 text-right">參考回報率</th>
-                        <th class="p-3">當前部隊戰略評估 (文字欄位)</th>
+                        <th class="p-3 text-center">作戰決策</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800" id="fund-table-body"></tbody>
@@ -101,22 +126,119 @@
         </div>
     </div>
 
+    <div id="analysis-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-slate-950 opacity-80" onclick="closeModal()"></div>
+        <div class="modal-container bg-slate-900 w-11/12 md:max-w-md mx-auto rounded-2xl shadow-2xl z-50 overflow-y-auto border border-blue-500/30">
+            <div class="modal-content py-6 text-left px-6">
+                <div class="flex justify-between items-center pb-3 border-b border-slate-700">
+                    <p class="text-base font-bold text-amber-400 flex items-center gap-2" id="modal-title">📡 基金現狀分析</p>
+                    <div class="modal-close cursor-pointer z-50 text-slate-400 hover:text-white" onclick="closeModal()">
+                        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
+                    </div>
+                </div>
+                <div class="my-5" id="modal-body-text">
+                    </div>
+                <div class="flex justify-end pt-2">
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 text-xs font-bold rounded-lg transition-colors" onclick="closeModal()">確認並重返戰場</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.getElementById('update-time').innerText = '雷達最後校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
         
-        // 100% 鎖死 7 隻大軍名冊，後方新增了「note」欄位，方便您未來手動更換文字評估！
+        // 📥 數據大腦：包含每隻基金點擊按鈕後要彈出的現狀分析文字！(您隨時可以在這裡修改文字內容)
         const fundData = [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", note: "日本牛市價值股雙軌卡位" },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", note: "戰略深蹲，靜待年底反爬大秀" },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", note: "核心AI旗艦重裝，穩收月配息" },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", note: "AI避險雙軌重兵，持續擴大戰果" },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", note: "新興市場高爆發，卡位人口紅利" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", note: "AI與自動化雙劍合璧主攻部隊" },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", note: "美國多元資產平衡傘，穩健護航" }
+            { 
+                id: "109007", 
+                name: "野村(愛爾蘭)-日本策略價值(T美元避險)", 
+                capital: 100000, 
+                profit: 1453, 
+                rate: "+1.45%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>目前微幅獲利中。日本央行貨幣政策微調，日圓波動加劇，但價值型股票（金融、大型製造業）具備強大防禦力，抗震效果顯著。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>維持防線、續抱看漲，暫不盲目加碼。</p>
+                </div>`
+            },
+            { 
+                id: "ALI003", 
+                name: "安聯全球生技趨勢基金-新臺幣", 
+                capital: 100000, 
+                profit: -4388, 
+                rate: "-4.35%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>處於短期防守深蹲期。新藥審查節奏放緩導致板塊回檔，但產業基底穩健，估值已達歷史低位，下方防禦空間扎實。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>戰略鎖倉深蹲，靜待下半年產業旺季與反爬大秀，無須恐慌拋售。</p>
+                </div>`
+            },
+            { 
+                id: "ALI092", 
+                name: "安聯AI收益成長多重資產-B2(月配)-台幣", 
+                capital: 300000, 
+                profit: 11375, 
+                rate: "+3.79%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>穩定輸出中。科技巨頭財報優於預期，AI晶片與雲端基建需求依舊極度狂熱，資產多重配置有效降低高科技股的震盪幅度。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>每月穩定領取配息，繼續扮演資產護航主力。</p>
+                </div>`
+            },
+            { 
+                id: "ALI094", 
+                name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", 
+                capital: 600000, 
+                profit: 102395, 
+                rate: "+17.07%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>戰果極其輝煌，獲利突破10萬大關！台幣避險級別成功鎖住匯率風險，完美吃下美股科技股主升段波段回報。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>戰略大勝！因水位已高，目前下達「原地固守令」，不再追高，讓子彈繼續飛。</p>
+                </div>`
+            },
+            { 
+                id: "CIT016", 
+                name: "群益印度中小基金-新台幣", 
+                capital: 130000, 
+                profit: 3910, 
+                rate: "+3.01%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>穩健墊高。印度內需基建與製造業轉移紅利持續發酵，中小企業活力充沛，在大盤高檔震盪中走出獨立行情。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>卡位人口紅利成功，中長線趨勢不變，持續放眼遠方戰場。</p>
+                </div>`
+            },
+            { 
+                id: "FSI011", 
+                name: "第一金全球AI機器人及自動化-新臺幣", 
+                capital: 300000, 
+                profit: 22629, 
+                rate: "+9.88%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>表現極佳，逼近雙位數回報！全球工廠自動化升級與機器人軟體大突破，與安聯AI核心中軍形成完美的犄角之勢。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>繼續保有此部隊之主攻權，目前維持現狀即可。</p>
+                </div>`
+            },
+            { 
+                id: "JPM041", 
+                name: "摩根大美國領先收成多重資產-月配-台幣", 
+                capital: 600000, 
+                profit: 32684, 
+                rate: "+5.45%", 
+                analysis: `<div class="space-y-3 text-sm text-slate-300">
+                    <p><span class="text-blue-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p>
+                    <p><span class="text-blue-400 font-bold">🎯 現狀分析：</span>發揮中流砥柱效果。美股輪動 healthy，大型股震盪時，高股息與優質債券部位立刻撐住防線，回報率穩步上升。</p>
+                    <p><span class="text-amber-400 font-bold">⚔️ 指揮官決策：</span>與60萬最大主力協同守護美股防線，月配息持續穩定入帳。</p>
+                </div>`
+            }
         ];
 
+        // 動態渲染表格
         const tbody = document.getElementById('fund-table-body');
-        fundData.forEach(fund => {
+        fundData.forEach((fund, index) => {
             const row = document.createElement('tr'); row.className = "hover:bg-slate-800/30 transition-colors";
             const isProfit = fund.profit >= 0; const profitText = (isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元';
             const profitClass = isProfit ? 'text-red-400 font-medium' : 'text-blue-400 font-medium'; const rateClass = isProfit ? 'text-red-400' : 'text-blue-400';
@@ -127,11 +249,35 @@
                 <td class="p-3 text-right font-mono text-slate-300">$${fund.capital.toLocaleString()} 元</td>
                 <td class="p-3 text-right font-mono ${profitClass}">${profitText}</td>
                 <td class="p-3 text-right font-mono ${rateClass}">${fund.rate}</td>
-                <td class="p-3 text-slate-400 text-xs">${fund.note}</td>
+                <td class="p-3 text-center">
+                    <button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-full text-xs transition-colors shadow-lg active:scale-95" onclick="openModal(${index})">
+                        🎯 戰略分析
+                    </button>
+                </td>
             `;
             tbody.appendChild(row);
         });
 
+        // 彈窗核心控制機關
+        function openModal(index) {
+            const fund = fundData[index];
+            document.getElementById('modal-title').innerHTML = `📡 ${fund.id} 現狀分析`;
+            document.getElementById('modal-body-text').innerHTML = fund.analysis;
+            
+            const modal = document.getElementById('analysis-modal');
+            modal.classList.remove('pointer-events-none');
+            modal.classList.remove('opacity-0');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('analysis-modal');
+            modal.classList.add('pointer-events-none');
+            modal.classList.add('opacity-0');
+            document.body.classList.remove('modal-active');
+        }
+
+        // 渲染圖表
         const ctxPie = document.getElementById('pieChart').getContext('2d');
         new Chart(ctxPie, { type: 'doughnut', data: { labels: fundData.map(f => f.id), datasets: [{ data: fundData.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
         const ctxBar = document.getElementById('barChart').getContext('2d');
