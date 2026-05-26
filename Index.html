@@ -1,1 +1,130 @@
 
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最高指揮部 - 全球宏觀基金雷達</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+        .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 1rem; }
+    </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+    <div class="max-w-6xl mx-auto mb-6">
+        <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+            <div>
+                <h1 class="text-xl md:text-3xl font-bold text-blue-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 隨身手持端</p>
+            </div>
+            <div class="text-right">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">● 專屬權限鎖定</span>
+                <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto mb-6">
+        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (自動跳動更新)</h3>
+        <div class="tradingview-widget-container card p-2">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+            {
+            "symbols": [
+                { "proName": "FOREXCOM:SPXUSD", "title": "美股 S&P 500" },
+                { "proName": "NASDAQ:IXIC", "title": "美股 那斯達克" },
+                { "proName": "TWSE:TAIEX", "title": "台股加權指數" },
+                { "proName": "FX_IDC:USDTWD", "title": "美金 / 台幣" },
+                { "proName": "NYMEX:CL1!", "title": "紐約原油期貨" },
+                { "proName": "CBOT:ZN1!", "title": "美國10年債期貨" }
+            ],
+            "isTransparent": true,
+            "showSymbolLogo": true,
+            "colorTheme": "dark",
+            "locale": "zh_TW"
+            }
+            </script>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <div class="card p-4">
+            <p class="text-xs text-slate-400">🪙 全軍投入總本金</p>
+            <p class="text-lg md:text-2xl font-bold text-white mt-1">$2,130,000 <span class="text-xs font-normal text-slate-400">元</span></p>
+        </div>
+        <div class="card p-4 border-l-4 border-red-500">
+            <p class="text-xs text-slate-400">📈 核心防線總損益</p>
+            <p class="text-lg md:text-2xl font-bold text-red-400 mt-1">+$169,425 <span class="text-xs font-normal text-slate-400">元</span></p>
+            <p class="text-[10px] text-red-400 mt-0.5">+7.95% 全軍回報</p>
+        </div>
+        <div class="card p-4">
+            <p class="text-xs text-slate-400">🏛️ 預估總資產現值</p>
+            <p class="text-lg md:text-2xl font-bold text-emerald-400 mt-1">$2,299,425 <span class="text-xs font-normal text-slate-400">元</span></p>
+        </div>
+        <div class="card p-4 border-l-4 border-blue-500">
+            <p class="text-xs text-slate-400">🏹 極限突擊預備兵團</p>
+            <p class="text-lg md:text-2xl font-bold text-blue-400 mt-1">$800,000 <span class="text-xs font-normal text-slate-400">元</span></p>
+            <p class="text-[10px] text-blue-300 mt-0.5">11.5萬機動款安全待命</p>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto card p-4 mb-6 bg-slate-900/50 border border-amber-500/30">
+        <p class="text-xs md:text-sm text-slate-300">
+            <span class="text-amber-400 font-bold">🎯 抄底獵人警戒線守則：</span>
+            台股大盤靶心 39,200 ~ 39,500 點 | 安聯台灣科技靶心 640 ~ 660 元。現狀嚴重超漲，80萬突擊兵團下達「最高封刀令」，絕不盲目追高！
+        </p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📊 各部隊原始本金配置比例</h3><div class="h-64"><canvas id="pieChart"></canvas></div></div>
+        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 各部隊實質淨賺/深蹲金額</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto card p-4 overflow-hidden">
+        <h3 class="text-sm font-medium text-slate-300 mb-4">📋 前線部隊明細實時總表</h3>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs md:text-sm">
+                <thead>
+                    <tr class="border-b border-slate-700 text-slate-400 bg-slate-800/50">
+                        <th class="p-3">代號</th>
+                        <th class="p-3">基金品項官方完整全銜</th>
+                        <th class="p-3 text-right">原始投資本金</th>
+                        <th class="p-3 text-right">真實最新損益</th>
+                        <th class="p-3 text-right">參考回報率</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800" id="fund-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('update-time').innerText = '雷達校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
+        // 100% 鎖死與指揮官一對一校準過的7隻現有基金名冊
+        const fundData = [
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%" },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%" },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%" },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%" },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%" },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%" }
+        ];
+        const tbody = document.getElementById('fund-table-body');
+        fundData.forEach(fund => {
+            const row = document.createElement('tr'); row.className = "hover:bg-slate-800/30 transition-colors";
+            const isProfit = fund.profit >= 0; const profitText = (isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元';
+            const profitClass = isProfit ? 'text-red-400 font-medium' : 'text-blue-400 font-medium'; const rateClass = isProfit ? 'text-red-400' : 'text-blue-400';
+            row.innerHTML = `<td class="p-3 font-mono text-slate-400 font-medium">${fund.id}</td><td class="p-3 text-slate-200 font-medium">${fund.name}</td><td class="p-3 text-right font-mono text-slate-300">$${fund.capital.toLocaleString()} 元</td><td class="p-3 text-right font-mono ${profitClass}">${profitText}</td><td class="p-3 text-right font-mono ${rateClass}">${fund.rate}</td>`;
+            tbody.appendChild(row);
+        });
+        const ctxPie = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctxPie, { type: 'doughnut', data: { labels: fundData.map(f => f.id), datasets: [{ data: fundData.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
+        const ctxBar = document.getElementById('barChart').getContext('2d');
+        new Chart(ctxBar, { type: 'bar', data: { labels: fundData.map(f => f.id), datasets: [{ label: '損益金額 (元)', data: fundData.map(f => f.profit), backgroundColor: fundData.map(f => f.profit >= 0 ? '#f87171' : '#60a5fa'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
+    </script>
+</body>
+</html>
