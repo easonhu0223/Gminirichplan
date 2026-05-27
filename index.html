@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.6</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.7</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,10 +21,10 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 貝萊德世界科技歸建觀測端</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 訊號全面校準修復版</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 貝萊德軍情接通中</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-200">● 雷達訊號修復完成</span>
                 <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
             </div>
         </div>
@@ -49,7 +49,7 @@
                   "title": "🌍 全球與亞太股市",
                   "symbols": [
                     { "s": "TWSE:TAIEX", "d": "台灣加權指數 (台股大盤)" },
-                    { "s": "FOREXCOM:SPXUSD", "d": "美國 S&P 500 指數 (美股大盤)" },
+                    { "s": "SP:SPX", "d": "美國 S&P 500 指數 (美股大盤)" },
                     { "s": "NASDAQ:IXIC", "d": "美國那斯達克綜合指數" },
                     { "s": "TSE:998407", "d": "日經 225 指數 (日股大盤)" },
                     { "s": "HSI:HSI", "d": "香港恆生指數 (港股)" },
@@ -103,7 +103,7 @@
         <div class="card p-4 border-l-4 border-blue-500">
             <p class="text-xs text-slate-400">🏹 極限突擊預備兵團</p>
             <p class="text-lg md:text-2xl font-bold text-blue-400 mt-1">$800,000 <span class="text-xs font-normal text-slate-400">元</span></p>
-            <p class="text-[10px] text-blue-300 mt-0.5">80萬預備兵團嚴密鎖定新標的</p>
+            <p class="text-[10px] text-blue-300 mt-0.5">含 11.5 萬機動贖回款安全待命中</p>
         </div>
     </div>
 
@@ -175,10 +175,10 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已將「貝萊德世界科技基金」編制入伍。該部隊目前已精準對齊全球高科技龍頭指標 XLK。請下達關於貝萊德的戰略分析推演！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！數據源代碼已校準完畢，全球宏觀前線與美債殖利率訊號已全線修復回歸！</div>
         </div>
         <div class="flex gap-2">
-            <input type="text" id="chat-input" placeholder="請輸入戰略問題（例如：貝萊德世界科技這支怎麼看？適合何時動用預備兵團？...）" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
+            <input type="text" id="chat-input" placeholder="請輸入戰略問題..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
             <button onclick="sendQuestion()" class="bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all">送出參謀</button>
         </div>
     </div>
@@ -212,8 +212,8 @@
             { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p></div>` },
             { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p></div>` },
             { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p></div>` },
-            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 擴軍風向：</span>本土最強科技基金觀測</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>台股 0052 ETF</p><p><span class="text-slate-400">目前設定為純追蹤，本金計為 0，用於隨時對齊台灣本土科技巨頭行情。</span></p></div>` },
-            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 戰略評估：</span>全球最老牌重裝科技旗艦</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 XLK (高科技巨頭 ETF)</p><p><span class="text-slate-400">核心配置鎖定 NVIDIA 與微軟。目前列為「預備兵團 (80萬)」最優先潛在飽和抄底目標，本金暫計 0 待命。</span></p></div>` }
+            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 擴軍風向：</span>本土最強科技基金觀測</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>台股 0052 ETF</p></div>` },
+            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 戰略評估：</span>全球最老牌重裝科技旗艦</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 XLK (高科技巨頭 ETF)</p></div>` }
         ];
 
         const tbody = document.getElementById('fund-table-body');
@@ -250,14 +250,7 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "報告指揮官，收到關於貝萊德世界科技的推演軍令。該基金目前在高牆上對齊 XLK 指標，與您的大主力安聯 AI（對齊 QQQ）形成極強互補。只要科技巨頭基本面不變，這兩大旗艦將持續發揮多頭暴發力！";
-                
-                if(question.includes('貝萊德') || question.includes('世界科技') || question.includes('XLK')) {
-                    reply = "【貝萊德世界科技戰術推演】這支基金是不折不扣的『進攻型重裝坦克』，持股極度集中於 NVIDIA、微軟與 Apple。今日上層大牆已為您開通 XLK 即時 K 線。由於目前科技股正處於歷史高檔噴出期，屬下建議：80萬預備兵團繼續按兵不動，等未來美股出現 5%~10% 的實質技術性回檔時，再動用部分預備兵團前去一槍斃命、飽和加碼這支王牌！";
-                } else if(question.includes('科技基金') || question.includes('0052')) {
-                    reply = "【科技雙向防線】目前您的雷達同時擁有『台灣科技型（0052）』與『全球科技型（貝萊德/XLK）』兩大純觀測防線。一個看台積電本土供應鏈，一個看美股原始大廠。雙劍合璧，全球科技的資金流向已完全逃不出您的手掌心！";
-                }
-
+                let reply = "報告指揮官，訊號修復已全線完成。我們會持續替您守護 213 萬主力資產並嚴格監控台股大盤，等候回測訊號！";
                 chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 800);
