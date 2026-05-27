@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.99</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v4.00</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,10 +21,10 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 股市精準排序與期貨黑畫面全修復</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 基金復活與期貨完全中文化版</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.99</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v4.00</span>
                 <p class="text-[10px] text-slate-400 mt-1" id="update-time"></p>
             </div>
         </div>
@@ -36,55 +36,75 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             
             <div class="card p-4 space-y-2">
-                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">🌍 全球與亞太股市 (台股優先、美股四大、亞股)</h4>
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1 mb-2">🌍 全球與亞太股市 (台股優先、美股四大、亞股)</h4>
                 
-                <p class="text-[10px] text-red-400 font-bold tracking-wider mt-1">▼ 台灣市場首要核心</p>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TAIEX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <p class="text-[10px] text-red-400 font-bold tracking-wider mt-1">▼ 台灣市場首要核心指標</p>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TWSE:TAIEX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
                 
-                <p class="text-[10px] text-blue-400 font-bold tracking-wider pt-1">▼ 美股四大權威指數</p>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "DJI", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SPX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "IXIC", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SOX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <p class="text-[10px] text-blue-400 font-bold tracking-wider pt-2">▼ 美股四大權威指數</p>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "DJ:DJI", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SP:SPX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NASDAQ:IXIC", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "PHLX:SOX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
                 
-                <p class="text-[10px] text-emerald-400 font-bold tracking-wider pt-1">▼ 亞洲各國核心大盤</p>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NKY", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "HSI", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "000001", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <p class="text-[10px] text-emerald-400 font-bold tracking-wider pt-2">▼ 亞洲各國核心大盤</p>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "INDEX:NKY", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "HSI:HSI", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SSE:000001", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
             </div>
 
             <div class="card p-4 space-y-2">
-                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">📦 核心期貨與大宗商品 (修復版前十名)</h4>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "GOLD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SILVER", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "USOIL", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "UKOIL", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "COPPER", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NATURALGAS", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SOYBEANS", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CORN", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "WHEAT", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "COFFEE", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1 mb-2">📦 核心期貨與大宗商品 (前十名中文對照版)</h4>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🪙 黃金期貨 (GOLD)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:GOLD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🥈 白銀期貨 (SILVER)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:SILVER", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🛢️ 紐約原油期貨 (WTI)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:USOIL", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">⛽ 布蘭特原油期貨 (BRENT)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:UKOIL", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🧪 頂級高級銅期貨 (COPPER)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "COMEX:HG1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🔥 天然氣期貨 (NATURAL GAS)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "NYMEX:NG1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🌱 黃豆期貨 (SOYBEANS)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CBOT:ZS1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🌽 玉米期貨 (CORN)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CBOT:ZC1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-amber-400 text-[10px] px-2 py-0.5 rounded font-bold">🌾 小麥期貨 (WHEAT)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CBOT:ZW1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                
+                <div class="pt-1"><span class="bg-slate-800 text-red-400 text-[10px] px-2 py-0.5 rounded font-bold">☕ 阿拉比卡咖啡豆期貨 (COFFEE KC)</span></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "ICE:KC1!", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="card p-4 space-y-2">
                 <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">💵 新台幣跨國匯率牆 (美、歐、澳、亞洲)</h4>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "USDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "EURTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "AUDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "JPYTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "CNYTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "KRWTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "SGDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:USDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:EURTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:AUDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:JPYTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:CNYTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:KRWTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "FX_IDC:SGDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
             </div>
 
             <div class="card p-4 space-y-2">
                 <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">🇺🇸 美國國債殖利率 (直接平鋪免點擊)</h4>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "US10Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "US05Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
-                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "US02Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:US10Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:US05Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
+                <div class="tradingview-widget-container"><script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>{"symbol": "TVC:US02Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}</script></div>
             </div>
         </div>
     </div>
@@ -129,7 +149,7 @@
                 {
                   "title": "前線部隊與新增評估標的全自動追蹤欄",
                   "symbols": [
-                    { "s": "AMEX:EWJ", "d": "109007 野村日本策略" },
+                    { "s": "NYSE:EWJ", "d": "109007 野村日本策略" },
                     { "s": "NASDAQ:IBB", "d": "ALI003 安聯全球生技" },
                     { "s": "NASDAQ:QQQ", "d": "ALI092 安聯AI收益台幣" },
                     { "s": "NASDAQ:QQQ", "d": "ALI094 安聯AI收益避險" },
@@ -171,7 +191,7 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已進階至 v3.99 最終修復版。所有複雜代碼、首碼與驚嘆號已全面精簡為最高相容碼，盲區已全面打通！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已進階至 v4.00 頂級防線版。七大已購基金內文已完美加載復活，十大期貨亦成功配備中文作戰標籤！</div>
         </div>
         <div class="flex gap-2">
             <input type="text" id="chat-input" placeholder="請輸入戰略問題..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
@@ -202,15 +222,15 @@
         document.getElementById('update-time').innerText = '雷達最後校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
         
         const fundData = [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", symbol: "EWJ", desc: "對齊日股大盤 ETF (EWJ) 即時走勢" },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", symbol: "IBB", desc: "對齊全球生技醫療龍頭 ETF (IBB) 即時走勢" },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", symbol: "QQQ", desc: "對齊科技巨頭重鎮 那斯達克 100 (QQQ) 即時走勢" },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", symbol: "QQQ", desc: "對齊主力科技巨頭 那斯達克 100 (QQQ) 避險板塊即時走勢" },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", symbol: "SMIN", desc: "對齊印度中小企業規模之星 ETF (SMIN) 即時走勢" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", symbol: "BOTZ", desc: "對齊全球機器人與自動化 AI 精英 ETF (BOTZ) 即時走勢" },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", symbol: "SPY", desc: "對齊美股大盤防禦基準 標普 500 (SPY) 即時走勢" },
-            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", symbol: "0052", desc: "觀測中：對齊台灣富邦科技 ETF (0052) 即時走勢" },
-            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", symbol: "XLK", desc: "觀測中：對齊全球頂級科技核心 ETF (XLK) 即時走勢" }
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", symbol: "NYSE:EWJ", desc: "對齊日股大盤 ETF (EWJ) 即時走勢" },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", symbol: "NASDAQ:IBB", desc: "對齊全球生技醫療龍頭 ETF (IBB) 即時走勢" },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", symbol: "NASDAQ:QQQ", desc: "對齊科技巨頭重鎮 那斯達克 100 (QQQ) 即時走勢" },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", symbol: "NASDAQ:QQQ", desc: "對齊主力科技巨頭 那斯達克 100 (QQQ) 避險板塊即時走勢" },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", symbol: "AMEX:SMIN", desc: "對齊印度中小企業規模之星 ETF (SMIN) 即時走勢" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", symbol: "NASDAQ:BOTZ", desc: "對齊全球機器人與自動化 AI 精英 ETF (BOTZ) 即時走勢" },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", symbol: "AMEX:SPY", desc: "對齊美股大盤防禦基準 標普 500 (SPY) 即時走勢" },
+            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", symbol: "TWSE:0052", desc: "觀測中：對齊台灣富邦科技 ETF (0052) 即時走勢" },
+            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", symbol: "AMEX:XLK", desc: "觀測中：對齊全球頂級科技核心 ETF (XLK) 即時走勢" }
         ];
 
         const tbody = document.getElementById('fund-table-body');
@@ -259,7 +279,7 @@
             chatBox.innerHTML += `<div class="text-slate-200 mt-1"><span class="text-blue-400 font-bold">🫡 我方指揮官：</span>${question}</div>`;
             inputEl.value = ''; chatBox.scrollTop = chatBox.scrollHeight;
             setTimeout(() => {
-                chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！代碼精簡完畢，股市排序依您的最高指令：台股第一、美股四大緊隨、亞股隨後，期貨與美債已全數強制點亮！</div>`;
+                chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！v4.00 數據綁定全面修復完畢，下層表格內容全部歸位，期貨中文名已全部鎖定！</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 800);
         }
@@ -268,4 +288,7 @@
         const ctxPie = document.getElementById('pieChart').getContext('2d');
         new Chart(ctxPie, { type: 'doughnut', data: { labels: activeFunds.map(f => f.id), datasets: [{ data: activeFunds.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
         const ctxBar = document.getElementById('barChart').getContext('2d');
-        new
+        new Chart(ctxBar, { type: 'bar', data: { labels: activeFunds.map(f => f.id), datasets: [{ label: '基準損益 (元)', data: activeFunds.map(f => f.profit), backgroundColor: activeFunds.map(f => f.profit >= 0 ? '#ef4444' : '#3b82f6'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
+    </script>
+</body>
+</html>
