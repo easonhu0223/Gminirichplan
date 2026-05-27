@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.7</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.71</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,11 +21,11 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 訊號全面校準修復版</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 戰術核心端</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-200">● 雷達訊號修復完成</span>
-                <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.71</span>
+                <p class="text-[10px] text-slate-400 mt-1" id="update-time"></p>
             </div>
         </div>
     </div>
@@ -103,7 +103,7 @@
         <div class="card p-4 border-l-4 border-blue-500">
             <p class="text-xs text-slate-400">🏹 極限突擊預備兵團</p>
             <p class="text-lg md:text-2xl font-bold text-blue-400 mt-1">$800,000 <span class="text-xs font-normal text-slate-400">元</span></p>
-            <p class="text-[10px] text-blue-300 mt-0.5">含 11.5 萬機動贖回款安全待命中</p>
+            <p class="text-[10px] text-blue-300 mt-0.5">含 11.5 萬機動贖回款安全待心中</p>
         </div>
     </div>
 
@@ -175,7 +175,7 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！數據源代碼已校準完畢，全球宏觀前線與美債殖利率訊號已全線修復回歸！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！版本追蹤系統（Version Tracker）已上線。目前右上方已精準釘死 v3.71 版本標章，未來任何系統微調都將留下歷史軌跡！</div>
         </div>
         <div class="flex gap-2">
             <input type="text" id="chat-input" placeholder="請輸入戰略問題..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
@@ -188,7 +188,7 @@
         <div class="modal-container bg-slate-900 w-11/12 md:max-w-md mx-auto rounded-2xl shadow-2xl z-50 overflow-y-auto border border-blue-500/30">
             <div class="modal-content py-6 text-left px-6">
                 <div class="flex justify-between items-center pb-3 border-b border-slate-700">
-                    <p class="text-base font-bold text-amber-400 flex items-center gap-2" id="modal-title">📡 基金現狀分析</p>
+                    <p class="text-base font-bold text-amber-400 flex items-center gap-2" id="modal-title">📡 基金現狀 analysis</p>
                     <div class="modal-close cursor-pointer z-50 text-slate-400 hover:text-white" onclick="closeModal()">
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
                     </div>
@@ -250,7 +250,7 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "報告指揮官，訊號修復已全線完成。我們會持續替您守護 213 萬主力資產並嚴格監控台股大盤，等候回測訊號！";
+                let reply = "報告指揮官，當前系統運作於 v3.71 安全世代。右上角已正式啟動版本控制標章，確保每一次戰略微調都有據可查！";
                 chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 800);
