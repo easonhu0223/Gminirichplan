@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.80</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.91</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,10 +21,10 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 跨端自適應排版控制中心</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 台股訊號完全修復版</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.80</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.91</span>
                 <p class="text-[10px] text-slate-400 mt-1" id="update-time"></p>
             </div>
         </div>
@@ -34,39 +34,49 @@
         <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (一頁式全面攤開 • 零切換不漏訊)</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div class="card p-3">
-                <h4 class="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1">🌍 全球與亞太股市</h4>
+            <div class="card p-4">
+                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">🌍 全球與亞太股市</h4>
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
                     {
-                      "colorTheme": "dark", "dateRange": "1D", "showChart": false, "locale": "zh_TW", "width": "100%", "height": 260, "isTransparent": true, "showSymbolLogo": true,
-                      "symbols": [
-                        { "s": "TWSE:TAIEX", "d": "台灣加權指數 (台股大盤)" },
-                        { "s": "SP:SPX", "d": "美國 S&P 500 指數 (美股大盤)" },
-                        { "s": "NASDAQ:IXIC", "d": "美國那斯達克綜合指數" },
-                        { "s": "TSE:998407", "d": "日經 225 指數 (日股大盤)" },
-                        { "s": "HSI:HSI", "d": "香港恆生指數 (港股)" },
-                        { "s": "SSE:000001", "d": "上證綜合指數 (陸股大盤)" }
-                      ]
+                      "width": "100%", "height": 310, "symbolsGroups": [
+                        {
+                          "originalName": "Indices",
+                          "symbols": [
+                            { "name": "INDEX:TAIEX", "displayName": "台灣加權指數 (台股大盤)" },
+                            { "name": "SP:SPX", "displayName": "美國 S&P 500 指數" },
+                            { "name": "NASDAQ:IXIC", "displayName": "美國那斯達克綜合指數" },
+                            { "name": "INDEX:NKY", "displayName": "日經 225 指數" },
+                            { "name": "HSI:HSI", "displayName": "香港恆生指數" },
+                            { "name": "SSE:000001", "displayName": "上證綜合指數" }
+                          ]
+                        }
+                      ],
+                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
                     }
                     </script>
                 </div>
             </div>
 
-            <div class="card p-3">
-                <h4 class="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1">📦 核心期貨與大宗商品</h4>
+            <div class="card p-4">
+                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">📦 核心期貨與大宗商品</h4>
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
                     {
-                      "colorTheme": "dark", "dateRange": "1D", "showChart": false, "locale": "zh_TW", "width": "100%", "height": 260, "isTransparent": true, "showSymbolLogo": true,
-                      "symbols": [
-                        { "s": "TVC:GOLD", "d": "黃金現貨 (Gold)" },
-                        { "s": "TVC:SILVER", "d": "白銀現貨 (Silver)" },
-                        { "s": "TVC:USOIL", "d": "紐約輕原油 (WTI)" },
-                        { "s": "TVC:UKOIL", "d": "布蘭特原油 (Brent)" }
-                      ]
+                      "width": "100%", "height": 230, "symbolsGroups": [
+                        {
+                          "originalName": "Commodities",
+                          "symbols": [
+                            { "name": "TVC:GOLD", "displayName": "黃金現貨 (Gold)" },
+                            { "name": "TVC:SILVER", "displayName": "白銀現貨 (Silver)" },
+                            { "name": "TVC:USOIL", "displayName": "紐約輕原油 (WTI)" },
+                            { "name": "TVC:UKOIL", "displayName": "布蘭特原油 (Brent)" }
+                          ]
+                        }
+                      ],
+                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
                     }
                     </script>
                 </div>
@@ -74,34 +84,44 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="card p-3">
-                <h4 class="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1">💵 關鍵外匯匯率</h4>
+            <div class="card p-4">
+                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">💵 關鍵外匯匯率</h4>
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
                     {
-                      "colorTheme": "dark", "dateRange": "1D", "showChart": false, "locale": "zh_TW", "width": "100%", "height": 220, "isTransparent": true, "showSymbolLogo": true,
-                      "symbols": [
-                        { "s": "FX_IDC:USDTWD", "d": "美元 / 新台幣 (美金兌台)" },
-                        { "s": "FX_IDC:JPYTWD", "d": "日圓 / 新台幣 (日幣兌台)" },
-                        { "s": "FX_IDC:CNYTWD", "d": "人民幣 / 新台幣 (人民幣兌台)" }
-                      ]
+                      "width": "100%", "height": 200, "symbolsGroups": [
+                        {
+                          "originalName": "Forex",
+                          "symbols": [
+                            { "name": "FX_IDC:USDTWD", "displayName": "美元 / 新台幣" },
+                            { "name": "FX_IDC:JPYTWD", "displayName": "日圓 / 新台幣" },
+                            { "name": "FX_IDC:CNYTWD", "displayName": "人民幣 / 新台幣" }
+                          ]
+                        }
+                      ],
+                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
                     }
                     </script>
                 </div>
             </div>
 
-            <div class="card p-3">
-                <h4 class="text-xs font-semibold text-slate-300 mb-2 flex items-center gap-1">🇺🇸 美國國債殖利率</h4>
+            <div class="card p-4">
+                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">🇺🇸 美國國債殖利率</h4>
                 <div class="tradingview-widget-container">
                     <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
                     {
-                      "colorTheme": "dark", "dateRange": "1D", "showChart": false, "locale": "zh_TW", "width": "100%", "height": 220, "isTransparent": true, "showSymbolLogo": true,
-                      "symbols": [
-                        { "s": "TVC:US05Y", "d": "美國 5 年期國債殖利率" },
-                        { "s": "TVC:US10Y", "d": "美國 10 年期國債殖利率" }
-                      ]
+                      "width": "100%", "height": 170, "symbolsGroups": [
+                        {
+                          "originalName": "Yields",
+                          "symbols": [
+                            { "name": "TVC:US05Y", "displayName": "美國 5 年期國債殖利率" },
+                            { "name": "TVC:US10Y", "displayName": "美國 10 年期國債殖利率" }
+                          ]
+                        }
+                      ],
+                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
                     }
                     </script>
                 </div>
@@ -191,7 +211,7 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已升級至 v3.80 排版大革命世代。四大版面已完成網格化獨立拆解，斷訊盲區已 100% 徹底修復！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已進階至 v3.91 版本。台股大盤及日經指數已全數使用大盤基準碼校正，訊號盲區已完全打通！</div>
         </div>
         <div class="flex gap-2">
             <input type="text" id="chat-input" placeholder="請輸入戰略問題..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
@@ -222,7 +242,7 @@
         
         const fundData = [
             { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p></div>` },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍頭 ETF)</p></div>` },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍龍 ETF)</p></div>` },
             { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
             { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
             { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p></div>` },
@@ -266,12 +286,13 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "報告指揮官，當前系統運作於 v3.80 完全體。四大板塊已完全獨立平鋪，數據流運作極度通暢！";
+                let reply = "報告指揮官，v3.91 台灣大盤訊號修復版已就位！零分頁、零滾軸、項目全部展開！";
                 chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 800);
         }
 
+        document.body.classList.remove('modal-active');
         function openModal(index) {
             const fund = fundData[index];
             document.getElementById('modal-title').innerHTML = `⚙️ ${fund.id} 核心戰略定位`;
