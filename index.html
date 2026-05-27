@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.4</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.6</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,10 +21,10 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 全指標修復精準端</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 貝萊德世界科技歸建觀測端</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 數據精準同步中</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-950 text-red-200">● 貝萊德軍情接通中</span>
                 <p class="text-[10px] text-slate-500 mt-1" id="update-time"></p>
             </div>
         </div>
@@ -61,8 +61,8 @@
                   "symbols": [
                     { "s": "TVC:GOLD", "d": "黃金現貨 (Gold)" },
                     { "s": "TVC:SILVER", "d": "白銀現貨 (Silver)" },
-                    { "s": "TVC:USOIL", "d": "紐約輕原油 (WTI Crude Oil)" },
-                    { "s": "TVC:UKOIL", "d": "布蘭特原油 (Brent Crude Oil)" }
+                    { "s": "TVC:USOIL", "d": "紐約輕原油 (WTI)" },
+                    { "s": "TVC:UKOIL", "d": "布蘭特原油 (Brent)" }
                   ]
                 },
                 {
@@ -88,34 +88,34 @@
 
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
         <div class="card p-4">
-            <p class="text-xs text-slate-400">🪙 全軍投入總本金</p>
+            <p class="text-xs text-slate-400">🪙 已投入主力總本金</p>
             <p class="text-lg md:text-2xl font-bold text-white mt-1">$2,130,000 <span class="text-xs font-normal text-slate-400">元</span></p>
         </div>
         <div class="card p-4 border-l-4 border-red-500">
-            <p class="text-xs text-slate-400">📈 戰略基準總損益</p>
+            <p class="text-xs text-slate-400">📈 已建倉部隊總損益</p>
             <p class="text-lg md:text-2xl font-bold text-red-500 mt-1">+$169,425 <span class="text-xs font-normal text-slate-400">元</span></p>
             <p class="text-[10px] text-red-400 mt-0.5">+7.95% 全軍大賺回報</p>
         </div>
         <div class="card p-4">
-            <p class="text-xs text-slate-400">🏛️ 基準總資產現值</p>
+            <p class="text-xs text-slate-400">🏛️ 已建倉資產現值</p>
             <p class="text-lg md:text-2xl font-bold text-emerald-400 mt-1">$2,299,425 <span class="text-xs font-normal text-slate-400">元</span></p>
         </div>
         <div class="card p-4 border-l-4 border-blue-500">
             <p class="text-xs text-slate-400">🏹 極限突擊預備兵團</p>
             <p class="text-lg md:text-2xl font-bold text-blue-400 mt-1">$800,000 <span class="text-xs font-normal text-slate-400">元</span></p>
-            <p class="text-[10px] text-blue-300 mt-0.5">11.5萬機動款安全待命</p>
+            <p class="text-[10px] text-blue-300 mt-0.5">80萬預備兵團嚴密鎖定新標的</p>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📊 各部隊原始本金配置比例</h3><div class="h-64"><canvas id="pieChart"></canvas></div></div>
-        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 各部隊原始損益對照 (紅賺 / 藍深蹲)</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
+        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📊 原始 7 大大軍本金配置比例</h3><div class="h-64"><canvas id="pieChart"></canvas></div></div>
+        <div class="card p-4"><h3 class="text-sm font-medium text-slate-300 mb-4">📈 原始 7 大大軍損益對照 (紅賺 / 藍深蹲)</h3><div class="h-64"><canvas id="barChart"></canvas></div></div>
     </div>
 
     <div class="max-w-6xl mx-auto card p-4 overflow-hidden mb-6">
         <div class="flex items-center justify-between mb-4">
-            <h3 class="text-sm font-medium text-amber-400 flex items-center gap-2">🔥 上層：7 隻對應指標 ETF 實時報價牆 (100%全自動更新)</h3>
-            <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded">美股標準：綠漲紅跌</span>
+            <h3 class="text-sm font-medium text-amber-400 flex items-center gap-2">🔥 上層：9 大對應指標 實時報價牆 (100%全自動更新)</h3>
+            <span class="text-[10px] text-slate-400 bg-slate-800 px-2 py-1 rounded">國際標準：綠漲紅跌</span>
         </div>
         <div class="tradingview-widget-container">
             <div class="tradingview-widget-container__widget"></div>
@@ -126,20 +126,22 @@
               "showChart": true,
               "locale": "zh_TW",
               "width": "100%",
-              "height": 450,
+              "height": 550,
               "isTransparent": true,
               "showSymbolLogo": true,
               "tabs": [
                 {
-                  "title": "前線部隊實時追蹤 (全球指標 ETF 走勢對齊)",
+                  "title": "前線部隊與新增評估標的全自動追蹤欄",
                   "symbols": [
                     { "s": "AMEX:EWJ", "d": "109007 野村日本策略 ➡️ 對應【日股大盤ETF】" },
                     { "s": "NASDAQ:IBB", "d": "ALI003 安聯全球生技 ➡️ 對應【全球生技ETF】" },
                     { "s": "NASDAQ:QQQ", "d": "ALI092 安聯AI收益台幣 ➡️ 對應【那斯達克100】" },
                     { "s": "NASDAQ:QQQ", "d": "ALI094 安聯AI收益避險 ➡️ 對應【科技巨頭大本營】" },
                     { "s": "AMEX:SMIN", "d": "CIT016 群益印度中小 ➡️ 對應【印度中小企業ETF】" },
-                    { "s": "NASDAQ:BOTZ", "d": "FSI011 第一金AI機器人 ➡️ 對應//全球機器人AI// " },
-                    { "s": "AMEX:SPY", "d": "JPM041 摩根大美國領先 ➡️ 對應【標普500多重防禦】" }
+                    { "s": "NASDAQ:BOTZ", "d": "FSI011 第一金AI機器人 ➡️ 對應【全球機器人AI】" },
+                    { "s": "AMEX:SPY", "d": "JPM041 摩根大美國領先 ➡️ 對應【標普500多重防禦】" },
+                    { "s": "TWSE:0052", "d": "🆕 台灣科技基金特選對齊 ➡️ 【富邦台灣科技 ETF】" },
+                    { "s": "AMEX:XLK", "d": "⚔️ 正在評估的王牌 ➡️ 【貝萊德世界科技基金 (XLK對齊)】" }
                   ]
                 }
               ]
@@ -173,10 +175,10 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！宏觀戰術修復儀已啟動。全球與美股大盤已歸建同一防線，期貨商品與美債殖利率訊號已完全接通，請下達進一步戰術查詢！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已將「貝萊德世界科技基金」編制入伍。該部隊目前已精準對齊全球高科技龍頭指標 XLK。請下達關於貝萊德的戰略分析推演！</div>
         </div>
         <div class="flex gap-2">
-            <input type="text" id="chat-input" placeholder="請輸入戰略問題（例如：台股跌破靶心如何應對？安聯最大主力何時獲利了結？...）" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
+            <input type="text" id="chat-input" placeholder="請輸入戰略問題（例如：貝萊德世界科技這支怎麼看？適合何時動用預備兵團？...）" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
             <button onclick="sendQuestion()" class="bg-blue-600 hover:bg-blue-500 active:scale-95 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all">送出參謀</button>
         </div>
     </div>
@@ -209,24 +211,30 @@
             { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
             { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p></div>` },
             { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p></div>` },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p></div>` }
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p></div>` },
+            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 擴軍風向：</span>本土最強科技基金觀測</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>台股 0052 ETF</p><p><span class="text-slate-400">目前設定為純追蹤，本金計為 0，用於隨時對齊台灣本土科技巨頭行情。</span></p></div>` },
+            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 戰略評估：</span>全球最老牌重裝科技旗艦</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 XLK (高科技巨頭 ETF)</p><p><span class="text-slate-400">核心配置鎖定 NVIDIA 與微軟。目前列為「預備兵團 (80萬)」最優先潛在飽和抄底目標，本金暫計 0 待命。</span></p></div>` }
         ];
 
         const tbody = document.getElementById('fund-table-body');
         fundData.forEach((fund, index) => {
             const row = document.createElement('tr'); row.className = "hover:bg-slate-800/30 transition-colors";
             const isProfit = fund.profit >= 0;
-            const profitText = (isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元';
-            const profitClass = isProfit ? 'text-red-500 font-semibold' : 'text-blue-400 font-semibold';
-            const rateClass = isProfit ? 'text-red-500' : 'text-blue-400';
+            const isNew = fund.capital === 0;
+            
+            const profitText = isNew ? "觀測待命" : ((isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元');
+            const profitClass = isNew ? 'text-amber-400 font-medium' : (isProfit ? 'text-red-500 font-semibold' : 'text-blue-400 font-semibold');
+            const rateClass = isNew ? 'text-amber-400' : (isProfit ? 'text-red-500' : 'text-blue-400');
+            const rateText = isNew ? "N/A" : fund.rate;
+            const capitalText = isNew ? "暫無建倉" : (`$${fund.capital.toLocaleString()} 元`);
             
             row.innerHTML = `
                 <td class="p-3 font-mono text-slate-400 font-medium">${fund.id}</td>
                 <td class="p-3 text-slate-200 font-medium text-xs md:text-sm">${fund.name}</td>
-                <td class="p-3 text-right font-mono text-slate-300">$${fund.capital.toLocaleString()} 元</td>
+                <td class="p-3 text-right font-mono text-slate-300">${capitalText}</td>
                 <td class="p-3 text-right font-mono ${profitClass}">${profitText}</td>
-                <td class="p-3 text-right font-mono ${rateClass}">${fund.rate}</td>
-                <td class="p-3 text-center"><button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-full text-xs transition-colors shadow-lg" onclick="openModal(${index})">🎯 戰略分析</button></td>
+                <td class="p-3 text-right font-mono ${rateClass}">${rateText}</td>
+                <td class="p-3 text-center"><button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-full text-xs transition-colors shadow-lg active:scale-95" onclick="openModal(${index})">🎯 戰略分析</button></td>
             `;
             tbody.appendChild(row);
         });
@@ -242,14 +250,12 @@
             chatBox.scrollTop = chatBox.scrollHeight;
 
             setTimeout(() => {
-                let reply = "報告指揮官，收到這項宏觀戰術提問。根據雷達上層顯示的全球大盤、美債殖利率以及大宗商品走勢，當前全球資金正處於高速調度期。屬下建議密切觀察核心突擊隊的防線靶心，切勿在不理智的高檔區將 80 萬預備兵團盲目投入，應死守陣地、穩定領取月配息，靜待美股與亞太市場出現實質回檔時再行飽和抄底！";
+                let reply = "報告指揮官，收到關於貝萊德世界科技的推演軍令。該基金目前在高牆上對齊 XLK 指標，與您的大主力安聯 AI（對齊 QQQ）形成極強互補。只要科技巨頭基本面不變，這兩大旗艦將持續發揮多頭暴發力！";
                 
-                if(question.includes('底') || question.includes('靶心') || question.includes('加碼')) {
-                    reply = "【加碼戰術指令】目前台股大盤與美股均處於強勢高檔。根據上方雷達，5年期與10年期美債殖利率若持續在高位橫盤，高科技股（QQQ/BOTZ）短期會有震盪。屬下重申：80萬預備兵團必須嚴格封刀，台股未落入 39,200 點以下靶心前，切勿提前暴露火力！";
-                } else if(question.includes('主力') || question.includes('安聯') || question.includes('10萬')) {
-                    reply = "【旗艦部隊評估】安聯 AI 收益成長（ALI094）做為 60 萬重兵最大主力，基準獲利已突破 10 萬元（高達 +17.07%）。目前上方全球大盤分頁中的 S&P 500 與那斯達克即時走勢依然健在，且該級別鎖定台幣避險。建議『原地固守、配息續抱』，無需急著獲利了結！";
-                } else if(question.includes('匯率') || question.includes('美金') || question.includes('日幣') || question.includes('台幣')) {
-                    reply = "【匯率戰略防線】已在即時雷達的『關鍵外匯匯率』分頁中為您正確接入美金、日圓、人民幣兌台幣走勢。日圓策略價值（109007）有做美元避險，因此只要緊盯上方美元兌台幣的匯率大閘即可。若台幣走貶，對您海外資產更是一層隱形增值防護！";
+                if(question.includes('貝萊德') || question.includes('世界科技') || question.includes('XLK')) {
+                    reply = "【貝萊德世界科技戰術推演】這支基金是不折不扣的『進攻型重裝坦克』，持股極度集中於 NVIDIA、微軟與 Apple。今日上層大牆已為您開通 XLK 即時 K 線。由於目前科技股正處於歷史高檔噴出期，屬下建議：80萬預備兵團繼續按兵不動，等未來美股出現 5%~10% 的實質技術性回檔時，再動用部分預備兵團前去一槍斃命、飽和加碼這支王牌！";
+                } else if(question.includes('科技基金') || question.includes('0052')) {
+                    reply = "【科技雙向防線】目前您的雷達同時擁有『台灣科技型（0052）』與『全球科技型（貝萊德/XLK）』兩大純觀測防線。一個看台積電本土供應鏈，一個看美股原始大廠。雙劍合璧，全球科技的資金流向已完全逃不出您的手掌心！";
                 }
 
                 chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
@@ -273,10 +279,11 @@
             document.body.classList.remove('modal-active');
         }
 
+        const activeFunds = fundData.slice(0, 7);
         const ctxPie = document.getElementById('pieChart').getContext('2d');
-        new Chart(ctxPie, { type: 'doughnut', data: { labels: fundData.map(f => f.id), datasets: [{ data: fundData.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
+        new Chart(ctxPie, { type: 'doughnut', data: { labels: activeFunds.map(f => f.id), datasets: [{ data: activeFunds.map(f => f.capital), backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } } });
         const ctxBar = document.getElementById('barChart').getContext('2d');
-        new Chart(ctxBar, { type: 'bar', data: { labels: fundData.map(f => f.id), datasets: [{ label: '基準損益 (元)', data: fundData.map(f => f.profit), backgroundColor: fundData.map(f => f.profit >= 0 ? '#ef4444' : '#3b82f6'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
+        new Chart(ctxBar, { type: 'bar', data: { labels: activeFunds.map(f => f.id), datasets: [{ label: '基準損益 (元)', data: activeFunds.map(f => f.profit), backgroundColor: activeFunds.map(f => f.profit >= 0 ? '#ef4444' : '#3b82f6'), borderRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } }, x: { grid: { display: false }, ticks: { color: '#94a3b8' } } } } });
     </script>
 </body>
 </html>
