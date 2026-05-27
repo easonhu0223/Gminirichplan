@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.91</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰雷達 v3.95</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -21,110 +21,71 @@
         <div class="flex items-center justify-between border-b border-slate-700 pb-4">
             <div>
                 <h1 class="text-xl md:text-3xl font-bold text-red-400 flex items-center gap-2">🛡️ 最高指揮部</h1>
-                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 台股訊號完全修復版</p>
+                <p class="text-xs text-slate-400 mt-1">全球宏觀聯合作戰總部 • 100%強行點亮與即時走勢聯動版</p>
             </div>
             <div class="text-right">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.91</span>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-950 text-blue-300 border border-blue-800">🚀 雷達版本: v3.95</span>
                 <p class="text-[10px] text-slate-400 mt-1" id="update-time"></p>
             </div>
         </div>
     </div>
 
     <div class="max-w-6xl mx-auto mb-6">
-        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (一頁式全面攤開 • 零切換不漏訊)</h3>
+        <h3 class="text-sm font-medium text-amber-400 mb-3 flex items-center gap-2">📡 全球前線宏觀即時戰況 (獨立儀表板平鋪 • 零內部捲軸)</h3>
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div class="card p-4">
-                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">🌍 全球與亞太股市</h4>
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                    {
-                      "width": "100%", "height": 310, "symbolsGroups": [
-                        {
-                          "originalName": "Indices",
-                          "symbols": [
-                            { "name": "INDEX:TAIEX", "displayName": "台灣加權指數 (台股大盤)" },
-                            { "name": "SP:SPX", "displayName": "美國 S&P 500 指數" },
-                            { "name": "NASDAQ:IXIC", "displayName": "美國那斯達克綜合指數" },
-                            { "name": "INDEX:NKY", "displayName": "日經 225 指數" },
-                            { "name": "HSI:HSI", "displayName": "香港恆生指數" },
-                            { "name": "SSE:000001", "displayName": "上證綜合指數" }
-                          ]
-                        }
-                      ],
-                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
-                    }
-                    </script>
-                </div>
+            <div class="card p-4 space-y-3">
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">🌍 全球與亞太股市</h4>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "TAIEX", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "AMEX:SPY", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "NASDAQ:QQQ", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
             </div>
 
-            <div class="card p-4">
-                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">📦 核心期貨與大宗商品</h4>
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                    {
-                      "width": "100%", "height": 230, "symbolsGroups": [
-                        {
-                          "originalName": "Commodities",
-                          "symbols": [
-                            { "name": "TVC:GOLD", "displayName": "黃金現貨 (Gold)" },
-                            { "name": "TVC:SILVER", "displayName": "白銀現貨 (Silver)" },
-                            { "name": "TVC:USOIL", "displayName": "紐約輕原油 (WTI)" },
-                            { "name": "TVC:UKOIL", "displayName": "布蘭特原油 (Brent)" }
-                          ]
-                        }
-                      ],
-                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
-                    }
-                    </script>
-                </div>
+            <div class="card p-4 space-y-3">
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">📦 核心期貨與大宗商品</h4>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "TVC:GOLD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "TVC:USOIL", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="card p-4">
-                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">💵 關鍵外匯匯率</h4>
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                    {
-                      "width": "100%", "height": 200, "symbolsGroups": [
-                        {
-                          "originalName": "Forex",
-                          "symbols": [
-                            { "name": "FX_IDC:USDTWD", "displayName": "美元 / 新台幣" },
-                            { "name": "FX_IDC:JPYTWD", "displayName": "日圓 / 新台幣" },
-                            { "name": "FX_IDC:CNYTWD", "displayName": "人民幣 / 新台幣" }
-                          ]
-                        }
-                      ],
-                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
-                    }
-                    </script>
-                </div>
+            <div class="card p-4 space-y-3">
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">💵 關鍵外匯匯率</h4>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "FX_IDC:USDTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "FX_IDC:JPYTWD", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
             </div>
 
-            <div class="card p-4">
-                <h4 class="text-sm font-bold text-slate-200 mb-3 flex items-center gap-1">🇺🇸 美國國債殖利率</h4>
-                <div class="tradingview-widget-container">
-                    <div class="tradingview-widget-container__widget"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js" async>
-                    {
-                      "width": "100%", "height": 170, "symbolsGroups": [
-                        {
-                          "originalName": "Yields",
-                          "symbols": [
-                            { "name": "TVC:US05Y", "displayName": "美國 5 年期國債殖利率" },
-                            { "name": "TVC:US10Y", "displayName": "美國 10 年期國債殖利率" }
-                          ]
-                        }
-                      ],
-                      "showSymbolLogo": true, "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"
-                    }
-                    </script>
-                </div>
+            <div class="card p-4 space-y-3">
+                <h4 class="text-sm font-bold text-slate-200 flex items-center gap-1">🇺🇸 美國國債殖利率</h4>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "TVC:US10Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
+                <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+                {"symbol": "TVC:US05Y", "width": "100%", "colorTheme": "dark", "isTransparent": true, "locale": "zh_TW"}
+                </script></div>
             </div>
         </div>
     </div>
@@ -197,7 +158,7 @@
                         <th class="p-3 text-right w-32">原始投資本金</th>
                         <th class="p-3 text-right w-32">基準戰略損益</th>
                         <th class="p-3 text-right w-24">參考回報率</th>
-                        <th class="p-3 text-center w-28">現狀分析</th>
+                        <th class="p-3 text-center w-28">即時戰術雷達</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-800" id="fund-table-body"></tbody>
@@ -211,7 +172,7 @@
             <h3 class="text-sm font-medium text-blue-400">📡 最高指揮部 • AI 戰術顧問終端</h3>
         </div>
         <div id="chat-box" class="chat-box h-40 overflow-y-auto mb-3 space-y-2 p-2 bg-slate-950/60 rounded-lg text-xs md:text-sm">
-            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已進階至 v3.91 版本。台股大盤及日經指數已全數使用大盤基準碼校正，訊號盲區已完全打通！</div>
+            <div class="text-slate-400"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！雷達已進階至 v3.95 終極版。已用強點亮元件瓦解美股與美債盲區，且最下方的分析按鈕已全面打通為「即時大盤 K 線對齊雷達」！</div>
         </div>
         <div class="flex gap-2">
             <input type="text" id="chat-input" placeholder="請輸入戰略問題..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs md:text-sm text-slate-200 focus:outline-none focus:border-blue-500" onkeydown="if(event.key==='Enter') sendQuestion()">
@@ -221,17 +182,18 @@
 
     <div id="analysis-modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
         <div class="modal-overlay absolute w-full h-full bg-slate-950 opacity-80" onclick="closeModal()"></div>
-        <div class="modal-container bg-slate-900 w-11/12 md:max-w-md mx-auto rounded-2xl shadow-2xl z-50 overflow-y-auto border border-blue-500/30">
+        <div class="modal-container bg-slate-900 w-11/12 md:max-w-2xl mx-auto rounded-2xl shadow-2xl z-50 overflow-y-auto border border-blue-500/30">
             <div class="modal-content py-6 text-left px-6">
                 <div class="flex justify-between items-center pb-3 border-b border-slate-700">
-                    <p class="text-base font-bold text-amber-400 flex items-center gap-2" id="modal-title">📡 基金現狀分析</p>
+                    <p class="text-base font-bold text-amber-400 flex items-center gap-2" id="modal-title">📡 即時戰略走勢聯動中</p>
                     <div class="modal-close cursor-pointer z-50 text-slate-400 hover:text-white" onclick="closeModal()">
                         <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
                     </div>
                 </div>
-                <div class="my-5" id="modal-body-text"></div>
-                <div class="flex justify-end pt-2">
-                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 text-xs font-bold rounded-lg transition-colors" onclick="closeModal()">確認並重返戰場</button>
+                <div class="my-4" id="modal-info-text"></div>
+                <div class="w-full h-80 rounded-xl overflow-hidden bg-slate-950 border border-slate-800" id="modal-chart-container"></div>
+                <div class="flex justify-end pt-4">
+                    <button class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-blue-400 text-xs font-bold rounded-lg transition-colors" onclick="closeModal()">關閉雷達</button>
                 </div>
             </div>
         </div>
@@ -241,28 +203,25 @@
         document.getElementById('update-time').innerText = '雷達最後校準：' + new Date().toLocaleString('zh-TW', {hour12:false});
         
         const fundData = [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>日本牛市價值股雙軌卡位</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 EWJ (日本大盤 ETF)</p></div>` },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-blue-400 font-bold">📊 部隊定位：</span>生技醫療高爆發力奇兵</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 IBB (全球生技龍龍 ETF)</p></div>` },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>核心AI旗艦重裝中軍</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI避險雙軌重兵（最大主力）</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 QQQ (那斯達克 100 ETF)</p></div>` },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>新興市場高爆發先鋒隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SMIN (印度中小企業 ETF)</p></div>` },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>AI與智慧自動化雙劍部隊</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 BOTZ (全球AI機器人 ETF)</p></div>` },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-red-400 font-bold">📊 部隊定位：</span>美股多重資產平衡防守傘</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 SPY (標普 500 大盤 ETF)</p></div>` },
-            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 擴軍風向：</span>本土最強科技基金觀測</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>台股 0052 ETF</p></div>` },
-            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", analysis: `<div class="space-y-3 text-sm text-slate-300"><p><span class="text-amber-400 font-bold">📊 戰略評估：</span>全球最老牌重裝科技旗艦</p><p><span class="text-blue-400 font-bold">🎯 精準對齊：</span>美股 XLK (高科技巨頭 ETF)</p></div>` }
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%", symbol: "AMEX:EWJ", desc: "對齊日股大盤 ETF (EWJ) 5日即時走勢" },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%", symbol: "NASDAQ:IBB", desc: "對齊全球生技醫療龍頭 ETF (IBB) 即時走勢" },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%", symbol: "NASDAQ:QQQ", desc: "對齊科技巨頭重鎮 那斯達克 100 (QQQ) 即時走勢" },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%", symbol: "NASDAQ:QQQ", desc: "對齊主力科技巨頭 那斯達克 100 (QQQ) 避險板塊即時走勢" },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%", symbol: "AMEX:SMIN", desc: "對齊印度中小企業規模之星 ETF (SMIN) 即時走勢" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%", symbol: "NASDAQ:BOTZ", desc: "對齊全球機器人與自動化 AI 精英 ETF (BOTZ) 即時走勢" },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%", symbol: "AMEX:SPY", desc: "對齊美股大盤防禦基準 標普 500 (SPY) 即時走勢" },
+            { id: "TAI-TECH", name: "🆕 台灣科技型基金 (如安聯台科/統一奔騰風向)", capital: 0, profit: 0, rate: "0.00%", symbol: "TWSE:0052", desc: "觀測中：對齊台灣富邦科技 ETF (0052) 即時走勢" },
+            { id: "BLK-TECH", name: "⚔️ 貝萊德世界科技基金 (BlackRock World Tech)", capital: 0, profit: 0, rate: "0.00%", symbol: "AMEX:XLK", desc: "觀測中：對齊全球頂級科技核心 ETF (XLK) 即時走勢" }
         ];
 
         const tbody = document.getElementById('fund-table-body');
         fundData.forEach((fund, index) => {
             const row = document.createElement('tr'); row.className = "hover:bg-slate-800/30 transition-colors";
-            const isProfit = fund.profit >= 0;
-            const isNew = fund.capital === 0;
-            
+            const isProfit = fund.profit >= 0; const isNew = fund.capital === 0;
             const profitText = isNew ? "觀測待命" : ((isProfit ? '+' : '') + fund.profit.toLocaleString() + ' 元');
             const profitClass = isNew ? 'text-amber-400 font-medium' : (isProfit ? 'text-red-500 font-semibold' : 'text-blue-400 font-semibold');
             const rateClass = isNew ? 'text-amber-400' : (isProfit ? 'text-red-500' : 'text-blue-400');
-            const rateText = isNew ? "N/A" : fund.rate;
-            const capitalText = isNew ? "暫無建倉" : (`$${fund.capital.toLocaleString()} 元`);
+            const rateText = isNew ? "N/A" : fund.rate; const capitalText = isNew ? "暫無建倉" : (`$${fund.capital.toLocaleString()} 元`);
             
             row.innerHTML = `
                 <td class="p-3 font-mono text-slate-400 font-medium">${fund.id}</td>
@@ -270,43 +229,50 @@
                 <td class="p-3 text-right font-mono text-slate-300">${capitalText}</td>
                 <td class="p-3 text-right font-mono ${profitClass}">${profitText}</td>
                 <td class="p-3 text-right font-mono ${rateClass}">${rateText}</td>
-                <td class="p-3 text-center"><button class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-1 px-3 rounded-full text-xs transition-colors shadow-lg active:scale-95" onclick="openModal(${index})">🎯 戰略分析</button></td>
+                <td class="p-3 text-center"><button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-1 px-3 rounded-xl text-xs transition-all shadow-lg active:scale-95" onclick="openModal(${index})">📈 即時走勢</button></td>
             `;
             tbody.appendChild(row);
         });
 
-        function sendQuestion() {
-            const inputEl = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const question = inputEl.value.trim();
-            if(!question) return;
-
-            chatBox.innerHTML += `<div class="text-slate-200 mt-1"><span class="text-blue-400 font-bold">🫡 我方指揮官：</span>${question}</div>`;
-            inputEl.value = '';
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            setTimeout(() => {
-                let reply = "報告指揮官，v3.91 台灣大盤訊號修復版已就位！零分頁、零滾軸、項目全部展開！";
-                chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>${reply}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 800);
-        }
-
-        document.body.classList.remove('modal-active');
         function openModal(index) {
             const fund = fundData[index];
-            document.getElementById('modal-title').innerHTML = `⚙️ ${fund.id} 核心戰略定位`;
-            document.getElementById('modal-body-text').innerHTML = fund.analysis;
+            document.getElementById('modal-title').innerHTML = `⚡ 聯動中：${fund.id} ➡️ 國際大盤即時雷達`;
+            document.getElementById('modal-info-text').innerHTML = `<p class="text-xs text-slate-400 font-medium">${fund.name}</p><p class="text-sm text-emerald-400 font-semibold mt-1">🎯 當前追蹤標的：${fund.desc}</p>`;
+            
+            // 動態塞入真正的即時迷你K線走勢圖
+            const container = document.getElementById('modal-chart-container');
+            container.innerHTML = ""; 
+            
+            const widgetScript = document.createElement('script');
+            widgetScript.type = 'text/javascript';
+            widgetScript.src = 'https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js';
+            widgetScript.async = true;
+            widgetScript.innerHTML = JSON.stringify({
+                "symbol": fund.symbol, "width": "100%", "height": "100%", "locale": "zh_TW",
+                "dateRange": "1M", "colorTheme": "dark", "isTransparent": true,
+                "autosize": true, "largeChartUrl": ""
+            });
+            container.appendChild(widgetScript);
+
             const modal = document.getElementById('analysis-modal');
-            modal.classList.remove('pointer-events-none');
-            modal.classList.remove('opacity-0');
+            modal.classList.remove('pointer-events-none'); modal.classList.remove('opacity-0');
             document.body.classList.add('modal-active');
         }
         function closeModal() {
             const modal = document.getElementById('analysis-modal');
-            modal.classList.add('pointer-events-none');
-            modal.classList.add('opacity-0');
+            modal.classList.add('pointer-events-none'); modal.classList.add('opacity-0');
             document.body.classList.remove('modal-active');
+        }
+
+        function sendQuestion() {
+            const inputEl = document.getElementById('chat-input'); const chatBox = document.getElementById('chat-box');
+            const question = inputEl.value.trim(); if(!question) return;
+            chatBox.innerHTML += `<div class="text-slate-200 mt-1"><span class="text-blue-400 font-bold">🫡 我方指揮官：</span>${question}</div>`;
+            inputEl.value = ''; chatBox.scrollTop = chatBox.scrollHeight;
+            setTimeout(() => {
+                chatBox.innerHTML += `<div class="text-slate-400 mt-1"><span class="text-amber-400 font-bold">🤖 副官 AI：</span>報告指揮官！大盤與美債已利用強點亮機制 100% 歸位，基金雷達現已具備即時看盤聯動價值！</div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 800);
         }
 
         const activeFunds = fundData.slice(0, 7);
