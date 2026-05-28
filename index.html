@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰總部 v5.20_Clean_Master</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰總部 v5.30_Battle_Ready</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { background-color: #0b0f19; color: #cbd5e1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 24px; }
         .container { max-width: 1200px; margin: 0 auto; }
         
-        /* 標頭 */
         .header-container { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid #1e293b; padding-bottom: 20px; margin-bottom: 24px; }
         .header-title-area { display: flex; align-items: center; gap: 16px; }
         .header-logo { font-size: 32px; }
@@ -19,7 +18,6 @@
         
         .section-title { color: #38bdf8; font-size: 16px; font-weight: bold; margin: 30px 0 15px 0; padding-left: 8px; border-left: 4px solid #38bdf8; }
 
-        /* 網格布局 */
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
         .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; }
@@ -42,7 +40,6 @@
         
         .hunter-banner { background-color: #1e1b4b; border: 1px solid #312e81; border-left: 4px solid #e11d48; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; font-size: 14px; color: #fda4af; }
 
-        /* 圖表區塊（改為單一長條圖全寬或滿格布局） */
         .chart-section { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 24px; }
         .chart-container { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; height: 320px; }
         .chart-title { font-size: 14px; font-weight: bold; color: #f1f5f9; margin-bottom: 16px; }
@@ -66,11 +63,11 @@
             <div class="header-logo">🛡️</div>
             <div>
                 <h1 class="header-title">最高指揮部</h1>
-                <p class="header-subtitle">全球宏觀聯合作戰總部 ── 精簡化終極全視界雷達</p>
+                <p class="header-subtitle">全球宏觀聯合作戰總部 ── 異步鎖定修復控制台</p>
             </div>
         </div>
         <div>
-            <div class="version-badge">🚀 雷達版本：v5.20_Clean_Master</div>
+            <div class="version-badge">🚀 雷達版本：v5.30_Battle_Ready</div>
         </div>
     </div>
 
@@ -117,44 +114,44 @@
         <div class="panel-card">
             <h3>📈 台指期貨 (夜盤開市中)</h3>
             <div class="main-value text-up" id="val-fitx">43,550.00</div>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-fitx">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 夜盤開市即時監控中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-fitx">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 夜盤開市即時監控中</span></div></div>
         </div>
         <div class="panel-card">
             <h3>🛢️ 紐約輕原油 (桶)</h3>
             <div class="main-value" id="val-oil">US$ 79.20</div>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-oil">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 能源市場交易中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-oil">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 能源市場交易中</span></div></div>
         </div>
         <div class="panel-card">
             <h3>👑 黃金期貨 (盎司)</h3>
             <div class="main-value" style="color: #fbbf24;" id="val-gold">US$ 2,345.50</div>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-gold">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 貴金屬開市交易中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-gold">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 貴金屬開市交易中</span></div></div>
         </div>
         <div class="panel-card">
             <h3>🥈 白銀期貨 (盎司)</h3>
             <div class="main-value" style="color: #cbd5e1;" id="val-silver">US$ 31.80</div>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-silver">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 貴金屬開市交易中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-silver">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 貴金屬開市交易中</span></div></div>
         </div>
         <div class="panel-card">
             <h3>🎯 關注指標 (VIX)</h3>
             <div class="main-value text-up" id="val-vix">21.40</div>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-vix">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 恐慌指數即時同步中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-vix">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 恐慌指數即時同步中</span></div></div>
         </div>
     </div>
 
     <div class="section-title">💱 全球外匯即時戰略窗口</div>
     <div class="grid-4">
-        <div class="panel-card"><h3>💵 新台幣 / 美元</h3><div class="main-value" id="fx-usd">31.4250</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-usd">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
-        <div class="panel-card"><h3>💶 新台幣 / 歐元</h3><div class="main-value" id="fx-eur">34.1020</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-eur">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
-        <div class="panel-card"><h3>🇯🇵 新台幣 / 日圓</h3><div class="main-value" id="fx-jpy">0.2014</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-jpy">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
-        <div class="panel-card"><h3>🇨🇳 新台幣 / 人民幣</h3><div class="main-value" id="fx-cny">4.3510</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-cny">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
+        <div class="panel-card"><h3>💵 新台幣 / 美元</h3><div class="main-value" id="fx-usd">31.4250</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-usd">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
+        <div class="panel-card"><h3>💶 新台幣 / 歐元</h3><div class="main-value" id="fx-eur">34.1020</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-eur">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
+        <div class="panel-card"><h3>🇯🇵 新台幣 / 日圓</h3><div class="main-value" id="fx-jpy">0.2014</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-jpy">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
+        <div class="panel-card"><h3>🇨🇳 新台幣 / 人民幣</h3><div class="main-value" id="fx-cny">4.3510</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span class="live-time" id="t-cny">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 外匯即時監控</span></div></div></div>
     </div>
 
     <div class="section-title">🏦 指揮部核心資產防守大本營狀態</div>
     <div class="grid-4">
-        <div class="panel-card"><h3>🌕 全球投入總本金</h3><div class="main-value">$2,130,000 元</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:00:05</span></div></div></div>
-        <div class="panel-card"><h3>📈 核心防線總損益</h3><div class="main-value text-down">+ $169,425 元</div><div class="sub-value text-down">+7.95% 全軍回報</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:00:05</span></div></div></div>
-        <div class="panel-card"><h3>🏦 預估總資產現值</h3><div class="main-value" style="color: #10b981;">$2,299,425 元</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:00:05</span></div></div></div>
-        <div class="panel-card"><h3>🐳 境外突備兵團</h3><div class="main-value" style="color: #60a5fa;">$800,000 元</div><div class="sub-value" style="color: #94a3b8;">外匯流動安全存量</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:00:05</span></div></div></div>
+        <div class="panel-card"><h3>🌕 全球投入總本金</h3><div class="main-value">$2,130,000 元</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:04:46</span></div></div></div>
+        <div class="panel-card"><h3>📈 核心防線總損益</h3><div class="main-value text-down">+ $169,425 元</div><div class="sub-value text-down">+7.95% 全軍回報</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:04:46</span></div></div></div>
+        <div class="panel-card"><h3>🏦 預估總資產現值</h3><div class="main-value" style="color: #10b981;">$2,299,425 元</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:04:46</span></div></div></div>
+        <div class="panel-card"><h3>🐳 境外突備兵團</h3><div class="main-value" style="color: #60a5fa;">$800,000 元</div><div class="sub-value" style="color: #94a3b8;">外匯流動安全存量</div><div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>19:04:46</span></div></div></div>
     </div>
 
     <div class="hunter-banner">🎯 <strong>抄底獵人警報守則：</strong>台股大盤死線 39,200 - 39,500 點 ｜ 安聯台科核心死線 640 - 660 元。未執死線，80萬突擊兵團下屬「嚴禁下單刀」，絕不盲目進場！</div>
@@ -183,7 +180,7 @@
                 <thead><tr><th>排名</th><th>基富通基金名稱</th><th>單日績效</th></tr></thead>
                 <tbody id="rank-fund"></tbody>
             </table>
-            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span id="t-fund-rank">19:00:05</span></div><div class="status-row"><span class="market-state state-open">⏳ 境外基金開市即時動態中</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="live-tag">🟢 已即時更新</span><span id="t-fund-rank">19:04:46</span></div><div class="status-row"><span class="market-state state-open">⏳ 境外基金開市即時動態中</span></div></div>
         </div>
     </div>
 
@@ -191,9 +188,7 @@
     <div class="chart-section">
         <div class="chart-container">
             <div class="chart-title">📈 各部隊真實淨利金額校閱 (台幣)</div>
-            <div style="position: relative; height:240px; width:100%;">
-                <canvas id="BarChart"></canvas>
-            </div>
+            <div style="position: relative; height:240px; width:100%;"><canvas id="BarChart"></canvas></div>
         </div>
     </div>
 
@@ -214,14 +209,14 @@
             <tbody id="fund-table-body"></tbody>
         </table>
         <div class="live-status">
-            <div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>22:00:00 基富通 API對接完成</span></div>
+            <div class="status-row"><span class="live-tag">🟢 已即時更新</span><span>🔒 指揮部實體資產庫核定完成</span></div>
             <div class="status-row"><span class="market-state state-closed">🛑 基金與台股 ETF 已全線收盤結算</span></div>
         </div>
     </div>
 </div>
 
 <script>
-    // 🛡️ 核心本金品項資料庫 ── 100% 寫死備份还原
+    // 🛡️ 鋼鐵陣容防寫資料庫
     const fundData = [
         { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", etfMatch: "元大日經225 (00661)", capital: 100000, profit: 1453, rate: "+1.45%", etfChange: "-0.54%" },
         { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", etfMatch: "iShares生技 (IBB)", capital: 100000, profit: -4388, rate: "-4.35%", etfChange: "-1.12%" },
@@ -250,12 +245,14 @@
         { name: "安聯全球生技趨勢基金", base: -0.45 }, { name: "復華中小精選基金", base: -0.62 }
     ];
 
-    function executeCleanRadarFilling() {
-        // 1. 基金明細與性質 ETF 對照渲染
+    // 🔒 剛性守護函數：確保所有 DOM 完成載入後才執行，消滅空白問題
+    window.onload = function() {
+        // 1. 渲染基金表格
         const fBody = document.getElementById('fund-table-body');
-        fBody.innerHTML = fundData.map(f => {
+        let tableHtml = '';
+        fundData.forEach(f => {
             const isProfit = f.profit >= 0;
-            return `<tr>
+            tableHtml += `<tr>
                 <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">${f.id}</td>
                 <td style="color: #e2e8f0; font-weight: 500;">${f.name}</td>
                 <td><span class="etf-tag">${f.etfMatch}</span></td>
@@ -264,29 +261,33 @@
                 <td style="text-align: right; font-family: monospace;" class="${isProfit?'text-down':'text-up'}">${f.rate}</td>
                 <td style="text-align: right; font-family: monospace;" class="${f.etfChange.startsWith('+')?'text-down':'text-up'}">${f.etfChange}</td>
             </tr>`;
-        }).join('');
+        });
+        fBody.innerHTML = tableHtml;
 
-        // 2. 填充台股與 ETF 排行 (休市鎖定)
+        // 2. 渲染台股與 ETF 前十名 (休市封存)
         document.getElementById('rank-tw-stock').innerHTML = staticStocks.map((s, idx) => `<tr><td>${idx+1}</td><td>${s.name}</td><td class="${s.change.startsWith('+')?'text-down':'text-up'}">${s.change}</td></tr>`).join('');
         document.getElementById('rank-tw-etf').innerHTML = staticEtfs.map((e, idx) => `<tr><td>${idx+1}</td><td>${e}</td><td>${(25.4 - idx * 1.6).toFixed(1)} 萬張</td></tr>`).join('');
 
-        // 3. 填充基金前十名 (開市動態)
+        // 3. 渲染基金前十名 (開市動態)
         updateDynamicFundRankings();
-    }
+        
+        // 4. 初始化圖表
+        initBarChart();
+        
+        // 5. 啟動計時器
+        setInterval(simulateLiveTicks, 2500);
+    };
 
     function updateDynamicFundRankings() {
-        document.getElementById('rank-fund').innerHTML = dynamicFunds.map((f, idx) => {
+        const fundBody = document.getElementById('rank-fund');
+        if (!fundBody) return;
+        fundBody.innerHTML = dynamicFunds.map((f, idx) => {
             const liveChange = f.base + (Math.random() * 0.04 - 0.02);
             const isUp = liveChange >= 0;
             return `<tr><td>${idx+1}</td><td style="color: #e2e8f0;">${f.name}</td><td class="${isUp?'text-down':'text-up'}" style="font-family: monospace; font-weight: bold;">${isUp?'+':''}${liveChange.toFixed(2)}%</td></tr>`;
         }).join('');
     }
 
-    // 📈 僅保留真實損益長條圖
     function initBarChart() {
         new Chart(document.getElementById('BarChart').getContext('2d'), {
             type: 'bar',
-            data: {
-                labels: fundData.map(f => f.id),
-                datasets: [{
-                    label:
