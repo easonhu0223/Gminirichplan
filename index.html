@@ -1,50 +1,36 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <title>最高指揮部 - v4.60 戰略完全體</title>
-    <style>
-        body { background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', sans-serif; padding: 20px; margin: 0; }
-        .container { max-width: 900px; margin: 0 auto; }
-        .header { border-bottom: 2px solid #30363d; padding-bottom: 10px; margin-bottom: 20px; }
-        .card { background-color: #161b22; border: 1px solid #30363d; padding: 20px; border-radius: 6px; margin-bottom: 20px; }
-        .value { font-size: 24px; font-weight: bold; color: #58a6ff; }
-        .alert-box { background-color: #8c1d1d; color: #fff; padding: 15px; border-radius: 6px; border-left: 5px solid #ff7b72; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; color: #c9d1d9; }
-        th, td { padding: 12px; border-bottom: 1px solid #30363d; text-align: left; }
-        th { color: #8b949e; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>最高指揮部 - 戰略完全體 v4.60</h1>
-        </div>
+<script>
+    const globalDefenseConfig = {
+        taiexTriggerLine: 39500,
+        funds: [
+            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", role: "長線戰馬", type: "core", capital: 100000, status: "持有中" },
+            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", role: "生技護衛", type: "guard", capital: 100000, status: "持有中" },
+            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", role: "美股側翼", type: "tactical", capital: 300000, status: "持有中" },
+            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", role: "核心重裝盾", type: "tactical", capital: 600000, status: "持有中" },
+            { id: "CIT016", name: "群益印度中小基金-新台幣", role: "新興突擊隊", type: "tactical", capital: 130000, status: "持有中" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮 ── 待展會盤整完畢", type: "core", capital: 0, status: "【空倉】待回補: 28.35" },
+            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", role: "美股大後衛", type: "tactical", capital: 600000, status: "持有中" }
+        ]
+    };
 
-        <div class="card">
-            <h3>總原始資本金</h3>
-            <div class="value">NT$ 2,130,000</div>
-        </div>
-
-        <div class="alert-box">
-            <h3>⚠️ AI 部隊戰術狀態</h3>
-            <p>第一金全球AI機器人 (FSI011)：<strong>【已全數贖回】</strong></p>
-            <p>戰略回補死線：<strong>28.35 元</strong></p>
-        </div>
-
-        <div class="card">
-            <h3>核心防線陣容</h3>
-            <table>
-                <tr><th>代號</th><th>基金名稱</th><th>狀態</th></tr>
-                <tr><td>109007</td><td>野村-日本策略價值</td><td>持有中</td></tr>
-                <tr><td>ALI003</td><td>安聯全球生技</td><td>持有中</td></tr>
-                <tr><td>ALI092</td><td>安聯AI多重資產B2</td><td>持有中</td></tr>
-                <tr><td>ALI094</td><td>安聯AI多重資產HB</td><td>持有中</td></tr>
-                <tr><td>CIT016</td><td>群益印度中小</td><td>持有中</td></tr>
-                <tr><td>FSI011</td><td>第一金全球AI機器人</td><td style="color:#ffab70;">空倉(待回補)</td></tr>
-                <tr><td>JPM041</td><td>摩根大美國領先</td><td>持有中</td></tr>
-            </table>
-        </div>
-    </div>
-</body>
-</html>
+    // 渲染表格 (調整狀態列樣式)
+    function renderFundTable() {
+        const tbody = document.getElementById('fundTableBody');
+        tbody.innerHTML = '';
+        globalDefenseConfig.funds.forEach(fund => {
+            const tr = document.createElement('tr');
+            // 如果是 AI 機器人，給予特殊的警示色
+            const statusColor = fund.id === "FSI011" ? "#ffab70" : "#56d364";
+            tr.innerHTML = `
+                <td style="font-family: monospace; font-weight: bold; color: #58a6ff;">${fund.id}</td>
+                <td>${fund.name}</td>
+                <td><span class="badge badge-${fund.type}">${fund.role}</span></td>
+                <td style="font-weight: bold; color: #ffffff;">$${fund.capital.toLocaleString()} 元</td>
+                <td style="color: ${statusColor}; font-size: 13px; font-weight: bold;">${fund.status}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+    // ... 其餘代碼維持不變
+    renderFundTable();
+    runGlobalCrossMonitor(39250);
+</script>
