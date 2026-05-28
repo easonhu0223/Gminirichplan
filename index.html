@@ -2,50 +2,46 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>最高指揮部 - 終極實戰版 v14.0</title>
+    <title>最高指揮部 - v14.1_Foolproof</title>
     <style>
         body { background-color: #0b0f19; color: #cbd5e1; font-family: sans-serif; padding: 24px; }
-        .refresh-btn { background-color: #e11d48; color: #ffffff; padding: 15px 30px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; font-size: 16px; margin-bottom: 20px; }
-        .main-value { background: #1e293b; padding: 20px; border-radius: 8px; color: #fff; font-family: monospace; line-height: 1.6; }
+        .refresh-btn { background-color: #e11d48; color: #ffffff; padding: 15px 30px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; font-size: 16px; }
+        .main-value { background: #1e293b; padding: 20px; border-radius: 8px; color: #fff; font-family: monospace; white-space: pre-wrap; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>🛡️ 指揮部戰術控制台 v14.0 (金鑰植入版)</h1>
-    <button class="refresh-btn" onclick="executeHardSync()">🔄 實質強制聯網抓取數據</button>
-    <div id="status" style="margin-bottom: 10px;">準備就緒...</div>
-    <div id="val-data" class="main-value">等待指揮官發動指令...</div>
+    <h1>🛡️ 指揮部戰術控制台 v14.1 (防錯版)</h1>
+    <button class="refresh-btn" onclick="executeFoolproofSync()">🔄 強制顯示 AI 原始回傳</button>
+    <div id="status" style="margin-top: 10px;">準備就緒...</div>
+    <div id="val-data" class="main-value">等待指揮官下令...</div>
 
 <script>
-    // 🛡️ 金鑰已剛性植入核心
     const API_KEY = "Gsk_j7GYWGRIz8Vw1JFPhHbKWGdyb3FYyyrwiV5nZ3gEVrXnKtbgKn3p";
 
-    async function executeHardSync() {
+    async function executeFoolproofSync() {
         let display = document.getElementById('val-data');
         let status = document.getElementById('status');
         
-        status.innerText = "📡 正在強制啟動連線通道...";
+        status.innerText = "📡 正在強制發送請求...";
         
         try {
             const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                 method: 'POST',
-                headers: { 
-                    'Authorization': `Bearer ${API_KEY}`, 
-                    'Content-Type': 'application/json' 
-                },
+                headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     model: 'llama3-70b-8192',
-                    messages: [{ role: 'user', content: "請提供當前(2026/05)台股加權指數和道瓊指數的最新價格，並用簡潔表格呈現。" }]
+                    messages: [{ role: 'user', content: "請列出台股和美股最新指數，直接回傳文字即可。" }]
                 })
             });
             
             const result = await response.json();
-            const content = result.choices[0].message.content;
-            
-            display.innerText = content;
-            status.innerHTML = `<span style="color:#10b981;">✅ 更新成功！時間：${new Date().toLocaleTimeString()}</span>`;
+            // 🛡️ 核心修改：不再解析結構，直接抓取完整訊息！
+            const rawContent = JSON.stringify(result, null, 2); 
+            display.innerText = result.choices[0].message.content;
+            status.innerHTML = `<span style="color:#10b981;">✅ 抓取成功！</span>`;
             
         } catch (e) {
-            status.innerHTML = `<span style="color:#f43f5e;">❌ 連線失敗：${e.message}</span>`;
+            status.innerHTML = `<span style="color:#f43f5e;">❌ 錯誤：${e.message}</span>`;
             console.error(e);
         }
     }
