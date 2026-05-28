@@ -2,25 +2,24 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>最高指揮部 - v14.1_Foolproof</title>
+    <title>最高指揮部 - v15.0_FailSafe</title>
     <style>
         body { background-color: #0b0f19; color: #cbd5e1; font-family: sans-serif; padding: 24px; }
-        .refresh-btn { background-color: #e11d48; color: #ffffff; padding: 15px 30px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; font-size: 16px; }
+        .refresh-btn { background-color: #e11d48; color: #ffffff; padding: 15px 30px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; }
         .main-value { background: #1e293b; padding: 20px; border-radius: 8px; color: #fff; font-family: monospace; white-space: pre-wrap; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>🛡️ 指揮部戰術控制台 v14.1 (防錯版)</h1>
-    <button class="refresh-btn" onclick="executeFoolproofSync()">🔄 強制顯示 AI 原始回傳</button>
+    <h1>🛡️ 指揮部戰術控制台 v15.0 (最終防錯版)</h1>
+    <button class="refresh-btn" onclick="executeUltimateSync()">🔄 強制抓取所有數據</button>
     <div id="status" style="margin-top: 10px;">準備就緒...</div>
-    <div id="val-data" class="main-value">等待指揮官下令...</div>
+    <div id="val-data" class="main-value">等待發動指令...</div>
 
 <script>
-    const API_KEY = "Gsk_j7GYWGRIz8Vw1JFPhHbKWGdyb3FYyyrwiV5nZ3gEVrXnKtbgKn3p";
-
-    async function executeFoolproofSync() {
+    async function executeUltimateSync() {
         let display = document.getElementById('val-data');
         let status = document.getElementById('status');
+        const API_KEY = "Gsk_j7GYWGRIz8Vw1JFPhHbKWGdyb3FYyyrwiV5nZ3gEVrXnKtbgKn3p";
         
         status.innerText = "📡 正在強制發送請求...";
         
@@ -30,14 +29,19 @@
                 headers: { 'Authorization': `Bearer ${API_KEY}`, 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     model: 'llama3-70b-8192',
-                    messages: [{ role: 'user', content: "請列出台股和美股最新指數，直接回傳文字即可。" }]
+                    messages: [{ role: 'user', content: "請列出台股加權指數和道瓊指數最新價格，不要包含任何結構化代碼，僅文字即可。" }]
                 })
             });
             
             const result = await response.json();
-            // 🛡️ 核心修改：不再解析結構，直接抓取完整訊息！
-            const rawContent = JSON.stringify(result, null, 2); 
-            display.innerText = result.choices[0].message.content;
+            
+            // 🛡️ 最終防護：直接打印所有回傳的內容，不進行任何索引解析
+            let output = JSON.stringify(result, null, 2); 
+            if (result.choices && result.choices[0] && result.choices[0].message) {
+                output = result.choices[0].message.content;
+            }
+            
+            display.innerText = output;
             status.innerHTML = `<span style="color:#10b981;">✅ 抓取成功！</span>`;
             
         } catch (e) {
