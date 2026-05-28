@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰總部 v7.50_Strategic_Pivot</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰總部 v8.00_Tactical_Input</title>
     <style>
         body { background-color: #0b0f19; color: #cbd5e1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 24px; }
         .container { max-width: 1200px; margin: 0 auto; }
@@ -27,7 +27,10 @@
         
         .live-status { font-size: 11px; color: #64748b; margin-top: 8px; border-top: 1px solid #1e293b; padding-top: 6px; display: flex; flex-direction: column; gap: 2px; }
         .status-row { display: flex; justify-content: space-between; }
-        .status-success { color: #10b981; font-weight: bold; }
+        
+        .status-open { color: #38bdf8; font-weight: bold; } 
+        .status-close { color: #64748b; font-weight: normal; } 
+        .status-settle { color: #10b981; font-weight: bold; } 
 
         .text-up { color: #f43f5e !important; } /* 紅色 (跌) */
         .text-down { color: #10b981 !important; } /* 綠色 (漲) */
@@ -35,36 +38,43 @@
         .text-real-green { color: #00e676 !important; } 
         
         .hunter-banner { background-color: #1e1b4b; border: 1px solid #312e81; border-left: 4px solid #e11d48; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; font-size: 14px; color: #fda4af; }
+        
+        .clock-banner { background-color: #111827; border: 1px solid #1e293b; border-left: 4px solid #a855f7; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; font-size: 13px; line-height: 1.6; color: #e2e8f0; }
+        .clock-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+        .clock-item { background: #1f2937; padding: 8px 12px; border-radius: 6px; font-size: 12px; border: 1px solid #374151; }
+        .clock-item strong { color: #f1f5f9; }
 
         .table-container { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
         th { padding: 10px 12px; color: #94a3b8; border-bottom: 1px solid #1e293b; font-weight: 500; background-color: #161e2e; }
-        td { padding: 12px 12px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
-        .idx-line { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; }
-        .idx-sub { font-size: 11px; margin-left: 4px; }
+        td { padding: 10px 12px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
         
+        /* ⌨️ 輸入框高階軍事戰略美學 */
+        .input-box { background-color: #1e293b; color: #ffffff; border: 1px solid #334155; border-radius: 6px; padding: 6px 10px; width: 110px; font-family: monospace; font-size: 13px; text-align: right; }
+        .input-box:focus { border-color: #38bdf8; outline: none; background-color: #0f172a; }
+
         .ranking-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
         @media (max-width: 900px) { .ranking-section { grid-template-columns: 1fr; } }
+        .idx-line { display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 13px; }
+        .idx-sub { font-size: 11px; margin-left: 4px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 標頭 -->
     <div class="header-container">
         <div class="header-title-area">
             <div class="header-logo">🛡️</div>
             <div>
                 <h1 class="header-title">最高指揮部</h1>
-                <p class="header-subtitle">全球宏觀聯合作戰總部 ── 焦點排行回歸穩定版</p>
+                <p class="header-subtitle">全球宏觀聯合作戰總部 ── 自定義手動戰術輸入版</p>
             </div>
         </div>
         <div>
-            <div class="version-badge">🚀 雷達版本：v7.50_Strategic_Pivot</div>
+            <div class="version-badge">🚀 雷達版本：v8.00_Tactical_Input</div>
         </div>
     </div>
 
-    <!-- 區塊 1：股票市場 -->
     <div class="section-title">🌐 股票市場全域監控前線</div>
     <div class="grid-3">
         <div class="panel-card">
@@ -76,7 +86,7 @@
                 <div class="idx-line">費城半導: <span class="text-real-green">12702.19 <span class="idx-sub">▼ (1.36%)</span></span></div>
             </div>
             <div class="live-status">
-                <div class="status-row"><span class="status-success">🟢 數據載入成功</span><span>18:33:52</span></div>
+                <div class="status-row"><span class="status-open">🟢 交易中 ｜ 21:30 ~ 04:00 (夏令)</span><span>18:33:52</span></div>
             </div>
         </div>
         <div class="panel-card">
@@ -84,7 +94,7 @@
             <div class="main-value" style="font-size: 22px; color: #f43f5e;">43,636.44</div>
             <div style="font-size: 12px; margin-top:4px;" class="text-up">▼ -868 點 (當日大盤結算)</div>
             <div class="live-status">
-                <div class="status-row"><span class="status-success">🟢 盤後結算成功</span><span>13:33:00</span></div>
+                <div class="status-row"><span class="status-settle">🛑 已休市 ｜ 09:00 ~ 13:30 盤後封鎖</span><span>13:33:00</span></div>
             </div>
         </div>
         <div class="panel-card">
@@ -95,47 +105,52 @@
                 <div class="idx-line">香港恆生: <span class="text-down">18,800.00</span></div>
             </div>
             <div class="live-status">
-                <div class="status-row"><span class="status-success">🟢 收盤數據鎖定</span><span>16:15:00</span></div>
+                <div class="status-row"><span class="status-close">🛑 已休市 ｜ 亞太戰區收盤清算</span><span>16:15:00</span></div>
             </div>
         </div>
     </div>
 
-    <!-- 區塊 2：期貨與貴金屬 -->
     <div class="section-title">📊 金融期貨 / 核心原物料 / 避險資產雷達</div>
     <div class="grid-5">
-        <div class="panel-card"><h3>📈 台指期貨</h3><div class="main-value text-up">43,550.00</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 靜態同步</span><span>13:45:00</span></div></div></div>
-        <div class="panel-card"><h3>🛢️ 紐約輕原油 (桶)</h3><div class="main-value">US$ 79.20</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 靜態同步</span><span>17:00:00</span></div></div></div>
-        <div class="panel-card"><h3>👑 黃金期貨 (盎司)</h3><div class="main-value" style="color: #fbbf24;">US$ 2,345.50</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 靜態同步</span><span>17:00:00</span></div></div></div>
-        <div class="panel-card"><h3>🥈 白銀期貨 (盎司)</h3><div class="main-value" style="color: #cbd5e1;">US$ 31.80</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 靜態同步</span><span>17:00:00</span></div></div></div>
-        <div class="panel-card"><h3>🎯 關注指標 (VIX)</h3><div class="main-value text-up">21.40</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 靜態同步</span><span>17:00:00</span></div></div></div>
+        <div class="panel-card"><h3>📈 台指期貨</h3><div class="main-value text-up">43,550.00</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 夜盤交易中</span><span>13:45</span></div></div></div>
+        <div class="panel-card"><h3>🛢️ 紐約輕原油 (桶)</h3><div class="main-value">US$ 79.20</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 交易中</span><span>17:00</span></div></div></div>
+        <div class="panel-card"><h3>👑 黃金期貨 (盎司)</h3><div class="main-value" style="color: #fbbf24;">US$ 2,345.50</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 交易中</span><span>17:00</span></div></div></div>
+        <div class="panel-card"><h3>🥈 白銀期貨 (盎司)</h3><div class="main-value" style="color: #cbd5e1;">US$ 31.80</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 交易中</span><span>17:00</span></div></div></div>
+        <div class="panel-card"><h3>🎯 關注指標 (VIX)</h3><div class="main-value text-up">21.40</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 全球同步中</span><span>17:00</span></div></div></div>
     </div>
 
-    <!-- 區塊 3：外匯區 -->
     <div class="section-title">💱 全球外匯即時戰略窗口</div>
     <div class="grid-4">
-        <div class="panel-card"><h3>💵 新台幣 / 美元</h3><div class="main-value">31.4250</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 匯率對齊</span><span>16:00:00</span></div></div></div>
-        <div class="panel-card"><h3>💶 新台幣 / 歐元</h3><div class="main-value">34.1020</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 匯率對齊</span><span>16:00:00</span></div></div></div>
-        <div class="panel-card"><h3>🇯🇵 新台幣 / 日圓</h3><div class="main-value">0.2014</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 匯率對齊</span><span>16:00:00</span></div></div></div>
-        <div class="panel-card"><h3>🇨🇳 新台幣 / 人民幣</h3><div class="main-value">4.3510</div><div class="live-status"><div class="status-row"><span class="status-success">🟢 匯率對齊</span><span>16:00:00</span></div></div></div>
+        <div class="panel-card"><h3>💵 新台幣 / 美元</h3><div class="main-value">31.4250</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 外匯流動</span><span>16:00</span></div></div></div>
+        <div class="panel-card"><h3>💶 新台幣 / 歐元</h3><div class="main-value">34.1020</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 外匯流動</span><span>16:00</span></div></div></div>
+        <div class="panel-card"><h3>🇯🇵 新台幣 / 日圓</h3><div class="main-value">0.2014</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 外匯流動</span><span>16:00</span></div></div></div>
+        <div class="panel-card"><h3>🇨🇳 新台幣 / 人民幣</h3><div class="main-value">4.3510</div><div class="live-status"><div class="status-row"><span class="status-open">🟢 24H 外匯流動</span><span>16:00</span></div></div></div>
     </div>
 
-    <!-- 四大資產核心大本營卡片 -->
+    <div class="clock-banner">
+        ⚡ <strong>最高指揮部 ── 全球戰場開休市時鐘對照（台北時間）</strong>
+        <div class="clock-grid">
+            <div class="clock-item">🇹🇼 <strong>台灣股市大盤：</strong><br>開市：09:00 ｜ 休市：13:30</div>
+            <div class="clock-item">📈 <strong>台指期貨交易：</strong><br>日盤 08:45-13:45 ｜ 夜盤 15:00-05:00</div>
+            <div class="clock-item">🇺🇸 <strong>美國股市大盤：</strong><br>夏令 21:30-04:00 ｜ 冬令 22:30-05:00</div>
+            <div class="clock-item">💱 <strong>全球期貨與外匯：</strong><br>週一 05:00 開市 ~ 週六 05:00 24H 流動</div>
+        </div>
+    </div>
+
     <div class="section-title">🏦 指揮部核心資產防守大本營狀態</div>
     <div class="grid-4">
-        <div class="panel-card"><h3>🌕 全球投入總本金</h3><div class="main-value">$2,130,000 元</div><div class="live-status"><div class="status-row"><span class="status-success">🔒 物理防線常駐</span></div></div></div>
-        <div class="panel-card"><h3>📈 核心防線總損益</h3><div class="main-value text-down">+ $169,425 元</div><div class="live-status"><div class="status-row"><span class="status-success">🔒 物理防線常駐</span></div></div></div>
-        <div class="panel-card"><h3>🏦 預估總資產現值</h3><div class="main-value" style="color: #10b981;">$2,299,425 元</div><div class="live-status"><div class="status-row"><span class="status-success">🔒 物理防線常駐</span></div></div></div>
-        <div class="panel-card"><h3>🐳 境外突擊預備兵團</h3><div class="main-value" style="color: #60a5fa;">$800,000 元</div><div class="live-status"><div class="status-row"><span class="status-success">🔒 物理防線常駐</span></div></div></div>
+        <div class="panel-card"><h3>🌕 全球投入總本金</h3><div class="main-value" id="lbl-total-capital">$2,130,000 元</div><div class="live-status"><div class="status-row"><span class="status-settle">🟢 動態加總中</span></div></div></div>
+        <div class="panel-card"><h3>📈 核心防線總損益</h3><div class="main-value" id="lbl-total-profit">+ $169,425 元</div><div class="live-status"><div class="status-row"><span class="status-settle">🟢 動態加總中</span></div></div></div>
+        <div class="panel-card"><h3>🏦 預估總資產現值</h3><div class="main-value" style="color: #10b981;" id="lbl-total-value">$2,299,425 元</div><div class="live-status"><div class="status-row"><span class="status-settle">🟢 動態加總中</span></div></div></div>
+        <div class="panel-card"><h3>🐳 境外突擊預備兵團</h3><div class="main-value" style="color: #60a5fa;">$800,000 元</div><div class="live-status"><div class="status-row"><span class="status-close">🔒 物理固定安全存量</span></div></div></div>
     </div>
 
     <div class="hunter-banner">🎯 <strong>抄底獵人警報守則：</strong>台股大盤死線 39,200 - 39,500 點 ｜ 安聯台科核心死線 640 - 660 元。未執死線，80萬突擊兵團下屬「嚴禁下單刀」，絕不盲目進場！</div>
 
-    <!-- 🎯 【魂魄完全體回歸】：三大項目 10 隻實體數據，物理性銲死！100% 絕不空白 -->
-    <div class="section-title">📊 當日市場焦點情報（三大項目各 10 隻實體歷史數據 ｜ 絕無空白版）</div>
+    <div class="section-title">📊 當日市場焦點情報（三大項目各 10 隻實體數據）</div>
     <div class="ranking-section">
-        <!-- 項目 1：台股大漲大跌 -->
         <div class="table-container" style="margin-bottom:0;">
-            <div class="chart-title" style="font-size:12px; color:#f43f5e;">🔥 台股大漲大跌前 10 名 (今日收盤)</div>
+            <div class="chart-title" style="font-size:12px; color:#f43f5e;">🔥 台股大漲大跌前 10 名</div>
             <table>
                 <thead><tr><th>排名</th><th>股票名稱</th><th>當日漲跌</th></tr></thead>
                 <tbody>
@@ -151,12 +166,11 @@
                     <tr><td>10</td><td>3231 緯創</td><td class="text-up">-2.3%</td></tr>
                 </tbody>
             </table>
-            <div class="live-status"><div class="status-row"><span class="status-success">🟢 歷史收盤鎖定</span><span>13:30</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="status-settle">🛑 已休市 (13:30 封鎖)</span><span>今日結算</span></div></div>
         </div>
 
-        <!-- 項目 2：熱門 ETF -->
         <div class="table-container" style="margin-bottom:0;">
-            <div class="chart-title" style="font-size:12px; color:#38bdf8;">🐳 台股熱門 ETF 前 10 名 (今日收盤)</div>
+            <div class="chart-title" style="font-size:12px; color:#38bdf8;">🐳 台股熱門 ETF 前 10 名</div>
             <table>
                 <thead><tr><th>排名</th><th>ETF 名稱 (代號)</th><th>今日成交量</th></tr></thead>
                 <tbody>
@@ -172,10 +186,9 @@
                     <tr><td>10</td><td>群益ESG投等債20+ (00937B)</td><td>11.0 萬張</td></tr>
                 </tbody>
             </table>
-            <div class="live-status"><div class="status-row"><span class="status-success">🟢 歷史收盤鎖定</span><span>13:30</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="status-settle">🛑 已休市 (13:30 封鎖)</span><span>今日結算</span></div></div>
         </div>
 
-        <!-- 項目 3：台灣精選基金 -->
         <div class="table-container" style="margin-bottom:0;">
             <div class="chart-title" style="font-size:12px; color:#fbbf24;">🏆 台灣當日精選基金績效前 10 名</div>
             <table>
@@ -193,76 +206,65 @@
                     <tr><td>10</td><td>復華中小精選基金</td><td class="text-up">-0.62%</td></tr>
                 </tbody>
             </table>
-            <div class="live-status"><div class="status-row"><span class="status-success">🟢 歷史數據鎖定</span><span>22:00</span></div></div>
+            <div class="live-status"><div class="status-row"><span class="status-close">🛑 今日淨值已鎖定</span><span>22:00</span></div></div>
         </div>
     </div>
 
-    <!-- 【核心寫死表格】：七大固定基金品項與投入本金，JPM041 欄位全數填滿，無任何多餘欄位與圖表 -->
     <div class="table-container">
-        <div class="chart-title">📋 120萬防守大軍 ── 七大實體基金配置明細總表</div>
+        <div class="chart-title">📋 120萬防守大軍 ── 七大實體基金配置明細總表 (解鎖輸入，即時自動化回報算力)</div>
         <table>
             <thead>
                 <tr>
                     <th>代號</th>
                     <th>基金品項官方完整全銜</th>
-                    <th style="text-align: right;">原始投資本金</th>
-                    <th style="text-align: right;">真實最新損益</th>
-                    <th style="text-align: right;">參考回報率</th>
+                    <th style="text-align: right;">原始投資本金 (可修改)</th>
+                    <th style="text-align: right;">真實最新損益 (可修改)</th>
+                    <th style="text-align: right;">系統自動回報率</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">109007</td>
                     <td style="color: #e2e8f0; font-weight: 500;">野村(愛爾蘭)-日本策略價值(T美元避險)</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$100,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+1,453 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+1.45%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="1453" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">ALI003</td>
                     <td style="color: #e2e8f0; font-weight: 500;">安聯全球生技趨勢基金-新臺幣</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$100,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-up">-4,388 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-up">-4.35%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="-4388" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">ALI092</td>
                     <td style="color: #e2e8f0; font-weight: 500;">安聯AI收益成長多重資產-B2(月配)-台幣</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$300,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+11,375 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+3.79%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="11375" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">ALI094</td>
                     <td style="color: #e2e8f0; font-weight: 500;">安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$600,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+102,395 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+17.07%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="600000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="102395" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">CIT016</td>
                     <td style="color: #e2e8f0; font-weight: 500;">群益印度中小基金-新台幣</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$130,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+3,910 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+3.01%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="130000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="3910" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">FSI011</td>
                     <td style="color: #e2e8f0; font-weight: 500;">第一金全球AI機器人及自動化-新臺幣</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$300,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+22,629 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+9.88%</td>
+                    <td style="text-align: right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right;"><input type="number" class="input-box profit-input" value="22629" oninput="recalculateTacticalGateway()"></td>
+                    <td style="text-align: right; font-family: monospace;" class="rate-output"></td>
                 </tr>
-                <tr>
+                <tr class="fund-row">
                     <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">JPM041</td>
-                    <td style="color: #e2e8f0; font-weight: 500;">摩根大美國領先收成多重資產-月配-台幣</td>
-                    <td style="text-align: right; font-family: monospace; font-weight: bold;">$600,000 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+32,684 元</td>
-                    <td style="text-align: right; font-family: monospace;" class="text-down">+5.45%</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-</body>
-</html>
+                    <td style="color: #e2e8f
