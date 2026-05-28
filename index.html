@@ -1,25 +1,36 @@
-<!-- v4.52 核心代碼段更新 -->
-<script>
-    // v4.52：手動校準資料庫
-    const globalDefenseConfig = {
-        taiexTriggerLine: 39500,
-        funds: [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", role: "長線戰馬", status: "持有中" },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", role: "生技護衛", status: "持有中" },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", role: "美股側翼", status: "持有中" },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", role: "核心重裝盾", status: "持有中" },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", role: "新興突擊隊", status: "持有中" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮", status: "【已全數贖回】等待回補", targetPrice: 28.35 },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", role: "美股大後衛", status: "持有中" }
-        ]
-    };
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>最高指揮部 - 防守雷達 v4.52</title>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: sans-serif; padding: 20px; }
+        .card { background-color: #161b22; border: 1px solid #30363d; padding: 15px; margin-bottom: 10px; border-radius: 6px; }
+        .target-price { color: #f85149; font-weight: bold; }
+        .status-sold { color: #ffab70; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1>最高指揮部 - v4.52 (手動校準版)</h1>
+        <div class="card">
+            <h3>FSI011 戰略監控面板</h3>
+            <p>目前狀態：<span class="status-sold">【已全數贖回】等待回補</span></p>
+            <p>回補死線：<span class="target-price">28.35 元</span></p>
+            <p>戰術提示：每日 21:30 後請人工查詢基富通最新淨值，並在此回報。</p>
+        </div>
+        <div id="statusReport"></div>
+    </div>
 
-    // v4.52：新增手動校準提醒功能
-    function checkManualUpdateStatus() {
-        const fsi = globalDefenseConfig.funds.find(f => f.id === "FSI011");
-        console.log(`[戰情官提醒]：請確認 FSI011 最新淨值是否接近目標價 ${fsi.targetPrice} 元`);
-    }
-
-    // 呼叫校準程序
-    checkManualUpdateStatus();
-</script>
+    <script>
+        const target = 28.35;
+        function updateStatus(currentNav) {
+            const report = document.getElementById('statusReport');
+            const diff = currentNav - target;
+            report.innerHTML = `<div class="card">最新淨值: ${currentNav} 元 (距離目標價差: ${diff.toFixed(2)} 元)</div>`;
+        }
+        // 初始狀態
+        updateStatus(0); 
+    </script>
+</body>
+</html>
