@@ -2,330 +2,54 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰總部 v4.30</title>
-    <!-- 引入 Chart.js 實體，完美實現 1286.jpg 的圓餅圖與長條圖 -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>最高指揮部 - 全球戰略防守雷達 v4.40_上帝視角</title>
     <style>
-        /* 100% 還原 1286.jpg Tailwind Slate 軍事暗色調美學 */
-        body {
-            background-color: #0b0f19;
-            color: #cbd5e1;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            margin: 0;
-            padding: 24px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        /* 標頭架構：還原 1530.jpg 戰術核心端設計 */
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 20px;
-            margin-bottom: 24px;
-        }
-        .header-title-area {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .header-logo {
-            font-size: 32px;
-        }
-        .header-title {
-            color: #f1f5f9;
-            font-size: 28px;
-            font-weight: bold;
-            margin: 0;
-            letter-spacing: 1px;
-        }
-        .header-subtitle {
-            color: #94a3b8;
-            font-size: 14px;
-            margin: 4px 0 0 0;
-        }
-        .version-badge {
-            background-color: #1e3a8a;
-            color: #60a5fa;
-            border: 1px solid #2563eb;
-            padding: 6px 16px;
-            border-radius: 9999px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        .time-sync {
-            color: #94a3b8;
-            font-size: 12px;
-            text-align: right;
-            margin-top: 8px;
-        }
-
-        /* 全球前線全域資訊網格 */
-        .market-ticker {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
-        .ticker-item {
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid #1e293b;
-            padding-right: 12px;
-        }
-        .ticker-item:last-child { border-right: none; }
-        .ticker-title { font-size: 12px; color: #94a3b8; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-        .ticker-value { font-size: 18px; font-weight: bold; color: #f8fafc; }
-        
-        /* 四大戰術核心卡片 */
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        .panel-card {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 20px;
-        }
-        .panel-card h3 { margin: 0 0 12px 0; font-size: 13px; color: #94a3b8; font-weight: normal; }
-        .panel-card .main-value { font-size: 26px; font-weight: bold; color: #ffffff; font-family: monospace; }
-        .panel-card .sub-value { font-size: 12px; margin-top: 6px; }
-
-        /* 抄底獵人警報橫幅 */
-        .hunter-banner {
-            background-color: #1e1b4b;
-            border: 1px solid #312e81;
-            border-left: 4px solid #e11d48;
-            border-radius: 8px;
-            padding: 14px 20px;
-            margin-bottom: 24px;
-            font-size: 14px;
-            color: #fda4af;
-        }
-
-        /* 圖表與數據區塊 */
-        .chart-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
-        }
-        .chart-container {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 20px;
-            height: 320px;
-        }
-        .chart-title { font-size: 14px; font-weight: bold; color: #f1f5f9; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-
-        /* 資料表格 */
-        .table-container {
-            background-color: #0f172a;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 20px;
-            overflow: hidden;
-        }
-        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
-        th { padding: 12px; color: #94a3b8; border-bottom: 1px solid #1e293b; font-weight: 500; }
-        td { padding: 14px 12px; border-bottom: 1px solid #0f172a; }
-        tr:hover { background-color: rgba(30, 41, 59, 0.3); }
-
-        /* 戰術增色 */
-        .text-up { color: #f43f5e; } /* 1286.jpg 實體畫面的紅色跌幅/虧損 */
-        .text-down { color: #38bdf8; } /* 1286.jpg 實體畫面的藍色漲幅/獲利 */
+        body { background-color: #0b0f19; color: #cbd5e1; font-family: sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { color: #58a6ff; font-size: 18px; margin: 25px 0 15px; border-bottom: 1px solid #1e293b; padding-bottom: 5px; }
+        .grid-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .card { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 15px; }
+        .card h3 { margin: 0 0 8px 0; color: #94a3b8; font-size: 12px; }
+        .value { font-size: 18px; font-weight: bold; color: #f8fafc; }
+        .text-up { color: #f43f5e; }
+        .text-down { color: #38bdf8; }
+        table { width: 100%; border-collapse: collapse; background-color: #0f172a; border-radius: 8px; font-size: 13px; }
+        th { background-color: #1e293b; color: #58a6ff; padding: 10px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #1e293b; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 標頭區：依據 1530.jpg 精準客製 -->
-    <div class="header-container">
-        <div class="header-title-area">
-            <div class="header-logo">🛡️</div>
-            <div>
-                <h1 class="header-title">最高指揮部</h1>
-                <p class="header-subtitle">全球宏觀聯合作戰總部 ── 戰術核心端</p>
-            </div>
-        </div>
-        <div>
-            <div class="version-badge">🚀 雷達版本：v4.30</div>
-            <div id="update-time" class="time-sync">雷達最後校準：2026/5/28 22:00:00</div>
-        </div>
+    <div class="section-title">🛡️ 全球市場即時監控 (美股/台股/亞股)</div>
+    <div class="grid-row">
+        <div class="card"><h3>美股四大指數</h3><div class="value" style="font-size:14px;">道瓊:39,150 | 那指:17,200 | S&P:5,300 | 費半:5,450</div></div>
+        <div class="card"><h3>台股加權指數</h3><div class="value text-up">43,636.44 <span style="font-size:12px;">▼ -868 (爆量重挫)</span></div></div>
+        <div class="card"><h3>亞股雷達 (日/韓/港)</h3><div class="value" style="font-size:14px;">日經:38,500 | 韓股:2,650 | 恆生:18,800</div></div>
     </div>
 
-    <!-- 全球前線全域資訊（自定義更新） ── 完美重現 1286.jpg 頂部欄 -->
-    <div class="market-ticker">
-        <div class="ticker-item">
-            <div class="ticker-title">🇺🇸 美股 S&P 500</div>
-            <div class="ticker-value">5,300.25</div>
-            <div style="font-size: 12px;" class="text-up">▼ 0.25% <span style="font-size: 11px; margin-left:4px;">13.00</span></div>
-        </div>
-        <div class="ticker-item">
-            <div class="ticker-title">🛢️ 美油 紐約輕原油</div>
-            <div class="ticker-value">US$ 79.20</div>
-            <div style="font-size: 12px;" class="text-down">▲ 0.45%</div>
-        </div>
-        <div class="ticker-item">
-            <div class="ticker-title">🇹🇼 台股加權指數</div>
-            <div class="ticker-value">43,636.44</div>
-            <div style="font-size: 12px;" class="text-up">▼ -868 點 (爆量重挫)</div>
-        </div>
-        <div class="ticker-item">
-            <div class="ticker-title">💵 美金 / 台幣</div>
-            <div class="ticker-value">31.425</div>
-            <div style="font-size: 12px;" class="text-up">▼ 0.02% <span style="font-size: 11px; margin-left:4px;">0.007</span></div>
-        </div>
+    <div class="section-title">📊 期貨/能源/貴金屬/台指期</div>
+    <div class="grid-row">
+        <div class="card"><h3>台指期</h3><div class="value text-up">43,550</div></div>
+        <div class="card"><h3>原油 (桶)</h3><div class="value">US$ 79.20</div></div>
+        <div class="card"><h3>黃金 (盎司)</h3><div class="value">US$ 2,345.50</div></div>
+        <div class="card"><h3>白銀 (盎司)</h3><div class="value">US$ 31.80</div></div>
     </div>
 
-    <!-- 四大核心戰術卡片 ── 依據 1286.jpg -->
-    <div class="dashboard-grid">
-        <div class="panel-card">
-            <h3>🌕 全球投入總本金</h3>
-            <div class="main-value">$2,130,000 <span style="font-size:14px; color:#94a3b8;">元</span></div>
-        </div>
-        <div class="panel-card">
-            <h3>📈 核心防線總損益</h3>
-            <div class="main-value text-down">+ $169,425 <span style="font-size:14px; color:#94a3b8;">元</span></div>
-            <div class="sub-value text-down">+7.95% 全軍回報</div>
-        </div>
-        <div class="panel-card">
-            <h3>🏦 預估總資產現值</h3>
-            <div class="main-value" style="color: #10b981;">$2,299,425 <span style="font-size:14px; color:#94a3b8;">元</span></div>
-        </div>
-        <div class="panel-card">
-            <h3>🐳 境外突擊預備兵團</h3>
-            <div class="main-value" style="color: #60a5fa;">$800,000 <span style="font-size:14px; color:#94a3b8;">元</span></div>
-            <div class="sub-value style" style="color: #94a3b8;">外匯流動安全存量</div>
-        </div>
+    <div class="section-title">💱 外匯即時監控</div>
+    <div class="grid-row">
+        <div class="card"><h3>台 / 美元</h3><div class="value">31.42</div></div>
+        <div class="card"><h3>台 / 歐元</h3><div class="value">34.10</div></div>
+        <div class="card"><h3>台 / 亞幣 (日圓)</h3><div class="value">0.201</div></div>
+        <div class="card"><h3>台 / 人民幣</h3><div class="value">4.35</div></div>
     </div>
 
-    <!-- 抄底獵人警報橫幅 -->
-    <div class="hunter-banner">
-        🎯 <strong>抄底獵人警報守則：</strong>台股大盤死線 39,200 - 39,500 點 ｜ 安聯台科核心死線 640 - 660 元。未執死線，80萬突擊兵團下屬「嚴禁下單刀」，絕不盲目進場！
-    </div>
-
-    <!-- 圖表雙矩陣 ── 依據 1286.jpg 實體渲染 -->
-    <div class="chart-section">
-        <div class="chart-container">
-            <div class="chart-title">📊 各部隊原始本金配置比例</div>
-            <div style="position: relative; height:240px; width:100%;">
-                <canvas id="PieChart"></canvas>
-            </div>
-        </div>
-        <div class="chart-container">
-            <div class="chart-title">📈 各部隊真實淨利/深彈金額</div>
-            <div style="position: relative; height:240px; width:100%;">
-                <canvas id="BarChart"></canvas>
-            </div>
-        </div>
-    </div>
-
-    <!-- 戰略明細即時總表 -->
-    <div class="table-container">
-        <div class="chart-title">📋 戰線即時精細總表</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>代號</th>
-                    <th>基金品項官方完整全銜</th>
-                    <th style="text-align: right;">原始投資本金</th>
-                    <th style="text-align: right;">真實最新損益</th>
-                    <th style="text-align: right;">參考回報率</th>
-                </tr>
-            </thead>
-            <tbody id="fund-table-body"></tbody>
-        </table>
+    <div class="section-title">📈 市場漲跌排行 (每日自動更新)</div>
+    <div class="grid-row">
+        <div class="card"><h3>台股大漲大跌前十名</h3><table id="taiwanStock"><thead><tr><th>代號</th><th>名稱</th><th>漲跌幅</th></tr></thead><tbody><tr><td>2330</td><td>台積電</td><td class="text-up">-1.5%</td></tr></tbody></table></div>
+        <div class="card"><h3>台股 ETF 前十名</h3><table id="taiwanEtf"><thead><tr><th>代號</th><th>名稱</th><th>成交量</th></tr></thead><tbody><tr><td>0050</td><td>元大台灣50</td><td>12萬張</td></tr></tbody></table></div>
+        <div class="card"><h3>基富通基金漲幅前十名</h3><table id="fundRanking"><thead><tr><th>代號</th><th>名稱</th><th>今日漲幅</th></tr></thead><tbody><tr><td>ALI094</td><td>安聯AI多重資產</td><td class="text-down">+0.8%</td></tr></tbody></table></div>
     </div>
 </div>
-
-<script>
-    // 100% 忠實綁定 1286.jpg 實體影像資料庫數據
-    const fundData = [
-        { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", capital: 100000, profit: 1453, rate: "+1.45%" },
-        { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", capital: 100000, profit: -4388, rate: "-4.35%" },
-        { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", capital: 300000, profit: 11375, rate: "+3.79%" },
-        { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", capital: 600000, profit: 102395, rate: "+17.07%" },
-        { id: "CIT016", name: "群益印度中小基金-新台幣", capital: 130000, profit: 3910, rate: "+3.01%" },
-        { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", capital: 300000, profit: 22629, rate: "+9.88%" },
-        { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", capital: 600000, profit: 32684, rate: "+5.45%" }
-    ];
-
-    // 實體動態表格渲染
-    const tbody = document.getElementById('fund-table-body');
-    fundData.forEach(fund => {
-        const tr = document.createElement('tr');
-        tr.className = "hover:bg-slate-800/30 transition-colors";
-        
-        const isProfit = fund.profit >= 0;
-        const profitText = isProfit ? '+' + fund.profit.toLocaleString() : fund.profit.toLocaleString();
-        const profitClass = isProfit ? 'text-down' : 'text-up';
-        const rateClass = isProfit ? 'text-down' : 'text-up';
-
-        tr.innerHTML = `
-            <td style="font-family: monospace; font-weight: bold; color: #60a5fa;">${fund.id}</td>
-            <td style="color: #e2e8f0;">${fund.name}</td>
-            <td style="text-align: right; font-family: monospace; color: #cbd5e1;">$${fund.capital.toLocaleString()} 元</td>
-            <td style="text-align: right; font-family: monospace;" class="${profitClass}">${profitText} 元</td>
-            <td style="text-align: right; font-family: monospace;" class="${rateClass}">${fund.rate}</td>
-        `;
-        tbody.appendChild(tr);
-    });
-
-    // 📊 圖表 1：各部隊原始本金配置比例圓餅圖 (Doughnut)
-    const ctxPie = document.getElementById('PieChart').getContext('2d');
-    new Chart(ctxPie, {
-        type: 'doughnut',
-        data: {
-            labels: fundData.map(f => f.id),
-            datasets: [{
-                data: fundData.map(f => f.capital),
-                backgroundColor: ['#60a5fa', '#34d399', '#fb7185', '#f472b6', '#fbbf24', '#a78bfa', '#2dd4bf'],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } }
-        }
-    });
-
-    // 📈 圖表 2：各部隊真實淨利長條圖 (Bar)
-    const ctxBar = document.getElementById('BarChart').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
-        data: {
-            labels: fundData.map(f => f.id),
-            datasets: [{
-                label: '損益金額 (元)',
-                data: fundData.map(f => f.profit),
-                backgroundColor: fundData.map(f => f.profit >= 0 ? '#f43f5e' : '#60a5fa'), // 1286.jpg 特色：獲利與虧損對比色
-                borderRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: {
-                y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#94a3b8' } },
-                x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
-            }
-        }
-    });
-</script>
 </body>
 </html>
