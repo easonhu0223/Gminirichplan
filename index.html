@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v4.60</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v4.70</title>
     <style>
         /* 氣定神閒不看盤美學：軍事暗色調極低調介面 */
         body {
@@ -14,7 +14,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px; /* 四欄並排，適度加寬總體容器 */
             margin: 0 auto;
         }
         .header {
@@ -115,26 +115,28 @@
         .badge-guard { background-color: #238636; color: #ffffff; }
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
-        /* v4.60 獨立並排視窗總體面板 */
+        /* v4.70 獨立並排視窗總體面板 */
         .tactical-wrapper {
-            background-color: #0d1117;
+            background-color: #161b22;
             margin-top: 30px;
-            padding: 10px 0;
+            padding: 20px;
+            border: 1px solid #30363d;
+            border-radius: 8px;
         }
         .tactical-wrapper h2 {
             color: #58a6ff;
             font-size: 20px;
-            margin: 0 0 15px 0;
+            margin: 0 0 20px 0;
             letter-spacing: 1px;
             border-bottom: 2px solid #21262d;
             padding-bottom: 10px;
         }
         
-        /* 三個基金左到右並排的 Flex 容器 */
-        .tactical-grid-3col {
+        /* 四隻基金從左到右並排的 Flex 容器 */
+        .tactical-grid-4col {
             display: flex;
             flex-direction: row;
-            gap: 20px;
+            gap: 15px;
             overflow-x: auto; /* 方便小螢幕橫向滑動 */
             padding-bottom: 10px;
         }
@@ -142,8 +144,8 @@
         /* 個別獨立視窗卡片 */
         .tactical-card {
             flex: 1;
-            min-width: 320px; /* 保證並排時內容不被過度擠壓 */
-            background-color: #161b22;
+            min-width: 310px; /* 保證並排時內容不被過度擠壓 */
+            background-color: #0d1117;
             border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
@@ -154,7 +156,7 @@
         
         /* 每個獨立視窗的頂部官方標題 */
         .card-header-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: #58a6ff;
             border-bottom: 2px solid #21262d;
@@ -170,12 +172,12 @@
             color: #ffffff;
             padding: 2px 6px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 12px;
         }
         
         /* 最前面置頂提示：時間點觀察期區塊 */
         .timeline-banner {
-            background-color: #0d1117;
+            background-color: #161b22;
             border: 1px solid #21262d;
             border-left: 4px solid #ff9e3b; /* 橘色亮點提示 */
             padding: 10px;
@@ -192,7 +194,7 @@
         
         /* 內容上到下陳列 */
         .card-body-content {
-            font-size: 14px;
+            font-size: 13.5px;
             line-height: 1.6;
         }
         .card-status-row {
@@ -200,7 +202,7 @@
             padding: 8px;
             border-radius: 4px;
             margin-bottom: 15px;
-            font-size: 13px;
+            font-size: 12.5px;
             color: #8b949e;
         }
         .card-steps-list {
@@ -225,19 +227,22 @@
 
 <div class="container">
     <div class="header">
-        <h1>最高指揮部 ── 全戰場跨國多元防守雷達 v4.60</h1>
+        <h1>最高指揮部 ── 全戰場跨國多元防守雷達 v4.70</h1>
         <div id="timestamp" style="font-size: 14px; color: #8b949e;"></div>
     </div>
 
+    <!-- 總資本掩體 -->
     <div class="capital-box">
         <span style="color: #38bdf8; font-size: 14px; font-weight: bold; letter-spacing: 1px;">防守大軍總原始資本金</span>
         <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">NT$ 2,430,000 元</div>
     </div>
 
+    <!-- 雙重死線自動化警報橫幅 -->
     <div id="alertBanner" class="alert-banner silent-mode">
         【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1200 點。大展前夕突襲軋空。部隊扣住扳機，鎖死高位贖回款，氣定神閒，堅決不盲動。
     </div>
 
+    <!-- 四大即時戰場監控面板 -->
     <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場交叉訊號面板</h2>
     <div class="battlefield-grid">
         <div class="panel">
@@ -266,6 +271,7 @@
         </div>
     </div>
 
+    <!-- 實體基金佈局守備陣容 -->
     <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🛡️ 基富通地下掩體 ── 實體精銳基金守備陣容</h2>
     <table>
         <thead>
@@ -278,82 +284,99 @@
             </tr>
         </thead>
         <tbody id="fundTableBody">
-            </tbody>
+            <!-- 由 JS 自動完美渲染 -->
+        </tbody>
     </table>
 
+    <!-- ================================================================= -->
+    <!-- v4.70 底部獨立視窗：四隻基金由左到右並排，內容上到下陳列，對齊檢視 -->
+    <!-- ================================================================= -->
     <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟</h2>
+        <h2>🛠️ 最高指揮部底部獨立視窗：精準作戰步驟與防線對齊 (v4.70 更新)</h2>
         
-        <div class="tactical-grid-3col">
+        <div class="tactical-grid-4col">
             
+            <!-- 視窗 1：第一金全球 AI 機器人 (FSI011) -->
             <div class="tactical-card">
                 <div class="card-header-title">
                     <span>第一金全球 AI 機器人</span>
                     <span class="card-code-badge">FSI011</span>
                 </div>
-                
                 <div class="timeline-banner">
                     <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
                     <div>🎯 <b>低接天險價</b>：<span class="val-blue">28.35 元</span></div>
                 </div>
-                
                 <div class="card-body-content">
-                    <div class="card-status-row">
-                        <b>當前狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (11.5萬現金生力軍已充能完畢，在掩體中待命)。
-                    </div>
+                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (11.5萬現金已充能待命)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一：展期禁區】</b> 全面啟動【DARK_SILENT_MODE】（暗色靜默），冷眼觀看 6 月初 Computex 大展的瘋狂出貨秀，絕不追高。</li>
-                        <li><b>【步驟二：利多開牌】</b> 靜待 6 月 10 日 5 月實體營收大開牌。當市場激情退去、回歸理性正常化。</li>
-                        <li><b>【步驟三：觸發回補】</b> 當官方公告淨值實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span> 或更低時，下令啟動 11.5 萬資金回補。</li>
-                        <li><b>【長線目標】</b> 鎖定成本後，部隊死結封鎖，<span class="val-blue">放滿至明年年中（2027年中）</span> 迎接訂單兌現爆發期。</li>
+                        <li><b>【步驟一】</b> 啟動【DARK_SILENT_MODE】暗色靜默，冷眼看大展狂熱出貨，絕不追高。</li>
+                        <li><b>【步驟二】</b> 靜待 6/10 營收大開牌。當市場激情退去、回歸正常化技術盤整。</li>
+                        <li><b>【步驟三】</b> 淨值實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span> 時，下令啟動 11.5 萬資金回補單位數。</li>
+                        <li><b>【目標】</b> 鎖定成本後死結封鎖，<span class="val-blue">放滿至明年年中（2027年中）</span>。</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- 視窗 2：安聯台灣科技基金 (ALI006) -->
             <div class="tactical-card">
                 <div class="card-header-title">
                     <span>安聯台灣科技基金</span>
                     <span class="card-code-badge">ALI006</span>
                 </div>
-                
                 <div class="timeline-banner">
                     <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
                     <div>🎯 <b>伏擊淨值區</b>：<span class="val-blue">640.00 － 660.00 元</span></div>
                 </div>
-                
                 <div class="card-body-content">
-                    <div class="card-status-row">
-                        <b>當前狀態</b>：<span class="val-green">持續持有中</span> (今日淨值受台股暴漲千點強行灌頂，再度衝回 800 元大位)。
-                    </div>
+                    <div class="card-status-row"><b>當前狀態</b>：<span class="val-green">持續持有中</span> (今日強行灌頂衝回 800 元大位)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一：冷眼看戲】</b> 大展前夕與展覽期間絕不盲目追高加碼，放任多頭主力在 800 元上方虛高燃燒。</li>
-                        <li><b>【步驟二：鎖定權值】</b> 密切觀測 6 月中旬加權指數因營收大考驗與投信半年度結帳多殺多、技術性回測 <span class="val-blue">39,200 ~ 39,500 點</span> 區間之戰況。</li>
-                        <li><b>【步驟三：防線扣折】</b> 當市場恐慌引發非理性回檔，淨值一旦實體跌入 <span class="val-blue">640 ~ 660 元</span> 伏擊區，隨即評估將 11.5 萬資金分批投入加固防線。</li>
+                        <li><b>【步驟一】</b> 展覽期間絕不盲目追高加碼，放任多頭主力在 800 元上方虛高燃燒。</li>
+                        <li><b>【步驟二】</b> 密切觀測 6 月中旬加權指數因營收開牌與投信結帳，技術性回測 <span class="val-blue">39,200 ~ 39,500 點</span> 之戰況。</li>
+                        <li><b>===================</b></li>
+                        <li><b>【觸發條件】</b> 淨值一旦因非理性回檔跌入 <span class="val-blue">640 ~ 660 元</span> 區間，評估以現金分批投入加固防線。</li>
                     </ul>
                 </div>
             </div>
 
+            <!-- 視窗 3：野村中小基金 (NOM003) -->
             <div class="tactical-card">
                 <div class="card-header-title">
                     <span>野村中小基金</span>
                     <span class="card-code-badge">NOM003</span>
                 </div>
-                
                 <div class="timeline-banner" style="border-left-color: #ff7b72;">
                     <div>⏱️ <b>波段掠奪期</b>：<span class="val-blue">2026/06/11 － 2026/08/08</span></div>
                     <div>🎯 <b>低接甜美區</b>：<span class="val-blue">500.00 － 520.00 元</span></div>
                 </div>
-                
                 <div class="card-body-content">
-                    <div class="card-status-row">
-                        <b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28 基準現值為 584.18 元，編入中短線雙月掠奪序列)。
-                    </div>
+                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28 基準現值為 584.18 元)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一：絕對禁區 (06/01-06/10)】</b> 大展狂熱期啟動靜默，雙手插口袋。看著媒體吹泡泡、散戶追高，我軍堅決不接刀。</li>
-                        <li><b>【步驟二：黃金低接 (06/11-06/18)】</b> 靜待 5 月營收開牌失望賣壓與投信內鬥互踩。當淨值砸入 <span class="val-blue">500 ~ 520 元</span> 區間，單筆或分批突襲進場。</li>
-                        <li><b>【步驟三：移動停利 (隨時監控)】</b> 進場後若因 7 月資金潮提早暴賺，波段獲利一達 <span class="val-green">+15% ~ +20%</span>，不等時間到，立刻全數獲利了結。</li>
-                        <li><b>【步驟四：常規出口 (07/25-08/05)】</b> 未觸發停利則鎖定「7月天量股利回流與填息最高潮」，趁淨值衝向階段顛峰時全面獲利出清。</li>
-                        <li><b>【步驟五：絕對死線 (08/08當天)】</b> <span class="val-red">最後逃生門</span>。不論多瘋狂，絕不賭 8/10 半年報與 8 月暑假洗盤，必須於 8 月 8 日前全面清倉。</li>
+                        <li><b>【步驟一】</b> 6/01-06/10 大展狂熱期啟動靜默雙手插口袋，堅決不進場接刀。</li>
+                        <li><b>【步驟二】</b> 6/11-06/18 營收開牌失望賣壓與投信互踩，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 時突襲進場。</li>
+                        <li><b>【步驟三】</b> 7月資金潮引爆若暴賺達 <span class="val-green">+15% ~ +20%</span>，不等時間到，立刻全數獲利了結。</li>
+                        <li><b>【步驟四】</b> 未觸發停利則鎖定 <span class="val-blue">07/25 - 08/05</span> 填息與美股財報高潮全面出清。</li>
+                        <li><b>【死線】</b> <span class="val-red">8/08 當天最後 escape 門</span>，不賭半年報，全面清倉帶著獲利退出。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 視窗 4：統一全球新科技基金 (PST001 - v4.70 新增) -->
+            <div class="tactical-card" style="border-left: 2px solid #38bdf8;">
+                <div class="card-header-title">
+                    <span>統一全球新科技基金</span>
+                    <span class="card-code-badge">PST001</span>
+                </div>
+                <div class="timeline-banner" style="border-left-color: #38bdf8;">
+                    <div>⏱️ <b>美股掠奪期</b>：<span class="val-blue">2026/06/15 － 2026/08/05</span></div>
+                    <div>🎯 <b>核心戰術定位</b>：<span class="val-blue">美股財報波段獵手</span></div>
+                </div>
+                <div class="card-body-content">
+                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (作為海外美股七巨頭大回檔時的短線高爆發力側翼)。</div>
+                    <ul class="card-steps-list">
+                        <li><b>【步驟一：耐性觀望】</b> 6 月上旬隨美股大展激情起伏不追高，等待月中美國聯準會決策與利多出盡的常規回檔。</li>
+                        <li><b>【步驟二：搶灘埋伏】</b> 6 月中下旬美股科技股技術性修正落底時，分批單筆打入資金，低位埋伏硬核美股科技籌碼。</li>
+                        <li><b>【步驟三：財報高潮】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 微軟、輝達、蘋果等超級財報季開牌，利用非理性暴噴行情。</li>
+                        <li><b>【步驟四：全身而退】</b> 獲利達 <span class="val-green">+15%</span> 或時間推進至 <span class="val-blue">8 月 5 日</span> 財報高潮結束，全面落袋為安，絕不拖泥帶水。</li>
                     </ul>
                 </div>
             </div>
