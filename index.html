@@ -3,163 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v4.95</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v5.00</title>
     <style>
-        /* v4.95 軍事暗色調極致低調介面 */
+        /* v5.00 軍事暗色調極致低調介面 - 指揮艙大氣美學 */
         body {
-            background-color: #0d1117;
+            background-color: #0b0e14;
             color: #c9d1d9;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 25px;
         }
         .container {
-            max-width: 1400px;
+            max-width: 1450px;
             margin: 0 auto;
         }
         
-        /* v4.95 最高指揮部官方固定 Header 欄位 */
-        .main-official-header {
+        /* v5.00 霸氣震撼官方主標題：放大兩倍、實體置中、霓虹漸層 */
+        .official-super-header {
+            border-top: 4px solid #1f6feb;
             border-bottom: 2px solid #21262d;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 25px 0;
+            margin-bottom: 30px;
+            position: relative;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(22,27,34,0.5) 0%, rgba(13,17,23,0) 100%);
         }
-        .main-official-header .title-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .main-official-header .title-area h1 {
-            color: #58a6ff;
+        .official-super-header h1 {
+            font-size: 56px; /* 字體放大兩倍以上 */
+            font-weight: 900;
             margin: 0;
-            font-size: 28px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+            letter-spacing: 6px;
+            background: linear-gradient(90deg, #58a6ff 0%, #38bdf8 50%, #58a6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
         }
-        .main-official-header .title-area .military-logo {
-            color: #38bdf8;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .main-official-header .version-fixed-box {
-            text-align: right;
-            background-color: #161b22;
+        
+        /* 右上角掛載固定版本名牌 */
+        .fixed-tactical-tag {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(22, 27, 34, 0.8);
             border: 1px solid #30363d;
-            padding: 6px 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            padding: 8px 20px;
             border-radius: 4px;
-            font-size: 13.5px;
-            line-height: 1.5;
+            text-align: right;
+            border-right: 4px solid #58a6ff;
+        }
+        .fixed-tactical-tag .v-title {
+            font-weight: bold;
+            color: #58a6ff;
+            font-size: 15px;
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+        .fixed-tactical-tag .v-date {
+            color: #8b949e;
+            font-size: 11px;
+            margin-top: 3px;
         }
 
-        /* v4.95 頂部重裝戰術看板區 */
+        /* v5.00 頂部重裝戰術看板網格 */
         .top-dashboard {
             display: grid;
             grid-template-columns: 320px 1fr;
-            gap: 20px;
-            margin-bottom: 25px;
-            align-items: start;
+            gap: 25px;
+            margin-bottom: 30px;
+            align-items: stretch;
         }
 
         /* 左上方獨立精緻月曆卡 */
         .calendar-card {
-            background-color: #161b22;
+            background-color: #12161f;
             border: 1px solid #30363d;
-            border-top: 3px solid #58a6ff;
+            border-top: 3px solid #1f6feb;
             border-radius: 6px;
-            padding: 15px;
+            padding: 18px;
             box-sizing: border-box;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
         .calendar-card-header {
             color: #58a6ff;
             font-weight: bold;
             font-size: 16px;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
         }
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
+            gap: 6px;
             text-align: center;
             font-size: 12px;
         }
-        .calendar-grid div {
-            padding: 4px 0;
-        }
-        .day-header {
-            color: #8b949e;
-            font-weight: bold;
-        }
-        .calendar-day {
-            color: #c9d1d9;
-            border-radius: 3px;
-        }
+        .calendar-grid div { padding: 5px 0; }
+        .day-header { color: #8b949e; font-weight: bold; }
+        .calendar-day { color: #c9d1d9; border-radius: 3px; }
         .calendar-day.today {
             background-color: #1f6feb;
             color: #ffffff;
             font-weight: bold;
+            box-shadow: 0 0 10px rgba(31, 111, 235, 0.5);
         }
 
-        /* 頂部中央高科技動態數字鐘錶 */
+        /* v5.00 重裝大氣動態數字鐘錶面板 */
         .tech-clock-panel {
-            background: linear-gradient(135deg, #161b22, #0d1117);
-            border: 1px solid #21262d;
-            box-shadow: inset 0 0 15px rgba(88, 166, 255, 0.1);
+            background: radial-gradient(circle at center, #1c212c 0%, #10141d 100%);
+            border: 2px solid #21262d;
+            border-left: 6px solid #56d364; /* 螢光綠戰術邊條 */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(86, 211, 100, 0.05);
             border-radius: 8px;
-            padding: 15px 25px;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 106px;
             box-sizing: border-box;
         }
         .clock-meta {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 8px;
         }
         .clock-date-line {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
-            color: #58a6ff;
-            letter-spacing: 1px;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         .clock-lunar-line {
-            font-size: 13.5px;
+            font-size: 14px;
             color: #8b949e;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            background-color: #0d1117;
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid #21262d;
+            display: inline-block;
         }
+        /* 巨型去陽春化數字顯示 */
         .clock-digits {
             font-family: 'Courier New', Courier, monospace;
-            font-size: 42px;
-            font-weight: bold;
+            font-size: 58px; /* 實體放大，極具衝擊力 */
+            font-weight: 900;
             color: #56d364;
-            text-shadow: 0 0 10px rgba(86, 211, 100, 0.3);
-            letter-spacing: 2px;
-            background-color: #0d1117;
-            padding: 4px 15px;
-            border-radius: 6px;
-            border: 1px solid #21262d;
+            text-shadow: 0 0 20px rgba(86, 211, 100, 0.4), 0 0 40px rgba(86, 211, 100, 0.1);
+            letter-spacing: 4px;
+            background: linear-gradient(180deg, #070a0f 0%, #0d1117 100%);
+            padding: 10px 30px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            box-shadow: inset 0 4px 12px rgba(0,0,0,0.8);
         }
 
         .alert-banner {
-            padding: 15px;
+            padding: 16px;
             border-radius: 6px;
             margin-bottom: 25px;
             font-weight: bold;
             text-align: center;
             border: 1px solid #30363d;
             font-size: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .silent-mode {
-            background-color: #161b22;
+            background-color: #12161f;
             color: #8b949e;
-            border-left: 5px solid #58a6ff;
+            border-left: 5px solid #38bdf8;
         }
         
         .battlefield-grid {
@@ -169,7 +186,7 @@
             margin-bottom: 30px;
         }
         .panel {
-            background-color: #161b22;
+            background-color: #12161f;
             border: 1px solid #30363d;
             border-radius: 6px;
             padding: 15px;
@@ -193,19 +210,20 @@
         .text-up { color: #56d364; }
         
         .capital-box {
-            background: linear-gradient(135deg, #1f2937, #111827);
+            background: linear-gradient(135deg, #1c2333, #0d111a);
             border: 1px solid #38bdf8;
-            padding: 15px;
+            padding: 18px;
             border-radius: 6px;
             text-align: center;
             margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            background-color: #161b22;
+            background-color: #12161f;
             border: 1px solid #30363d;
             border-radius: 6px;
             margin-bottom: 35px;
@@ -217,7 +235,7 @@
             font-size: 14px;
         }
         th {
-            background-color: #21262d;
+            background-color: #1f242c;
             color: #58a6ff;
         }
         .badge {
@@ -231,9 +249,9 @@
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
         .tactical-wrapper {
-            background-color: #161b22;
+            background-color: #12161f;
             margin-top: 30px;
-            padding: 20px;
+            padding: 22px;
             border: 1px solid #30363d;
             border-radius: 8px;
             margin-bottom: 25px;
@@ -255,8 +273,8 @@
         }
         .tactical-card {
             flex: 1;
-            min-width: 320px;
-            background-color: #0d1117;
+            min-width: 325px;
+            background-color: #0b0e14;
             border: 1px solid #30363d;
             border-radius: 8px;
             padding: 20px;
@@ -284,7 +302,7 @@
             font-size: 12px;
         }
         .timeline-banner {
-            background-color: #161b22;
+            background-color: #12161f;
             border: 1px solid #21262d;
             border-left: 4px solid #ff9e3b;
             padding: 10px;
@@ -306,53 +324,56 @@
         .card-steps-list li { margin-bottom: 10px; color: #c9d1d9; }
         
         .three-day-alert-panel {
-            background-color: #161b22;
+            background-color: #12161f;
             border: 2px solid #30363d;
             border-left: 6px solid #ff9e3b;
             border-radius: 8px;
-            padding: 22px;
+            padding: 25px;
             box-sizing: border-box;
-            margin-top: 25px;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
         }
         .three-day-alert-panel h2 {
-            margin: 0 0 15px 0;
+            margin: 0 0 18px 0;
             color: #ff9e3b;
-            font-size: 18px;
+            font-size: 19px;
             letter-spacing: 1px;
             border-bottom: 1px solid #30363d;
-            padding-bottom: 8px;
+            padding-bottom: 10px;
         }
         .alert-content-area {
-            min-height: 100px;
+            min-height: 110px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
         .active-alert-item {
-            background-color: #11141a;
+            background-color: #0b0e14;
             border: 1px solid #21262d;
-            padding: 12px 18px;
+            padding: 15px 20px;
             border-radius: 6px;
+            border-left: 4px solid #ff7b72;
         }
         .active-alert-date {
             font-weight: bold;
             color: #ff7b72;
             font-family: monospace;
             font-size: 15px;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .active-alert-text {
-            font-size: 14px;
-            line-height: 1.5;
+            font-size: 14.5px;
+            line-height: 1.6;
             color: #e2e8f0;
         }
         .no-alert-text {
             color: #8b949e;
-            font-size: 14px;
+            font-size: 14.5px;
             font-style: italic;
             display: flex;
             align-items: center;
-            height: 80px;
+            height: 90px;
+            line-height: 1.6;
         }
 
         .val-blue { color: #58a6ff; font-weight: bold; font-family: monospace; }
@@ -364,29 +385,26 @@
 
 <div class="container">
     
-    <!-- v4.95 固定不變：最高指揮部主標題與右側版本日期固定欄位 -->
-    <div class="main-official-header">
-        <div class="title-area">
-            <span class="military-logo">⚔️</span>
-            <h1>最高指揮部 ── 全戰場跨國多元防守雷達</h1>
-        </div>
-        <div class="version-fixed-box">
-            <div style="font-weight: bold; color: #58a6ff;">戰術系統：v4.95</div>
-            <div style="color: #8b949e; font-size: 12px;">發布日期：2026-05-29</div>
+    <!-- v5.00 霸氣震撼官方實體置中大標題 ＋ 固定版本發布名牌 -->
+    <div class="official-super-header">
+        <h1><span>⚔️</span> 最高指揮總部 ── 全戰場防守雷達</h1>
+        <div class="fixed-tactical-tag">
+            <div class="v-title">戰術系統：v5.00</div>
+            <div class="v-date">發布日期：2026-05-29</div>
         </div>
     </div>
     
-    <!-- v4.95 頂部戰術月曆卡與中央高科技鐘錶 -->
+    <!-- v5.00 頂部重裝戰術月曆卡與巨型數位微發光鐘錶 -->
     <div class="top-dashboard">
         <!-- 左上方獨立精緻月曆卡 -->
         <div class="calendar-card">
             <div class="calendar-card-header" id="calCardHeader">2026 年 5 月</div>
             <div class="calendar-grid" id="calGridBody">
-                <!-- 由 JS 靜態渲染基本架構 -->
+                <!-- 由 JS 渲染 -->
             </div>
         </div>
 
-        <!-- 頂部中央不陽春動態數字鐘錶 -->
+        <!-- 頂部中央去陽春化重裝數位鐘錶 -->
         <div class="tech-clock-panel">
             <div class="clock-meta">
                 <div class="clock-date-line" id="clkDate">2026 年 05 月 29 日 金曜日</div>
@@ -448,13 +466,13 @@
             </tr>
         </thead>
         <tbody id="fundTableBody">
-            <!-- 由 JS 自動渲染 -->
+            <!-- 由 JS 渲染 -->
         </tbody>
     </table>
 
     <!-- 四隻基金由左到右並排視窗 -->
     <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v4.95 總體防線)</h2>
+        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v5.00 總體防線)</h2>
         <div class="tactical-grid-4col">
             <!-- 視窗 1：FSI011 -->
             <div class="tactical-card">
@@ -500,7 +518,7 @@
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28現值584.18元)。</div>
                     <ul class="card-steps-list">
                         <li><b>【步驟一】</b> 6/01-06/10 展期絕對禁區。中小型股反彈力道極猛，但我軍絕不接高位籌碼。</li>
-                        <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時單筆突襲進場。</li>
+                        <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時單筆突襲進場.</li>
                         <li><b>【步驟三】</b> 7月除權息填息若快速暴賺達 <span class="val-green">+15% ~ +20%</span>，立即全數獲利了結。</li>
                         <li><b>【步驟四】</b> 未觸發停利則鎖定 <span class="val-blue">07/25 - 08/05</span> 填息最高潮全面清倉。</li>
                         <li><b>【步驟五】</b> <span class="val-red">8/08 鋼鐵退兵死線</span>，不賭半年報，全面清倉带着利潤退場。</li>
@@ -527,7 +545,7 @@
         </div>
     </div>
 
-    <!-- v4.95 最下方欄位：最近三天確認注意戰術事項 -->
+    <!-- v5.00 最下方欄位：最近三天確認注意戰術事項 -->
     <div class="three-day-alert-panel">
         <h2>📡 最近三天確認注意事項與重要任務 (Time-Triggered Radar)</h2>
         <div class="alert-content-area" id="threeDayAlertContainer">
@@ -559,7 +577,7 @@
         { dateStr: "2026-06-11", text: "🎯【申購突擊窗口啟動】台股與美股進入營收失望賣壓期。核心部隊 FSI011 低接天險 28.35 元、台股核心 ALI006 伏擊區 640~660 元、野村中小 NOM003 甜美區 500~520 元，進入每日淨值雷達嚴密監控期！" },
         { dateStr: "2026-06-15", text: "🇺🇸【海外突擊開啟】統一全球新科技 (UNI017) 美股掠奪觀察期啟動。等待月中聯準會會議前全球資金觀望拉回，尋找美股科技七巨頭修正落底之搶灘埋伏點。" },
         { dateStr: "2026-06-16", text: "💣【核彈級新聞】美國聯準會 (FED) 舉行年中 FOMC 利率決策會議第一天。全球外資大咖集體極凍抽離。加權指數與中小型股因量能急凍、投信半年度結帳多殺多，非理性低點極機率於這幾天浮現！" },
-        { dateStr: "2026-06-17", text: "🔥【生死線終極對時】美國聯準會公佈最新利率決策與 SEP 經濟預測摘要。市場恐慌與觀望震盪砸到最深。密切注意 ALI006 與 NOM003 淨值是否砸穿伏擊防線，隨時準備單筆突襲扣下板機！" },
+        { dateStr: "2026-06-17", text: "🔥【生死線終極對時】美國聯準會公佈最新利率決策與 SEP 經濟預測摘要. 市場恐慌與觀望震盪砸到最深。密切注意 ALI006 與 NOM003 淨值是否砸穿伏擊防線，隨時準備單筆突襲扣下板機！" },
         { dateStr: "2026-07-20", text: "🇺🇸【美股大閱兵】美股科技七巨頭（微軟、輝達、蘋果）第二季實體財報季密集開牌！觀察 UNI017 走勢，迎擊財報超預期的非理性噴發大巨浪。" },
         { dateStr: "2026-07-25", text: "💰【常規黃金出口開啟】台灣數千億除權息股利回流、填息最高潮！配合美股財報利多出盡前夕，野村中小 (NOM003) 進入常規退兵窗口。若此時波段獲利已達 +15% ~ +20%，不留戀，全數獲利落袋出清！" },
         { dateStr: "2026-08-05", text: "🏹【美股突擊隊撤退】統一全球新科技 (UNI017) 財報高潮結束。不論獲利是否達標，全面執行獲利出清、全數獲利落袋為安，絕不拖泥帶水。" },
