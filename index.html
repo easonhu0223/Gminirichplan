@@ -45,17 +45,6 @@
             color: #8b949e;
             border-left: 5px solid #58a6ff;
         }
-        .red-alert-mode {
-            background-color: #8c1d1d;
-            color: #ffffff;
-            border-left: 5px solid #ff7b72;
-            animation: blink 1.5s infinite;
-        }
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
         
         /* 四大戰場即時監控面板 */
         .battlefield-grid {
@@ -126,76 +115,110 @@
         .badge-guard { background-color: #238636; color: #ffffff; }
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
-        /* v4.60 最下方新增：精準作戰步驟獨立視窗區 */
-        .tactical-window-panel {
-            background-color: #161b22;
-            border: 2px solid #21262d;
-            border-top: 4px solid #58a6ff;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 20px;
+        /* v4.60 獨立並排視窗總體面板 */
+        .tactical-wrapper {
+            background-color: #0d1117;
+            margin-top: 30px;
+            padding: 10px 0;
         }
-        .tactical-window-panel h2 {
-            margin: 0 0 20px 0;
+        .tactical-wrapper h2 {
             color: #58a6ff;
             font-size: 20px;
+            margin: 0 0 15px 0;
             letter-spacing: 1px;
-            border-bottom: 1px solid #30363d;
+            border-bottom: 2px solid #21262d;
             padding-bottom: 10px;
+        }
+        
+        /* 三個基金左到右並排的 Flex 容器 */
+        .tactical-grid-3col {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-direction: row;
+            gap: 20px;
+            overflow-x: auto; /* 方便小螢幕橫向滑動 */
+            padding-bottom: 10px;
         }
-        .tactical-section {
-            margin-bottom: 22px;
-            padding-bottom: 18px;
-            border-bottom: 1px dashed #21262d;
+        
+        /* 個別獨立視窗卡片 */
+        .tactical-card {
+            flex: 1;
+            min-width: 320px; /* 保證並排時內容不被過度擠壓 */
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
-        .tactical-section:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-        .tactical-title {
-            font-size: 15px;
+        
+        /* 每個獨立視窗的頂部官方標題 */
+        .card-header-title {
+            font-size: 16px;
             font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .tactical-status {
-            font-size: 13px;
-            color: #8b949e;
-            margin-bottom: 10px;
-            background-color: #0d1117;
-            padding: 6px 12px;
-            border-radius: 4px;
-            border: 1px solid #21262d;
-        }
-        .tactical-steps {
-            margin: 0;
-            padding-left: 20px;
-        }
-        .tactical-steps li {
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 8px;
-            color: #c9d1d9;
-        }
-        .highlight-value {
             color: #58a6ff;
-            font-weight: bold;
+            border-bottom: 2px solid #21262d;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-code-badge {
             font-family: monospace;
             background-color: #21262d;
-            padding: 1px 5px;
-            border-radius: 3px;
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
         }
-        .highlight-alert {
-            color: #ff7b72;
-            font-weight: bold;
+        
+        /* 最前面置頂提示：時間點觀察期區塊 */
+        .timeline-banner {
+            background-color: #0d1117;
+            border: 1px solid #21262d;
+            border-left: 4px solid #ff9e3b; /* 橘色亮點提示 */
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
         }
+        .timeline-banner div {
+            margin-bottom: 4px;
+        }
+        .timeline-banner div:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 內容上到下陳列 */
+        .card-body-content {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .card-status-row {
+            background-color: #1f242c;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #8b949e;
+        }
+        .card-steps-list {
+            margin: 0;
+            padding-left: 18px;
+        }
+        .card-steps-list li {
+            margin-bottom: 10px;
+            color: #c9d1d9;
+        }
+        .card-steps-list li:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* 數值高亮細節 */
+        .val-blue { color: #58a6ff; font-weight: bold; font-family: monospace; }
+        .val-red { color: #ff7b72; font-weight: bold; }
+        .val-green { color: #56d364; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -206,92 +229,43 @@
         <div id="timestamp" style="font-size: 14px; color: #8b949e;"></div>
     </div>
 
-    <!-- 總資本掩體 -->
     <div class="capital-box">
         <span style="color: #38bdf8; font-size: 14px; font-weight: bold; letter-spacing: 1px;">防守大軍總原始資本金</span>
         <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">NT$ 2,430,000 元</div>
     </div>
 
-    <!-- 雙重死線自動化警報橫幅 -->
     <div id="alertBanner" class="alert-banner silent-mode">
         【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1200 點。大展前夕突襲軋空。部隊扣住扳機，鎖死高位贖回款，氣定神閒，堅決不盲動。
     </div>
 
-    <!-- 四大即時戰場監控面板 -->
     <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場交叉訊號面板</h2>
     <div class="battlefield-grid">
-        
-        <!-- 1. 台股現貨戰場 -->
         <div class="panel">
             <h3>📊 台股現貨 (TWSE)</h3>
-            <div class="data-row">
-                <span class="data-label">加權指數</span>
-                <span id="tw-index" class="data-value text-up">40,450</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">今日漲幅</span>
-                <span class="data-value text-up">+1,200 點</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">基準地雷區</span>
-                <span class="data-value" style="color: #e3b341;">39,200 ~ 39,500</span>
-            </div>
+            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">40,450</span></div>
+            <div class="data-row"><span class="data-label">今日漲幅</span><span class="data-value text-up">+1,200 點</span></div>
+            <div class="data-row"><span class="data-label">基準地雷區</span><span class="data-value" style="color: #e3b341;">39,200 ~ 39,500</span></div>
         </div>
-
-        <!-- 2. 期貨盤面戰場 -->
         <div class="panel">
             <h3>⚡ 期貨戰場 (TAIEX Futures)</h3>
-            <div class="data-row">
-                <span class="data-label">台指期結算</span>
-                <span id="fut-index" class="data-value text-up">40,480</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">期現貨價差</span>
-                <span class="data-value" style="color: #56d364;">正價差 +30 點</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">空頭流動性</span>
-                <span class="data-value text-down" style="color: #ff7b72;">全面軋空斷頭</span>
-            </div>
+            <div class="data-row"><span class="data-label">台指期結算</span><span class="data-value text-up">40,480</span></div>
+            <div class="data-row"><span class="data-label">期現貨價差</span><span class="data-value" style="color: #56d364;">正價差 +30 點</span></div>
+            <div class="data-row"><span class="data-label">空頭流動性</span><span class="data-value text-down" style="color: #ff7b72;">全面軋空斷頭</span></div>
         </div>
-
-        <!-- 3. 美股科技盤前 -->
         <div class="panel">
             <h3>🇺🇸 美股雷達 (US Market)</h3>
-            <div class="data-row">
-                <span class="data-label">台鏡電 ADR</span>
-                <span id="tsm-adr" class="data-value text-up">盤前集體反攻</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">輝達 (NVIDIA)</span>
-                <span id="nvda-stock" class="data-value text-up">展前利多刺激</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">那斯達克期指</span>
-                <span id="nasdaq-fut" class="data-value text-up">強勢直線拉升</span>
-            </div>
+            <div class="data-row"><span class="data-label">台積電 ADR</span><span class="data-value text-up">盤前集體反攻</span></div>
+            <div class="data-row"><span class="data-label">輝達 (NVIDIA)</span><span class="data-value text-up">展前利多刺激</span></div>
+            <div class="data-row"><span class="data-label">那斯達克期指</span><span class="data-value text-up">強勢直線拉升</span></div>
         </div>
-
-        <!-- 4. 外匯實體資金流監控 -->
         <div class="panel">
             <h3>💵 外匯市場 (FX Exchange)</h3>
-            <div class="data-row">
-                <span class="data-label">美元 / 新台幣</span>
-                <span id="usd-twd" class="data-value text-down">32.420</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">新台幣走勢</span>
-                <span class="data-value text-up">反手認錯大升值</span>
-            </div>
-            <div class="data-row">
-                <span class="data-label">匯市實體資金</span>
-                <span class="data-value text-up">外資爆量重組匯入</span>
-            </div>
+            <div class="data-row"><span class="data-label">美元 / 新台幣</span><span class="data-value text-down">32.420</span></div>
+            <div class="data-row"><span class="data-label">新台幣走勢</span><span class="data-value text-up">反手認錯大升值</span></div>
+            <div class="data-row"><span class="data-label">匯市實體資金</span><span class="data-value text-up">外資爆量重組匯入</span></div>
         </div>
-
     </div>
 
-    <!-- 實體基金佈局守備陣容 -->
     <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🛡️ 基富通地下掩體 ── 實體精銳基金守備陣容</h2>
     <table>
         <thead>
@@ -304,54 +278,92 @@
             </tr>
         </thead>
         <tbody id="fundTableBody">
-            <!-- 由 JS 自動完美渲染 -->
-        </tbody>
+            </tbody>
     </table>
 
-    <!-- v4.60 新增：最高指揮部底部獨立視窗 -->
-    <div class="tactical-window-panel">
-        <h2>🛠️ 最高指揮部底部獨立視窗：精準作戰步驟 <span style="font-size: 12px; color: #8b949e; font-weight: normal;">SYSTEM_READY v4.60</span></h2>
+    <div class="tactical-wrapper">
+        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟</h2>
         
-        <!-- 戰線 1 -->
-        <div class="tactical-section">
-            <div class="tactical-title">🛰️ 第一戰線：海外 AI 主力部隊</div>
-            <div class="tactical-status"><strong>【現狀】</strong>：<span style="color: #e3b341;">空倉</span>。11.5 萬現金生力軍已充能完畢，地下掩體待命。</div>
-            <ul class="tactical-steps">
-                <li><strong>【步驟一】</strong> 全面啟動【DARK_SILENT_MODE】（暗色靜默），冷眼觀看 6 月初 Computex 大展的瘋狂出貨秀，絕不追高。</li>
-                <li><strong>【步驟二】</strong> 靜待 6 月 10 日 5 月實體營收大開牌。當市場利多出盡、回歸理性盤整，淨值實體砸回鋼鐵防線 <span class="highlight-value">28.35 元</span> 時，啟動 11.5 萬資金回補。</li>
-                <li><strong>【長線目標】</strong> 成功低接鎖定成本後，部隊死結封鎖，<span class="highlight-value">放滿至明年年中（2027年中）</span> 迎接訂單實體大兌現期。</li>
-            </ul>
-        </div>
+        <div class="tactical-grid-3col">
+            
+            <div class="tactical-card">
+                <div class="card-header-title">
+                    <span>第一金全球 AI 機器人</span>
+                    <span class="card-code-badge">FSI011</span>
+                </div>
+                
+                <div class="timeline-banner">
+                    <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
+                    <div>🎯 <b>低接天險價</b>：<span class="val-blue">28.35 元</span></div>
+                </div>
+                
+                <div class="card-body-content">
+                    <div class="card-status-row">
+                        <b>當前狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (11.5萬現金生力軍已充能完畢，在掩體中待命)。
+                    </div>
+                    <ul class="card-steps-list">
+                        <li><b>【步驟一：展期禁區】</b> 全面啟動【DARK_SILENT_MODE】（暗色靜默），冷眼觀看 6 月初 Computex 大展的瘋狂出貨秀，絕不追高。</li>
+                        <li><b>【步驟二：利多開牌】</b> 靜待 6 月 10 日 5 月實體營收大開牌。當市場激情退去、回歸理性正常化。</li>
+                        <li><b>【步驟三：觸發回補】</b> 當官方公告淨值實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span> 或更低時，下令啟動 11.5 萬資金回補。</li>
+                        <li><b>【長線目標】</b> 鎖定成本後，部隊死結封鎖，<span class="val-blue">放滿至明年年中（2027年中）</span> 迎接訂單兌現爆發期。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 戰線 2 -->
-        <div class="tactical-section">
-            <div class="tactical-title">📊 第二戰線：台股硬核核心防線</div>
-            <div class="tactical-status"><strong>【現狀】</strong>：<span style="color: #56d364;">持續持有中</span>。今日淨值受大盤暴漲千點強行灌頂，重回 800 元大位。</div>
-            <ul class="tactical-steps">
-                <li><strong>【步驟一】</strong> 大展前夕與展覽期間絕不盲目追高加碼，放任多頭主力在 800 元上方虛高燃燒。</li>
-                <li><strong>【步驟二】</strong> 密切觀測 6 月中旬（6/11 ~ 6/18）加權指數因營收大考驗與投信半年度結帳多殺多、技術性回測 39,200 ~ 39,500 點區間之戰況。</li>
-                <li><strong>【觸發條件】</strong> 淨值一旦因市場恐慌意外砸入 <span class="highlight-value">640.00 元 ～ 660.00 元</span> 伏擊區，隨即評估將 11.5 萬資金分批投入。</li>
-            </ul>
-        </div>
+            <div class="tactical-card">
+                <div class="card-header-title">
+                    <span>安聯台灣科技基金</span>
+                    <span class="card-code-badge">ALI006</span>
+                </div>
+                
+                <div class="timeline-banner">
+                    <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
+                    <div>🎯 <b>伏擊淨值區</b>：<span class="val-blue">640.00 － 660.00 元</span></div>
+                </div>
+                
+                <div class="card-body-content">
+                    <div class="card-status-row">
+                        <b>當前狀態</b>：<span class="val-green">持續持有中</span> (今日淨值受台股暴漲千點強行灌頂，再度衝回 800 元大位)。
+                    </div>
+                    <ul class="card-steps-list">
+                        <li><b>【步驟一：冷眼看戲】</b> 大展前夕與展覽期間絕不盲目追高加碼，放任多頭主力在 800 元上方虛高燃燒。</li>
+                        <li><b>【步驟二：鎖定權值】</b> 密切觀測 6 月中旬加權指數因營收大考驗與投信半年度結帳多殺多、技術性回測 <span class="val-blue">39,200 ~ 39,500 點</span> 區間之戰況。</li>
+                        <li><b>【步驟三：防線扣折】</b> 當市場恐慌引發非理性回檔，淨值一旦實體跌入 <span class="val-blue">640 ~ 660 元</span> 伏擊區，隨即評估將 11.5 萬資金分批投入加固防線。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 戰線 3 -->
-        <div class="tactical-section">
-            <div class="tactical-title">⚔️ 第三戰線：台股側翼特種部隊</div>
-            <div class="tactical-status"><strong>【現狀】</strong>：<span style="color: #8b949e;">空倉預備</span>。5/28 基準現值為 584.18 元，正式編入六、七月短線掠奪序列。</div>
-            <ul class="tactical-steps">
-                <li><strong>【步驟一：絕對禁區（06/01 － 06/10）】</strong> 大展狂熱期啟動靜默，雙手插口袋。看著媒體吹泡泡、散戶追高就好，我軍堅決不進場幫主力接刀。</li>
-                <li><strong>【步驟二：黃金低接（06/11 － 06/18）】</strong> 靜待 5 月營收失望賣壓與投信內鬥互踩。當淨值因中小型股踩踏而砸入 <span class="highlight-value">500.00 元 ～ 520.00 元</span> 甜美區，單筆或分批突襲進場。</li>
-                <li><strong>【步驟三：移動停利（隨時監控）】</strong> 進場後密切盯盤。若 7 月份資金狂潮提早引爆中小型股暴噴，波段獲利一達 <span class="highlight-value">+15% ~ +20%</span> 條件，不等時間到，立刻全數獲利了結。</li>
-                <li><strong>【步驟四：常規出口（07/25 － 08/05）】</strong> 若未觸發條件停利，則鎖定「7 月份數千億股利回流、填息最高潮 ＋ 美股與台積電財報高亢期」，趁淨值衝向階段顛峰時全面獲利出清。</li>
-                <li><strong>【步驟五：絕對死線（08/08 當天）】</strong> <span class="highlight-alert">最後逃生門</span>。不論當時盤面多麼瘋狂，絕對不跟市場賭 8/10 半年報實體大考驗與 8 月常規暑假大洗盤，必須於 8 月 8 日前全面空倉，帶著獲利全身而退。</li>
-            </ul>
+            <div class="tactical-card">
+                <div class="card-header-title">
+                    <span>野村中小基金</span>
+                    <span class="card-code-badge">NOM003</span>
+                </div>
+                
+                <div class="timeline-banner" style="border-left-color: #ff7b72;">
+                    <div>⏱️ <b>波段掠奪期</b>：<span class="val-blue">2026/06/11 － 2026/08/08</span></div>
+                    <div>🎯 <b>低接甜美區</b>：<span class="val-blue">500.00 － 520.00 元</span></div>
+                </div>
+                
+                <div class="card-body-content">
+                    <div class="card-status-row">
+                        <b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28 基準現值為 584.18 元，編入中短線雙月掠奪序列)。
+                    </div>
+                    <ul class="card-steps-list">
+                        <li><b>【步驟一：絕對禁區 (06/01-06/10)】</b> 大展狂熱期啟動靜默，雙手插口袋。看著媒體吹泡泡、散戶追高，我軍堅決不接刀。</li>
+                        <li><b>【步驟二：黃金低接 (06/11-06/18)】</b> 靜待 5 月營收開牌失望賣壓與投信內鬥互踩。當淨值砸入 <span class="val-blue">500 ~ 520 元</span> 區間，單筆或分批突襲進場。</li>
+                        <li><b>【步驟三：移動停利 (隨時監控)】</b> 進場後若因 7 月資金潮提早暴賺，波段獲利一達 <span class="val-green">+15% ~ +20%</span>，不等時間到，立刻全數獲利了結。</li>
+                        <li><b>【步驟四：常規出口 (07/25-08/05)】</b> 未觸發停利則鎖定「7月天量股利回流與填息最高潮」，趁淨值衝向階段顛峰時全面獲利出清。</li>
+                        <li><b>【步驟五：絕對死線 (08/08當天)】</b> <span class="val-red">最後逃生門</span>。不論多瘋狂，絕不賭 8/10 半年報與 8 月暑假洗盤，必須於 8 月 8 日前全面清倉。</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
 </div>
 
 <script {nonce}>
-    // 100% 對齊指揮官實體防禦布局（v4.60 納入安聯台灣科技與最新現金流狀態）
     const globalDefenseConfig = {
         taiexTriggerLine: 39500,
         funds: [
@@ -382,7 +394,6 @@
         });
     }
 
-    // 交叉雷達算法（今日盤面處於暴漲大高位）
     function runGlobalCrossMonitor(currentTaiex) {
         const banner = document.getElementById('alertBanner');
         if (currentTaiex <= globalDefenseConfig.taiexTriggerLine) {
@@ -394,11 +405,9 @@
         }
     }
 
-    // 初始化對時與數據渲染
     document.getElementById('timestamp').innerText = "全球戰略對時：2026-05-29 13:10 (台股正午暴漲盤面/美股盤前雷達)";
     renderFundTable();
-    runGlobalCrossMonitor(40450); // 當前處於 40,450 高位安全區
-
+    runGlobalCrossMonitor(40450);
 </script>
 </body>
 </html>
