@@ -3,52 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球宏觀聯合作戰總部 v20.0</title>
+    <title>最高指揮部 - 全球宏觀聯合作戰總部 v22.0_Heavy_Duty</title>
     <style>
         body { background-color: #0b0f19; color: #cbd5e1; font-family: -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 24px; }
         .container { max-width: 1200px; margin: 0 auto; }
         
         /* 頂部時空控制台 */
-        .top-dashboard { display: grid; grid-template-columns: 300px 1fr; gap: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 20px; margin-bottom: 24px; }
+        .top-dashboard { display: grid; grid-template-columns: 320px 1fr; gap: 24px; border-bottom: 1px solid #1e293b; padding-bottom: 24px; margin-bottom: 24px; }
         
         /* 左上角精美月曆 */
-        .mini-calendar { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 12px; font-size: 12px; }
-        .cal-header { display: flex; justify-content: space-between; font-weight: bold; color: #38bdf8; margin-bottom: 8px; text-align: center; }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
-        .cal-weekday { color: #64748b; font-weight: bold; padding-bottom: 4px; }
-        .cal-day { padding: 4px; border-radius: 4px; color: #94a3b8; }
+        .mini-calendar { background: #0f172a; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; font-size: 13px; display: flex; flex-direction: column; justify-content: center; }
+        .cal-header { display: flex; justify-content: space-between; font-weight: bold; color: #38bdf8; margin-bottom: 12px; text-align: center; font-size: 14px; }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+        .cal-weekday { color: #64748b; font-weight: bold; padding-bottom: 6px; }
+        .cal-day { padding: 6px; border-radius: 4px; color: #94a3b8; }
         .cal-today { background: #e11d48; color: white; font-weight: bold; }
 
-        /* 中央時間與標頭 */
+        /* 中央時間與標頭巨大化 */
         .header-main { display: flex; flex-direction: column; justify-content: space-between; }
-        .clock-panel { background: #111827; border: 1px solid #312e81; border-radius: 8px; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
-        .clock-time { font-family: monospace; font-size: 36px; font-weight: bold; color: #ffffff; letter-spacing: 2px; }
+        .clock-panel { background: #0b1329; border: 2px solid #312e81; border-radius: 12px; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; box-shadow: inset 0 0 20px rgba(99, 102, 241, 0.1); }
+        
+        /* 🕒 時鐘巨大化與高亮 */
+        .clock-time { font-family: 'Courier New', monospace; font-size: 54px; font-weight: bold; color: #34d399; letter-spacing: 3px; text-shadow: 0 0 12px rgba(52, 211, 153, 0.4); }
         .clock-date { text-align: right; }
-        .solar-date { font-size: 18px; font-weight: bold; color: #38bdf8; }
-        .lunar-date { font-size: 14px; color: #fbbf24; margin-top: 4px; }
+        .solar-date { font-size: 22px; font-weight: bold; color: #38bdf8; }
+        .lunar-date { font-size: 16px; color: #fbbf24; margin-top: 6px; font-weight: 500; }
 
-        /* 戰術備忘錄欄位 */
-        .memo-panel { background: #1e1b4b; border: 1px solid #4338ca; border-radius: 8px; padding: 16px; margin-bottom: 24px; }
-        .memo-title { color: #fbbf24; font-size: 15px; font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .memo-item { background: #0f172a; padding: 10px 14px; border-radius: 6px; margin-bottom: 6px; font-size: 13px; border-left: 4px solid #fbbf24; display: flex; justify-content: space-between; }
-        .memo-date-badge { color: #38bdf8; font-weight: bold; font-family: monospace; }
+        /* ⚠️ 戰術提示欄位高度雙倍擴張（增加寬鬆度與厚重感） */
+        .memo-panel { background: #1e1b4b; border: 1px solid #4338ca; border-radius: 12px; padding: 20px; margin-bottom: 24px; min-height: 220px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .memo-title { color: #fbbf24; font-size: 16px; font-weight: bold; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid rgba(251, 191, 36, 0.2); }
+        #memo-container { flex-grow: 1; display: flex; flex-direction: column; gap: 8px; }
+        .memo-item { background: #0f172a; padding: 12px 16px; border-radius: 8px; font-size: 14px; border-left: 5px solid #fbbf24; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .memo-date-badge { color: #38bdf8; font-weight: bold; font-family: monospace; background: #1e293b; padding: 4px 10px; border-radius: 4px; border: 1px solid #334155; }
 
-        /* 原有看板與表格樣式 */
-        .section-title { color: #38bdf8; font-size: 15px; font-weight: bold; margin: 25px 0 12px 0; padding-left: 8px; border-left: 4px solid #38bdf8; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-        .panel-card { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 16px; }
-        .card-input { background: transparent; border: none; color: white; font-size: 20px; font-weight: bold; width: 100%; font-family: monospace; }
+        /* 區塊標題 */
+        .section-title { color: #38bdf8; font-size: 16px; font-weight: bold; margin: 28px 0 14px 0; padding-left: 8px; border-left: 4px solid #38bdf8; }
+
+        /* 網格版面 */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        
+        .panel-card { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 16px; position: relative; }
+        .panel-card h3 { margin: 0 0 8px 0; font-size: 12px; color: #94a3b8; font-weight: bold; }
+        .step-badge { position: absolute; top: 12px; right: 12px; background: #312e81; color: #6366f1; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 4px; border: 1px solid #4338ca; }
+        
+        /* 輸入與數值框 */
+        .card-input { background: transparent; border: none; color: white; font-size: 22px; font-weight: bold; width: 100%; font-family: monospace; padding: 0; }
         .card-input:focus { color: #38bdf8; outline: none; }
-        .idx-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; font-size: 13px; }
-        .idx-line input { background: transparent; border: none; color: white; font-family: monospace; text-align: right; width: 80px; font-weight: bold; }
+        .idx-line { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 13px; }
+        .idx-line input { background: transparent; border: none; color: white; font-family: monospace; text-align: right; width: 100px; font-weight: bold; font-size: 14px; padding: 0; }
         .idx-line input:focus { color: #38bdf8; outline: none; }
-        .table-container { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        
+        .live-status { font-size: 11px; color: #64748b; margin-top: 8px; border-top: 1px solid #1e293b; padding-top: 6px; display: flex; justify-content: space-between; align-items: center; }
+        .status-settle { color: #10b981; font-weight: bold; } 
+        .time-note { color: #94a3b8; font-weight: normal; font-size: 11px; }
+
+        .text-up { color: #f43f5e !important; } .text-down { color: #10b981 !important; }
+        .hunter-banner { background-color: #1e1b4b; border: 1px solid #312e81; border-left: 4px solid #e11d48; border-radius: 8px; padding: 14px 20px; margin-bottom: 24px; font-size: 14px; color: #fda4af; }
+        
+        /* 表格樣式 */
+        .table-container { background-color: #0f172a; border: 1px solid #1e293b; border-radius: 12px; padding: 20px; margin-top: 24px; }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
-        th { padding: 10px 12px; color: #94a3b8; border-bottom: 1px solid #1e293b; background-color: #161e2e; }
-        td { padding: 12px 12px; border-bottom: 1px solid #1e293b; }
-        .input-box { background-color: #1e293b; color: #ffffff; border: 1px solid #334155; border-radius: 6px; padding: 6px 10px; width: 110px; text-align: right; }
-        .text-up { color: #f43f5e; } .text-down { color: #10b981; }
+        th { padding: 12px 12px; color: #94a3b8; border-bottom: 1px solid #1e293b; background-color: #161e2e; font-weight: 500; }
+        td { padding: 12px 12px; border-bottom: 1px solid #1e293b; color: #e2e8f0; }
+        .input-box { background-color: #1e293b; color: #ffffff; border: 1px solid #334155; border-radius: 6px; padding: 6px 10px; width: 110px; font-family: monospace; font-size: 13px; text-align: right; }
     </style>
 </head>
 <body>
@@ -58,87 +76,118 @@
     <div class="top-dashboard">
         <div class="mini-calendar">
             <div class="cal-header" id="cal-month-title">2026 年 5 月</div>
-            <div class="cal-grid" id="cal-days-grid">
-                </div>
+            <div class="cal-grid" id="cal-days-grid"></div>
         </div>
         
         <div class="header-main">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <h1 style="margin:0; font-size:24px; color:#fff;">🛡️ 最高指揮部戰術控制台</h1>
-                <span style="background:#1e3a8a; color:#60a5fa; padding:4px 12px; border-radius:99px; font-size:12px; font-weight:bold;">v20.0 Quantum_Calendar</span>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <h1 style="margin:0; font-size:26px; color:#fff; letter-spacing: 0.5px;">🛡️ 最高指揮部全球聯合作戰總部</h1>
+                <span style="background:#065f46; color:#34d399; padding:5px 14px; border-radius:99px; font-size:12px; font-weight:bold;">v22.0 Heavy_Duty</span>
             </div>
             <div class="clock-panel">
                 <div class="clock-time" id="live-clock">00:00:00</div>
                 <div class="clock-date">
-                    <div class="solar-date" id="live-solar">2026年05月28日 星期四</div>
-                    <div class="lunar-date" id="live-lunar">農歷 四月十二 (離線精算)</div>
+                    <div class="solar-date" id="live-solar">2026年05月29日 星期五</div>
+                    <div class="lunar-date" id="live-lunar">農曆 四月十三 (離線精密對齊)</div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="memo-panel">
-        <div class="memo-title">⚠️ 戰術提示：最近三天內需確認之重要事項 (時間未到或已過期會自動隱藏)</div>
+        <div class="memo-title">⚠️ 戰術提示事項：最近三天內需確認之重要里程碑</div>
         <div id="memo-container">
             </div>
     </div>
 
-    <div class="section-title">🌐 全球大盤/期貨/外匯數據校準前線 (點擊數字直接修改收盤價)</div>
+    <div class="section-title">⚔️ 抄底獵人戰術控管：核心防線四大步驟</div>
+    <div class="grid-4">
+        <div class="panel-card">
+            <span class="step-badge">STEP 01</span>
+            <h3>🎯 步驟一：設定警報死線</h3>
+            <div style="font-size:13px; line-height:1.5; font-family:monospace; margin-top:8px; color:#fff;">
+                <div>大盤死線: 39200 - 39500</div>
+                <div>安聯台科: 640 - 660 元</div>
+            </div>
+            <div class="live-status"><span class="time-note">⚙️ 戰略基準點鎖定</span></div>
+        </div>
+        <div class="panel-card">
+            <span class="step-badge">STEP 02</span>
+            <h3>💥 步驟二：大盤跌破死線狀況</h3>
+            <div class="text-up" style="font-size:18px; font-weight:bold; margin-top:8px; font-family:monospace;">未達死線，嚴禁下單刀</div>
+            <div class="live-status"><span class="time-note">🛡️ 紀律防線固守中</span></div>
+        </div>
+        <div class="panel-card">
+            <span class="step-badge">STEP 03</span>
+            <h3>📈 步驟三：核心防線總損益</h3>
+            <div id="lbl-total-profit" style="font-size:24px; font-weight:bold; margin-top:5px; font-family:monospace;">$0</div>
+            <div class="live-status"><span class="status-settle">🟢 下方表格動態重算</span></div>
+        </div>
+        <div class="panel-card">
+            <span class="step-badge">STEP 04</span>
+            <h3>🏦 步驟四：預估總資產現值</h3>
+            <div id="lbl-total-value" style="font-size:24px; font-weight:bold; margin-top:5px; color:#10b981; font-family:monospace;">$0</div>
+            <div class="live-status"><span class="status-settle">🟢 包含突擊預備兵團</span></div>
+        </div>
+    </div>
+
+    <div class="hunter-banner">🎯 <strong>抄底獵人警報守則：</strong>台股大盤死線 39,200 - 39,500 點 ｜ 安聯台科核心死線 640 - 660 元。未達死線，下屬「嚴禁下單刀」！</div>
+
+    <div class="section-title">🌐 全球股票/期貨/外匯數據校準前線 (直接點擊數字即可手動更新收盤價)</div>
     <div class="grid-3">
         <div class="panel-card">
-            <h3>🇺🇸 美股四大指數</h3>
+            <h3>🇺🇸 美股四大指數動態</h3>
             <div style="line-height: 1.6;">
                 <div class="idx-line">道瓊工業: <input type="text" value="50,644.28"></div>
                 <div class="idx-line">那斯達克: <input type="text" value="26,674.73"></div>
                 <div class="idx-line">標普 500: <input type="text" value="7,520.36"></div>
+                <div class="idx-line">費城半導: <input type="text" value="12,702.19" style="color:#10b981;"></div>
             </div>
+            <div class="live-status"><span class="status-settle">🔒 收盤對齊</span><span class="time-note">⏰ 夏令開市: 21:30~04:00</span></div>
         </div>
         <div class="panel-card">
-            <h3>🇹🇼 台股加權 & 期貨</h3>
+            <h3>🇹🇼 台股與核心指標</h3>
             <div style="line-height: 1.6;">
                 <div class="idx-line">台股加權: <input type="text" value="43,636.44" class="text-up"></div>
                 <div class="idx-line">台指期貨: <input type="text" value="43,550.00" class="text-up"></div>
                 <div class="idx-line">美元匯率: <input type="text" value="31.4250"></div>
+                <div class="idx-line">恐慌 VIX: <input type="text" value="21.40" class="text-up"></div>
             </div>
+            <div class="live-status"><span class="status-settle">🛑 盤後存檔</span><span class="time-note">⏰ 大盤: 09:00~13:30</span></div>
         </div>
         <div class="panel-card">
-            <h3>👑 避險物資庫存</h3>
+            <h3>👑 避險物資與境外資產</h3>
             <div style="line-height: 1.6;">
                 <div class="idx-line">黃金期貨: <input type="text" value="2,345.50" style="color:#fbbf24;"></div>
                 <div class="idx-line">白銀期貨: <input type="text" value="31.80"></div>
-                <div class="idx-line">恐慌 VIX: <input type="text" value="21.40" class="text-up"></div>
+                <div class="idx-line">全球投入總本金: <span id="lbl-total-capital" style="font-family:monospace; font-weight:bold;">$0</span></div>
+                <div class="idx-line">境外突擊預備兵團: <span style="font-family:monospace; font-weight:bold; color:#60a5fa;">$800,000</span></div>
             </div>
+            <div class="live-status"><span class="status-settle">🔒 安全庫存對齊</span><span class="time-note">👑 固定預備頭寸</span></div>
         </div>
     </div>
 
-    <div class="section-title">🏦 指揮部核心防線資產狀態</div>
-    <div class="grid-4">
-        <div class="panel-card"><h3>🌕 全球投入總本金</h3><div id="lbl-total-capital" style="font-size:20px; font-weight:bold; margin-top:5px;">$0</div></div>
-        <div class="panel-card"><h3>📈 核心防線總損益</h3><div id="lbl-total-profit" style="font-size:20px; font-weight:bold; margin-top:5px;">$0</div></div>
-        <div class="panel-card"><h3>🏦 預估總資產現值</h3><div id="lbl-total-value" style="font-size:20px; font-weight:bold; margin-top:5px; color:#10b981;">$0</div></div>
-        <div class="panel-card"><h3>🐳 境外突擊預備兵團</h3><div style="font-size:20px; font-weight:bold; margin-top:5px; color:#60a5fa;">$800,000 元</div></div>
-    </div>
-
     <div class="table-container">
+        <div style="margin-bottom:15px; font-weight:bold; color:#38bdf8; font-size:14px;">📋 120萬防守大軍 ── 七大實體基金配置明細總表 (修改本金與損益，上方看板自動連動加總)</div>
         <table>
             <thead>
                 <tr><th>代號</th><th>基金品項官方完整全銜</th><th style="text-align:right;">原始投資本金</th><th style="text-align:right;">真實最新損益</th><th style="text-align:right;">系統自動回報率</th></tr>
             </thead>
             <tbody>
-                <tr class="fund-row"><td>109007</td><td>野村(愛爾蘭)-日本策略價值(T美元避險)</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="1453" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>ALI003</td><td>安聯全球生技趨勢基金-新臺幣</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="-4388" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>ALI092</td><td>安聯AI收益成長多重資產-B2(月配)-台幣</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="11375" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>ALI094</td><td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="600000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="102395" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>CIT016</td><td>群益印度中小基金-新台幣</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="130000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="3910" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>FSI011</td><td>第一金全球AI機器人及自動化-新臺幣</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="22629" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
-                <tr class="fund-row"><td>JPM041</td><td>摩根大美國領先收成多重資產-月配-台幣</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="600000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="32684" oninput="recalculateAll()"></td><td style="text-align:right;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>109007</td><td>野村(愛爾蘭)-日本策略價值(T美元避險)</td><td style="text-align:right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateAll()"></td><td style="text-align:right;"><input type="number" class="input-box profit-input" value="1453" oninput="recalculateAll()"></td><td style="text-align:right; font-family:monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>ALI003</td><td>安聯全球生技趨勢基金-新臺幣</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="100000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="-4388" oninput="recalculateAll()"></td><td style="text-align: right; font-family:monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>ALI092</td><td>安聯AI收益成長多重資產-B2(月配)-台幣</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="11375" oninput="recalculateAll()"></td><td style="text-align: right; font-family:monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>ALI094</td><td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="600000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="102395" oninput="recalculateAll()"></td><td style="text-align: right; font-family:monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>CIT016</td><td>群益印度中小基金-新台幣</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="130000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="3910" oninput="recalculateAll()"></td><td style="text-align: right; font-family:monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>FSI011</td><td>第一金全球AI機器人及自動化-新臺幣</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="300000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="22629" oninput="recalculateAll()"></td><td style="text-align: right; font-family: monospace;" class="rate-output">0%</td></tr>
+                <tr class="fund-row"><td>JPM041</td><td>摩根大美國領先收成多重資產-月配-台幣</td><td style="text-align: right;"><input type="number" class="input-box cap-input" value="600000" oninput="recalculateAll()"></td><td style="text-align: right;"><input type="number" class="input-box profit-input" value="32684" oninput="recalculateAll()"></td><td style="text-align: right; font-family: monospace;" class="rate-output">0%</td></tr>
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    // 🛡️ 戰術備忘錄資料庫：指揮官可在此自由增減、修改特定日期的注意內容
+    // 備忘錄庫（前後3天自動判定）
     const STRATEGIC_MEMOS = [
         { month: 5, day: 5, content: "📌 每月扣款清算：確認野村、安聯基金扣款帳戶餘額是否充足。" },
         { month: 5, day: 15, content: "🏦 匯率校準防線：檢視美元台幣波段走勢，評估海外預備兵團加碼點。" },
@@ -146,7 +195,6 @@
         { month: 6, day: 10, content: "📊 期貨結算注意：台指期近月合約轉倉與多空部位布局檢視。" }
     ];
 
-    // 離線農曆簡易對照演算法 (針對 2026 年 5 月底進行精準剛性對齊)
     function getOfflineLunar(day) {
         if(day >= 1 && day <= 16) {
             return "三月" + ["","初一","初二","初三","初四","初五","初六","初七","初八","初九","初十","十一","十二","十三","十四","十五","十六"][day];
@@ -155,7 +203,6 @@
         }
     }
 
-    // 時鐘與時間運作核心
     function updateClock() {
         const now = new Date();
         const year = now.getFullYear();
@@ -163,15 +210,11 @@
         const date = now.getDate();
         const dayNames = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
         
-        // 更新時鐘顯示 (秒數跳動)
         document.getElementById('live-clock').innerText = now.toTimeString().split(' ')[0];
-        // 更新國曆顯示
         document.getElementById('live-solar').innerText = `${year}年${String(month).padStart(2,'0')}月${String(date).padStart(2,'0')}日 ${dayNames[now.getDay()]}`;
-        // 更新農曆顯示
-        document.getElementById('live-lunar').innerText = `農歷 ${getOfflineLunar(date)} (離線精密對齊)`;
+        document.getElementById('live-lunar').innerText = `農曆 ${getOfflineLunar(date)}`;
     }
 
-    // 左上角精美月曆繪製演算法
     function renderCalendar() {
         const now = new Date();
         const year = now.getFullYear();
@@ -179,21 +222,13 @@
         const today = now.getDate();
         
         document.getElementById('cal-month-title').innerText = `${year} 年 ${month + 1} 月`;
-        
         const firstDay = new Date(year, month, 1).getDay();
         const totalDays = new Date(year, month + 1, 0).getDate();
         const grid = document.getElementById('cal-days-grid');
         grid.innerHTML = "";
         
-        // 星期標頭
-        ["日","一","二","三","四","五","六"].forEach(w => {
-            grid.innerHTML += `<div class="cal-weekday">${w}</div>`;
-        });
-        
-        // 補空白格子
+        ["日","一","二","三","四","五","六"].forEach(w => { grid.innerHTML += `<div class="cal-weekday">${w}</div>`; });
         for(let i=0; i<firstDay; i++) { grid.innerHTML += `<div></div>`; }
-        
-        // 填入日期
         for(let d=1; d<=totalDays; d++) {
             let className = "cal-day";
             if(d === today) className += " cal-today";
@@ -201,7 +236,6 @@
         }
     }
 
-    // 智能備忘錄篩選核心 (前後3天過濾機制)
     function updateMemos() {
         const now = new Date();
         const currentMonth = now.getMonth() + 1;
@@ -210,17 +244,15 @@
         container.innerHTML = "";
         
         let hasItems = false;
-        
         STRATEGIC_MEMOS.forEach(memo => {
-            // 計算目標日期與當前日期的天數差值 (簡單離線天數比對)
             if (memo.month === currentMonth) {
                 let diff = Math.abs(memo.day - currentDay);
-                if (diff <= 3) { // 剛性鎖定前後 3 天
+                if (diff <= 3) { 
                     hasItems = true;
                     container.innerHTML += `
                         <div class="memo-item">
                             <span>${memo.content}</span>
-                            <span class="memo-date-badge">預警日期：${memo.month}/${memo.day}</span>
+                            <span class="memo-date-badge">預警：${memo.month}/${memo.day}</span>
                         </div>
                     `;
                 }
@@ -228,11 +260,10 @@
         });
         
         if(!hasItems) {
-            container.innerHTML = `<div style="color:#64748b; font-size:13px; text-align:center; padding:10px;">📡 報告指揮官，當前（前後三天內）無緊急預警事件，防線安全。</div>`;
+            container.innerHTML = `<div style="color:#64748b; font-size:14px; text-align:center; padding:40px 10px; flex-grow:1; display:flex; align-items:center; justify-content:center;">📡 報告指揮官，當前（前後三天內）無緊急預警事件，大本營防線安全。</div>`;
         }
     }
 
-    // 資產看板動態加總算力
     function recalculateAll() {
         let totalCapital = 0, totalProfit = 0;
         document.querySelectorAll('.fund-row').forEach(row => {
@@ -246,20 +277,20 @@
                 row.querySelector('.rate-output').className = rate >= 0 ? "rate-output text-down" : "rate-output text-up";
             }
         });
-        let totalValue = totalCapital + totalProfit;
+        let totalValue = totalCapital + totalProfit + 800000;
+        
         document.getElementById('lbl-total-capital').innerText = "$" + totalCapital.toLocaleString() + " 元";
         document.getElementById('lbl-total-profit').innerText = (totalProfit >= 0 ? "+ " : "- ") + "$" + Math.abs(totalProfit).toLocaleString() + " 元";
         document.getElementById('lbl-total-profit').className = totalProfit >= 0 ? "text-down" : "text-up";
         document.getElementById('lbl-total-value').innerText = "$" + totalValue.toLocaleString() + " 元";
     }
 
-    // 初始化與時鐘循環
     window.onload = function() {
         updateClock();
         renderCalendar();
         updateMemos();
         recalculateAll();
-        setInterval(updateClock, 1000); // 每秒驅動時鐘跳動
+        setInterval(updateClock, 1000);
     };
 </script>
 </body>
