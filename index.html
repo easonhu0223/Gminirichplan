@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v4.70</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v4.80</title>
     <style>
         /* 氣定神閒不看盤美學：軍事暗色調極低調介面 */
         body {
@@ -14,7 +14,7 @@
             padding: 20px;
         }
         .container {
-            max-width: 1400px; /* 四欄並排，適度加寬總體容器 */
+            max-width: 1400px;
             margin: 0 auto;
         }
         .header {
@@ -115,7 +115,7 @@
         .badge-guard { background-color: #238636; color: #ffffff; }
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
-        /* v4.70 獨立並排視窗總體面板 */
+        /* v4.80 獨立並排視窗總體面板 */
         .tactical-wrapper {
             background-color: #161b22;
             margin-top: 30px;
@@ -137,14 +137,14 @@
             display: flex;
             flex-direction: row;
             gap: 15px;
-            overflow-x: auto; /* 方便小螢幕橫向滑動 */
+            overflow-x: auto; /* 方便橫向滑動 */
             padding-bottom: 10px;
         }
         
         /* 個別獨立視窗卡片 */
         .tactical-card {
             flex: 1;
-            min-width: 310px; /* 保證並排時內容不被過度擠壓 */
+            min-width: 320px;
             background-color: #0d1117;
             border: 1px solid #30363d;
             border-radius: 8px;
@@ -179,7 +179,7 @@
         .timeline-banner {
             background-color: #161b22;
             border: 1px solid #21262d;
-            border-left: 4px solid #ff9e3b; /* 橘色亮點提示 */
+            border-left: 4px solid #ff9e3b;
             padding: 10px;
             border-radius: 4px;
             margin-bottom: 15px;
@@ -187,9 +187,6 @@
         }
         .timeline-banner div {
             margin-bottom: 4px;
-        }
-        .timeline-banner div:last-child {
-            margin-bottom: 0;
         }
         
         /* 內容上到下陳列 */
@@ -213,9 +210,6 @@
             margin-bottom: 10px;
             color: #c9d1d9;
         }
-        .card-steps-list li:last-child {
-            margin-bottom: 0;
-        }
         
         /* 數值高亮細節 */
         .val-blue { color: #58a6ff; font-weight: bold; font-family: monospace; }
@@ -227,19 +221,19 @@
 
 <div class="container">
     <div class="header">
-        <h1>最高指揮部 ── 全戰場跨國多元防守雷達 v4.70</h1>
+        <h1>最高指揮部 ── 全戰場跨國多元防守雷達 v4.80</h1>
         <div id="timestamp" style="font-size: 14px; color: #8b949e;"></div>
     </div>
 
-    <!-- 總資本掩體 -->
+    <!-- 總資本掩體（扣除已落袋收益，維持原始基準配置金） -->
     <div class="capital-box">
-        <span style="color: #38bdf8; font-size: 14px; font-weight: bold; letter-spacing: 1px;">防守大軍總原始資本金</span>
-        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">NT$ 2,430,000 元</div>
+        <span style="color: #38bdf8; font-size: 14px; font-weight: bold; letter-spacing: 1px;">防守大軍手頭實體現金操盤彈藥庫</span>
+        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">NT$ 330,000 元 (AI機器人退場本金+利潤)</div>
     </div>
 
     <!-- 雙重死線自動化警報橫幅 -->
     <div id="alertBanner" class="alert-banner silent-mode">
-        【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1200 點。大展前夕突襲軋空。部隊扣住扳機，鎖死高位贖回款，氣定神閒，堅決不盲動。
+        【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1185 點。收盤鎖死 40,435 高位。空頭風涼話集體閉嘴。我軍握有 33 萬滿配子彈，氣定神閒，絕不追高！
     </div>
 
     <!-- 四大即時戰場監控面板 -->
@@ -247,27 +241,27 @@
     <div class="battlefield-grid">
         <div class="panel">
             <h3>📊 台股現貨 (TWSE)</h3>
-            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">40,450</span></div>
-            <div class="data-row"><span class="data-label">今日漲幅</span><span class="data-value text-up">+1,200 點</span></div>
+            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">40,435</span></div>
+            <div class="data-row"><span class="data-label">今日收盤</span><span class="data-value text-up">+1,185 點</span></div>
             <div class="data-row"><span class="data-label">基準地雷區</span><span class="data-value" style="color: #e3b341;">39,200 ~ 39,500</span></div>
         </div>
         <div class="panel">
             <h3>⚡ 期貨戰場 (TAIEX Futures)</h3>
-            <div class="data-row"><span class="data-label">台指期結算</span><span class="data-value text-up">40,480</span></div>
-            <div class="data-row"><span class="data-label">期現貨價差</span><span class="data-value" style="color: #56d364;">正價差 +30 點</span></div>
-            <div class="data-row"><span class="data-label">空頭流動性</span><span class="data-value text-down" style="color: #ff7b72;">全面軋空斷頭</span></div>
+            <div class="data-row"><span class="data-label">台指期終場</span><span class="data-value text-up">40,460</span></div>
+            <div class="data-row"><span class="data-label">期現貨價差</span><span class="data-value" style="color: #56d364;">正價差 +25 點</span></div>
+            <div class="data-row"><span class="data-label">空頭流動性</span><span class="data-value text-down" style="color: #ff7b72;">13:30全面斷頭踩踏</span></div>
         </div>
         <div class="panel">
             <h3>🇺🇸 美股雷達 (US Market)</h3>
-            <div class="data-row"><span class="data-label">台積電 ADR</span><span class="data-value text-up">盤前集體反攻</span></div>
-            <div class="data-row"><span class="data-label">輝達 (NVIDIA)</span><span class="data-value text-up">展前利多刺激</span></div>
-            <div class="data-row"><span class="data-label">那斯達克期指</span><span class="data-value text-up">強勢直線拉升</span></div>
+            <div class="data-row"><span class="data-label">台積電 ADR</span><span class="data-value text-up">暴風軋空反彈</span></div>
+            <div class="data-row"><span class="data-label">輝達 (NVIDIA)</span><span class="data-value text-up">Computex展前高點</span></div>
+            <div class="data-row"><span class="data-label">那斯達克期指</span><span class="data-value text-up">歷史高位強拉</span></div>
         </div>
         <div class="panel">
             <h3>💵 外匯市場 (FX Exchange)</h3>
-            <div class="data-row"><span class="data-label">美元 / 新台幣</span><span class="data-value text-down">32.420</span></div>
-            <div class="data-row"><span class="data-label">新台幣走勢</span><span class="data-value text-up">反手認錯大升值</span></div>
-            <div class="data-row"><span class="data-label">匯市實體資金</span><span class="data-value text-up">外資爆量重組匯入</span></div>
+            <div class="data-row"><span class="data-label">美元 / 新台幣</span><span class="data-value text-down">32.415</span></div>
+            <div class="data-row"><span class="data-label">新台幣走勢</span><span class="data-value text-up">收盤強勢大升值</span></div>
+            <div class="data-row"><span class="data-label">外資資金流</span><span class="data-value text-up">認錯爆量匯入台股</span></div>
         </div>
     </div>
 
@@ -289,10 +283,10 @@
     </table>
 
     <!-- ================================================================= -->
-    <!-- v4.70 底部獨立視窗：四隻基金由左到右並排，內容上到下陳列，對齊檢視 -->
+    <!-- v4.80 底部獨立視窗：四隻基金由左到右並排，時間觀察期置頂提示 -->
     <!-- ================================================================= -->
     <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：精準作戰步驟與防線對齊 (v4.70 更新)</h2>
+        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v4.80 實體校正版)</h2>
         
         <div class="tactical-grid-4col">
             
@@ -303,37 +297,36 @@
                     <span class="card-code-badge">FSI011</span>
                 </div>
                 <div class="timeline-banner">
-                    <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
+                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
                     <div>🎯 <b>低接天險價</b>：<span class="val-blue">28.35 元</span></div>
                 </div>
                 <div class="card-body-content">
-                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (11.5萬現金已充能待命)。</div>
+                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (33萬退場子彈待命中)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 啟動【DARK_SILENT_MODE】暗色靜默，冷眼看大展狂熱出貨，絕不追高。</li>
-                        <li><b>【步驟二】</b> 靜待 6/10 營收大開牌。當市場激情退去、回歸正常化技術盤整。</li>
-                        <li><b>【步驟三】</b> 淨值實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span> 時，下令啟動 11.5 萬資金回補單位數。</li>
-                        <li><b>【目標】</b> 鎖定成本後死結封鎖，<span class="val-blue">放滿至明年年中（2027年中）</span>。</li>
+                        <li><b>【步驟一】</b> 嚴格執行暗色靜默，不看盤、不追高。下週大展主力虛高拉抬時雙手插口袋。</li>
+                        <li><b>【步驟二】</b> 靜待 6/10 營收大開牌。當大展煙火放完、市場熱度回歸理性正常化技術盤整。</li>
+                        <li><b>【步驟三】</b> 淨值若在 6 月中旬非理性實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span>，啟動 33 萬現金分批或單筆回補單位數。</li>
+                        <li><b>【長線時序】</b> 低位進場完成，死結鎖定，<span class="val-blue">放滿至明年年中（2027年中）</span> 迎接訂單大兌現。</li>
                     </ul>
                 </div>
             </div>
 
             <!-- 視窗 2：安聯台灣科技基金 (ALI006) -->
-            <div class="tactical-card">
+            <div class="tactical-card" style="border-top: 2px solid #ff7b72;">
                 <div class="card-header-title">
                     <span>安聯台灣科技基金</span>
                     <span class="card-code-badge">ALI006</span>
                 </div>
-                <div class="timeline-banner">
-                    <div>⏱️ <b>核心觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
+                <div class="timeline-banner" style="border-left-color: #ff7b72;">
+                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
                     <div>🎯 <b>伏擊淨值區</b>：<span class="val-blue">640.00 － 660.00 元</span></div>
                 </div>
                 <div class="card-body-content">
-                    <div class="card-status-row"><b>當前狀態</b>：<span class="val-green">持續持有中</span> (今日強行灌頂衝回 800 元大位)。</div>
+                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #ff7b72; font-weight: bold;">完全空倉 (待觀察進場)</span>。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 展覽期間絕不盲目追高加碼，放任多頭主力在 800 元上方虛高燃燒。</li>
-                        <li><b>【步驟二】</b> 密切觀測 6 月中旬加權指數因營收開牌與投信結帳，技術性回測 <span class="val-blue">39,200 ~ 39,500 點</span> 之戰況。</li>
-                        <li><b>===================</b></li>
-                        <li><b>【觸發條件】</b> 淨值一旦因非理性回檔跌入 <span class="val-blue">640 ~ 660 元</span> 區間，評估以現金分批投入加固防線。</li>
+                        <li><b>【步驟一】</b> 展覽前夕與大展期間冷眼看多頭拉抬。目前既然是空倉，絕不在此刻 800 元高空進場吃重力。</li>
+                        <li><b>【步驟二】</b> 耐心對時 6 月中旬，等待加權指數因 5 月淡季營收大開牌與投信半年度互踩、回測 <span class="val-blue">39,200 ~ 39,500 點</span>。</li>
+                        <li><b>【步驟三】</b> 市場非理性多殺多時，淨值一旦實體跌入 <span class="val-blue">640 ~ 660 元</span> 伏擊區，立即下達第一道申購總攻令，打入資金加固台股一線防線。</li>
                     </ul>
                 </div>
             </div>
@@ -344,39 +337,39 @@
                     <span>野村中小基金</span>
                     <span class="card-code-badge">NOM003</span>
                 </div>
-                <div class="timeline-banner" style="border-left-color: #ff7b72;">
-                    <div>⏱️ <b>波段掠奪期</b>：<span class="val-blue">2026/06/11 － 2026/08/08</span></div>
+                <div class="timeline-banner">
+                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">2026/06/11 － 2026/06/18</span></div>
                     <div>🎯 <b>低接甜美區</b>：<span class="val-blue">500.00 － 520.00 元</span></div>
                 </div>
                 <div class="card-body-content">
-                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28 基準現值為 584.18 元)。</div>
+                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28基準現值為584.18元)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 6/01-06/10 大展狂熱期啟動靜默雙手插口袋，堅決不進場接刀。</li>
-                        <li><b>【步驟二】</b> 6/11-06/18 營收開牌失望賣壓與投信互踩，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 時突襲進場。</li>
-                        <li><b>【步驟三】</b> 7月資金潮引爆若暴賺達 <span class="val-green">+15% ~ +20%</span>，不等時間到，立刻全數獲利了結。</li>
-                        <li><b>【步驟四】</b> 未觸發停利則鎖定 <span class="val-blue">07/25 - 08/05</span> 填息與美股財報高潮全面出清。</li>
-                        <li><b>【死線】</b> <span class="val-red">8/08 當天最後 escape 門</span>，不賭半年報，全面清倉帶著獲利退出。</li>
+                        <li><b>【步驟一】</b> 6/01-06/10 展期絕對禁區。中小型股反彈力道極猛，但我軍按兵不動，拒絕幫投信經理人接高位籌碼。</li>
+                        <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓引發互踩。當淨值隨大盤修正砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時，調配部分 33 萬資金單筆突襲進場。</li>
+                        <li><b>【步驟三】</b> 7月除權息資金回流，若快速暴賺達 <span class="val-green">+15% ~ +20%</span> 移動停利條件，不等時間到，立刻全數獲利了結。</li>
+                        <li><b>【步驟四】</b> 未觸發停利則鎖定 <span class="val-blue">07/25 - 08/05</span> 填息最高潮全面清倉。</li>
+                        <li><b>【步驟五】</b> <span class="val-red">8/08 鋼鐵退兵死線</span>，不賭半年報，不留戀，带着利潤全身而退。</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- 視窗 4：統一全球新科技基金 (PST001 - v4.70 新增) -->
+            <!-- 視窗 4：統一全球新科技基金 (UNI017) -->
             <div class="tactical-card" style="border-left: 2px solid #38bdf8;">
                 <div class="card-header-title">
                     <span>統一全球新科技基金</span>
-                    <span class="card-code-badge">PST001</span>
+                    <span class="card-code-badge">UNI017</span>
                 </div>
                 <div class="timeline-banner" style="border-left-color: #38bdf8;">
-                    <div>⏱️ <b>美股掠奪期</b>：<span class="val-blue">2026/06/15 － 2026/08/05</span></div>
-                    <div>🎯 <b>核心戰術定位</b>：<span class="val-blue">美股財報波段獵手</span></div>
+                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">2026/06/15 － 2026/06/22</span></div>
+                    <div>🎯 <b>核心戰術定位</b>：<span class="val-blue">美股財報波段獵手 (5/27現值132.05)</span></div>
                 </div>
                 <div class="card-body-content">
-                    <div class="card-status-row"><b>當前狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (作為海外美股七巨頭大回檔時的短線高爆發力側翼)。</div>
+                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (直球對決美股科技七巨頭)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一：耐性觀望】</b> 6 月上旬隨美股大展激情起伏不追高，等待月中美國聯準會決策與利多出盡的常規回檔。</li>
-                        <li><b>【步驟二：搶灘埋伏】</b> 6 月中下旬美股科技股技術性修正落底時，分批單筆打入資金，低位埋伏硬核美股科技籌碼。</li>
-                        <li><b>【步驟三：財報高潮】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 微軟、輝達、蘋果等超級財報季開牌，利用非理性暴噴行情。</li>
-                        <li><b>【步驟四：全身而退】</b> 獲利達 <span class="val-green">+15%</span> 或時間推進至 <span class="val-blue">8 月 5 日</span> 財報高潮結束，全面落袋為安，絕不拖泥帶水。</li>
+                        <li><b>【步驟一】</b> 6 月上旬隨美股大展激情不追高。冷眼等待月中美國聯聯準會利率會議與全球量能急凍的常規拉回。</li>
+                        <li><b>【步驟二】</b> 6 月中下旬美股科技股因利多出盡技術性修正落底時，單筆或分批打入資金，低位搶灘埋伏硬核美股科技籌碼。</li>
+                        <li><b>【步驟三】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 微軟、輝達、蘋果等美股超級財報季開牌，迎擊財報超預期的非理性暴噴行情。</li>
+                        <li><b>【步驟四】</b> 獲利達 <span class="val-green">+15%</span> 或時間推進至 <span class="val-blue">8 月 5 日</span> 財報利多高潮結束，全面獲利出清落袋，絕不拖泥帶水。</li>
                     </ul>
                 </div>
             </div>
@@ -395,8 +388,8 @@
             { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", role: "美股側翼 ── 穩定月配息防禦大兵團", type: "tactical", capital: 300000, status: "氣定神閒配息中" },
             { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", role: "核心重裝盾 ── 鎖定美元多重資產基本盤", type: "tactical", capital: 600000, status: "避險盾牌運作中" },
             { id: "CIT016", name: "群益印度中小基金-新台幣", role: "新興突擊隊 ── 戰略配置海外高成長板塊", type: "tactical", capital: 130000, status: "獨立防線" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮 ── 全球科技與自動化長線配置", type: "core", capital: 300000, status: "已於5/28高位贖回(11.5萬現金生力軍待命)" },
-            { id: "ALI006", name: "安聯台灣科技基金", role: "台股核心 ── 掌握台灣硬核半導體主力戰線", type: "core", capital: 300000, status: "衝回800元天價" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮 ── 全球科技與自動化長線配置", type: "core", capital: 330000, status: "已於5/28贖回本利33萬現金待命" },
+            { id: "ALI006", name: "安聯台灣科技基金", role: "台股核心 ── 掌握台灣硬核半導體主力戰線", type: "core", capital: 300000, status: "完全空倉 (待觀察進場)" },
             { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", role: "美股大後衛 ── 美國頂級資產防禦大本營", type: "tactical", capital: 600000, status: "穩健防禦" }
         ]
     };
@@ -424,13 +417,13 @@
             banner.innerHTML = "🚨【最高紅色警報】跨國複合雷達亮燈！台股與期貨已雙雙實體砸入【39,200~39,500】地雷區！120萬部隊單筆伏擊子彈上膛！";
         } else {
             banner.className = "alert-banner silent-mode";
-            banner.innerHTML = "【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1200 點。大展前夕突襲軋空。部隊扣住扳機，鎖死高位贖回款，氣定神閒，堅決不盲動。";
+            banner.innerHTML = "【戰略狀態：DARK_SILENT_MODE】台股今日狂飆暴漲 +1185 點。收盤鎖死 40,435 高位。空頭風涼話集體閉嘴。我軍握有 33 萬滿配子彈，氣定神閒，絕不追高！";
         }
     }
 
-    document.getElementById('timestamp').innerText = "全球戰略對時：2026-05-29 13:10 (台股正午暴漲盤面/美股盤前雷達)";
+    document.getElementById('timestamp').innerText = "全球戰略對時：2026-05-29 13:45 (台股收盤確認盤面/美股盤前雷達)";
     renderFundTable();
-    runGlobalCrossMonitor(40450);
+    runGlobalCrossMonitor(40435);
 </script>
 </body>
 </html>
