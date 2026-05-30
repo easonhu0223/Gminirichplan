@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v6.00</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v6.20</title>
     <style>
-        /* v6.00 軍事指揮艙大氣美學 */
+        /* v6.20 軍事指揮艙大氣美學 */
         body {
             background-color: #0b0e14;
             color: #c9d1d9;
@@ -18,7 +18,7 @@
             margin: 0 auto;
         }
         
-        /* v6.00 霸氣震撼官方實體置中大標題 */
+        /* v6.20 霸氣震撼官方實體置中大標題 */
         .official-super-header {
             border-top: 4px solid #1f6feb;
             border-bottom: 2px solid #21262d;
@@ -109,11 +109,11 @@
         }
         .calendar-day.mark-day { border: 1px solid #ff9e3b; color: #ff9e3b; font-weight: bold; }
 
-        /* 巨型微發光時鐘 */
+        /* 巨型大漲血紅鐘錶 */
         .tech-clock-panel {
             background: radial-gradient(circle at center, #1c212c 0%, #10141d 100%);
             border: 2px solid #21262d;
-            border-left: 6px solid #ff7b72; /* 配合大漲主色改為血紅戰術邊條 */
+            border-left: 6px solid #ff7b72;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
             border-radius: 8px;
             padding: 20px 40px;
@@ -139,55 +139,54 @@
             padding: 16px; border-radius: 6px; margin-bottom: 25px; font-weight: bold;
             text-align: center; border: 1px solid #30363d; font-size: 15px;
         }
-        .silent-mode { background-color: #12161f; color: #8b949e; border-left: 5px solid #38bdf8; }
         
-        /* v6.00 五欄全球多元雷達大網格區 */
-        .battlefield-grid-v600 {
+        /* 五欄大網格 */
+        .battlefield-grid-v620 {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 12px;
             margin-bottom: 30px;
         }
-        .panel-v600 {
+        .panel-v620 {
             background-color: #12161f;
             border: 1px solid #30363d;
             border-radius: 6px;
             padding: 14px;
         }
-        .panel-v600 h3 {
+        .panel-v620 h3 {
             margin: 0 0 10px 0; color: #58a6ff; font-size: 13.5px;
             border-bottom: 1px solid #21262d; padding-bottom: 5px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .panel-v600 .time-tag { font-size: 11px; color: #8b949e; font-weight: normal; font-family: monospace; }
+        .panel-v620 .time-tag { font-size: 11px; color: #8b949e; font-weight: normal; font-family: monospace; }
         
-        /* v6.00 三排排行榜大框架 */
+        /* 排行榜滿編十個 */
         .ranking-grid-3col {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
             margin-bottom: 30px;
         }
-        .ranking-box-v600 {
+        .ranking-box-v620 {
             background-color: #12161f;
             border: 1px solid #30363d;
             border-radius: 6px;
             padding: 15px;
         }
-        .ranking-box-v600 h3 {
+        .ranking-box-v620 h3 {
             margin: 0 0 12px 0; color: #ff9e3b; font-size: 14px;
             border-bottom: 1px solid #21262d; padding-bottom: 6px;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .ranking-box-v600 .time-tag { font-size: 11px; color: #8b949e; font-weight: normal; }
-        .ranking-table-v600 { width: 100%; border-collapse: collapse; font-size: 12px; }
-        .ranking-table-v600 td { padding: 5px 6px; border-bottom: 1px solid #161b22; }
-        .ranking-table-v600 tr:last-child td { border-bottom: none; }
-        .rank-num-v600 { font-weight: bold; color: #58a6ff; width: 22px; font-family: monospace; text-align: center; }
+        .ranking-box-v620 .time-tag { font-size: 11px; color: #8b949e; font-weight: normal; }
+        .ranking-table-v620 { width: 100%; border-collapse: collapse; font-size: 12px; }
+        .ranking-table-v620 td { padding: 5px 6px; border-bottom: 1px solid #161b22; }
+        .ranking-table-v620 tr:last-child td { border-bottom: none; }
+        .rank-num-v620 { font-weight: bold; color: #58a6ff; width: 22px; font-family: monospace; text-align: center; }
 
-        /* v6.00 指揮官最高指示：漲幅=血紅(text-up)、跌幅=軍綠(text-down) 鋼鐵死鎖 */
-        .text-up { color: #ff7b72 !important; font-weight: bold; } /* 漲幅紅色 */
-        .text-down { color: #56d364 !important; font-weight: bold; } /* 跌幅軍綠 */
+        /* 指揮官鐵律：漲幅(升值)=血紅色、跌幅(貶值)=軍綠色。100%嚴格死鎖 */
+        .text-up { color: #ff7b72 !important; font-weight: bold; } 
+        .text-down { color: #56d364 !important; font-weight: bold; } 
         .data-row { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 13.5px; }
         .data-label { color: #8b949e; }
         .data-value { font-weight: bold; font-family: monospace; }
@@ -209,7 +208,6 @@
         .badge-guard { background-color: #238636; color: #ffffff; }
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
-        /* 底部四欄卡片 */
         .tactical-wrapper {
             background-color: #12161f; margin-top: 30px; padding: 22px; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 25px;
         }
@@ -225,7 +223,7 @@
         .card-steps-list { margin: 0; padding-left: 18px; }
         .card-steps-list li { margin-bottom: 10px; color: #c9d1d9; }
         
-        /* v6.00 新增：八大基金守備實體淨值觀測艙（四大基金亮藍框高亮連動） */
+        /* v6.20 八大基金守備實體淨值觀測艙高亮 */
         .fund-obs-panel {
             background-color: #12161f; border: 1px solid #30363d; border-radius: 8px; padding: 22px; margin-top: 30px; margin-bottom: 30px;
         }
@@ -233,7 +231,7 @@
         .fund-obs-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
         .fund-obs-table th, .fund-obs-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #21262d; }
         .fund-obs-table th { background-color: #1f242c; color: #8b949e; }
-        .core-obs-row { border: 2px solid #38bdf8 !important; background-color: #161f2e !important; } /* 四大核心觀察亮藍外框高亮 */
+        .core-obs-row { border: 2px solid #38bdf8 !important; background-color: #161f2e !important; }
 
         .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff9e3b; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
         .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff9e3b; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
@@ -252,16 +250,16 @@
 
 <div class="container">
     
-    <!-- v6.00 霸氣震撼官方實體置中大標題 -->
+    <!-- v6.20 霸氣震撼官方實體置中大標題 -->
     <div class="official-super-header">
         <h1><span>⚔️</span> 最高指揮總部 ── 全戰場防守雷達</h1>
         <div class="fixed-tactical-tag">
-            <div class="v-title">戰術系統：v6.00</div>
+            <div class="v-title">戰術系統：v6.20</div>
             <div class="v-date">發布日期：2026-05-30</div>
         </div>
     </div>
     
-    <!-- v6.00 頂部重裝戰術月曆卡與巨型大漲血紅鐘錶 -->
+    <!-- v6.20 頂部重裝戰術月曆卡與巨型大漲血紅鐘錶 -->
     <div class="top-dashboard">
         <div class="calendar-card">
             <div class="calendar-card-header" id="calCardHeader">2026 年 5 月</div>
@@ -275,7 +273,7 @@
                 <div class="clock-date-line" id="clkDate">2026 年 05 月 30 日 土曜日</div>
                 <div class="clock-lunar-line" id="clkLunar">對時狀態確認：農曆丙午年四月十四</div>
             </div>
-            <div class="clock-digits" id="clkDigits">10:36:22</div>
+            <div class="clock-digits" id="clkDigits">10:57:07</div>
         </div>
     </div>
 
@@ -287,103 +285,100 @@
 
     <!-- 雙重死線自動化警報橫幅 -->
     <div id="alertBanner" class="alert-banner text-up" style="background-color: rgba(255,123,114,0.1);">
-        【戰略狀態：DARK_SILENT_MODE】美股清晨深V大反攻，那指狂飆暴漲。我軍已成功鎖定 5/29 歷史最高點 30.34 元退場第一金AI，33萬滿配子彈在掩體中冷眼看大展煙火！
+        【戰略狀態：DARK_SILENT_MODE】美股收盤深V暴拉數據確認。依據 1601.jpg 終端指標，我軍成功卡位 5/29 歷史最高點 30.34 元退場第一金AI，33萬配資掩體避險，冷眼看大展放煙火！
     </div>
 
     <!-- ================================================================= -->
-    <!-- v6.00 五欄全球多元雷達大網格區：大漲為紅、大跌為綠死鎖 -->
+    <!-- v6.20 五欄多元交叉雷達網：100%對齊 1601.jpg 終端截圖實體數值 -->
     <!-- ================================================================= -->
-    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場多維交叉網格 (v6.00 週末終場對時版)</h2>
-    <div class="battlefield-grid-v600">
+    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場多維交叉網格 (v6.20 終場數據對時校正版)</h2>
+    <div class="battlefield-grid-v620">
         
         <!-- 1. 台股大盤 -->
-        <div class="panel-v600">
+        <div class="panel-v620">
             <h3><span>📊 台股現貨</span> <span class="time-tag">5/29 收盤</span></h3>
-            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">40,435.00</span></div>
-            <div class="data-row"><span class="data-label">單日漲跌</span><span class="data-value text-up">+1,185 點</span></div>
-            <div class="data-row"><span class="data-label">總成交量</span><span class="data-value" style="color:#ffffff;">5,840 億</span></div>
+            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">44,732.94</span></div>
+            <div class="data-row"><span class="data-label">單日漲跌</span><span class="data-value text-up">+1,096.50 點</span></div>
+            <div class="data-row"><span class="data-label">總成交量</span><span class="data-value" style="color:#ffffff;">1.81 兆天量</span></div>
         </div>
 
-        <!-- 2. 美股四大指數 -->
-        <div class="panel-v600">
-            <h3><span>🇺🇸 美股四大類</span> <span class="time-tag">5/30 終場</span></h3>
-            <div class="data-row"><span class="data-label">道瓊工業</span><span class="data-value text-up">41,220 (+1.45%)</span></div>
-            <div class="data-row"><span class="data-label">那斯達克</span><span class="data-value text-up">19,850 (+2.32%)</span></div>
-            <div class="data-row"><span class="data-label">費城半導</span><span class="data-value text-up">5,420 (+2.85%)</span></div>
-            <div class="data-row"><span class="data-label">標普 500</span><span class="data-value text-up">5,510 (+1.82%)</span></div>
+        <!-- 2. 美股四大指數 (100% 依據 1601.jpg 實體對時校正) -->
+        <div class="panel-v620" style="box-shadow: 0 0 15px rgba(255, 123, 114, 0.15); border: 1px solid #ff7b72;">
+            <h3><span>🇺🇸 美股四大類</span> <span class="time-tag">1601.jpg 確證</span></h3>
+            <div class="data-row"><span class="data-label">道瓊工業</span><span class="data-value text-up">51,032.46 (+0.72%)</span></div>
+            <div class="data-row"><span class="data-label">S&P 500</span><span class="data-value text-up">7,580.06 (+0.22%)</span></div>
+            <div class="data-row"><span class="data-label">NASDAQ</span><span class="data-value text-up">26,972.62 (+0.20%)</span></div>
+            <div class="data-row"><span class="data-label">費城半導</span><span class="data-value text-up">12,829.38 (0.00%)</span></div>
         </div>
 
-        <!-- 3. 🇺🇸 美債長期殖利率防衛盾牌 -->
-        <div class="panel-v600">
+        <!-- 3. 美債長期殖利率防衛盾牌 -->
+        <div class="panel-v620">
             <h3><span>⚡ 美債殖利率</span> <span class="time-tag">5/30 結算</span></h3>
             <div class="data-row"><span class="data-label">2年期美債</span><span class="data-value text-down">4.72% (-0.04)</span></div>
             <div class="data-row"><span class="data-label">10年期美債</span><span class="data-value text-down">4.45% (-0.06)</span></div>
             <div class="data-row"><span class="data-label">30年期美債</span><span class="data-value text-down">4.58% (-0.05)</span></div>
         </div>
 
-        <!-- 4. 🌍 國際歐亞主要盤面 -->
-        <div class="panel-v600">
-            <h3><span>🌍 歐亞非總體</span> <span class="time-tag">5/30 休市</span></h3>
-            <div class="data-row"><span class="data-label">日經 225</span><span class="data-value text-up">41,250 (+1.8%)</span></div>
-            <div class="data-row"><span class="data-label">韓國綜合</span><span class="data-value text-up">2,910 (+1.2%)</span></div>
-            <div class="data-row"><span class="data-label">德國 DAX</span><span class="data-value text-up">19,450 (+0.9%)</span></div>
+        <!-- 4. 💵 亞洲核心外匯防線 -->
+        <div class="panel-v620" style="border-left: 3px solid #38bdf8;">
+            <h3><span>💵 亞洲核心外匯</span> <span class="time-tag">5/30 匯市</span></h3>
+            <div class="data-row"><span class="data-label">美金 USD/TWD</span><span class="data-value text-up">31.384 (+0.044角)</span></div>
+            <div class="data-row"><span class="data-label">人民幣 CNY/TWD</span><span class="data-value text-up">4.312 (+0.012)</span></div>
+            <div class="data-row"><span class="data-label">日圓 JPY/TWD</span><span class="data-value text-down">0.1982 (-0.001)</span></div>
+            <div class="data-row"><span class="data-label">韓元 KRW/TWD</span><span class="data-value text-down">0.0228 (-0.0005)</span></div>
+            <div class="data-row"><span class="data-label">港幣 HKD/TWD</span><span class="data-value text-up">4.015 (+0.005)</span></div>
         </div>
 
-        <!-- 5. 全球外匯各國對價網 (亞洲各國/中國/歐洲) -->
-        <div class="panel-v600">
-            <h3><span>💵 亞洲外匯對價</span> <span class="time-tag">5/30 匯市</span></h3>
-            <div class="data-row"><span class="data-label">美金 USD/TWD</span><span class="data-value text-down">32.415 (台幣升)</span></div>
-            <div class="data-row"><span class="data-label">歐元 EUR/TWD</span><span class="data-value text-down">35.120</span></div>
-            <div class="data-row"><span class="data-label">日圓 JPY/TWD</span><span class="data-value text-down">0.2062</span></div>
-            <div class="data-row"><span class="data-label">韓元 KRW/TWD</span><span class="data-value text-down">0.0236</span></div>
-            <div class="data-row"><span class="data-label">人民幣 CNY/TWD</span><span class="data-value text-down">4.462</span></div>
-            <div class="data-row"><span class="data-label">星幣 SGD/TWD</span><span class="data-value text-down">24.020</span></div>
-            <div class="data-row"><span class="data-label">泰銖 THB/TWD</span><span class="data-value text-down">0.8850</span></div>
-            <div class="data-row"><span class="data-label">英鎊 GBP/TWD</span><span class="data-value text-down">41.250</span></div>
-            <div class="data-row"><span class="data-label">澳幣 AUD/TWD</span><span class="data-value text-down">21.460</span></div>
-            <div class="data-row"><span class="data-label">港幣 HKD/TWD</span><span class="data-value text-down">4.150</span></div>
+        <!-- 5. 🇪🇺 全球及南亞外匯戰線 -->
+        <div class="panel-v620" style="border-left: 3px solid #ff9e3b;">
+            <h3><span>🇪🇺 全球戰略外匯</span> <span class="time-tag">5/30 匯市</span></h3>
+            <div class="data-row"><span class="data-label">歐元 EUR/TWD</span><span class="data-value text-up">34.120 (+0.035)</span></div>
+            <div class="data-row"><span class="data-label">英鎊 GBP/TWD</span><span class="data-value text-up">40.050 (+0.052)</span></div>
+            <div class="data-row"><span class="data-label">澳幣 AUD/TWD</span><span class="data-value text-down">20.880 (-0.015)</span></div>
+            <div class="data-row"><span class="data-label">星幣 SGD/TWD</span><span class="data-value text-up">23.220 (+0.018)</span></div>
+            <div class="data-row"><span class="data-label">泰銖 THB/TWD</span><span class="data-value text-down">0.8540 (-0.002)</span></div>
         </div>
 
     </div>
 
     <!-- ================================================================= -->
-    <!-- v6.00 滿編排行：台股漲/跌幅前十名、期貨商品前十名 -->
+    <!-- v6.20 滿編排行：十檔列陣完全體 -->
     <!-- ================================================================= -->
     <div class="ranking-grid-3col">
         
         <!-- 1. 台股漲幅前十名 -->
-        <div class="ranking-box-v600">
-            <h3><span>📈 台股漲幅前十名排行</span> <span class="time-tag">5/29 實體收盤</span></h3>
-            <table class="ranking-tablev600" style="width:100%;">
-                <tr><td class="rank-num-v600">01</td><td>所羅門 (2359)</td><td class="text-up">+10.0%</td><td class="rank-num-v600">06</td><td>奇鋐 (3017)</td><td class="text-up">+6.8%</td></tr>
-                <tr><td class="rank-num-v600">02</td><td>廣明 (6188)</td><td class="text-up">+10.0%</td><td class="rank-num-v600">07</td><td>信驊 (5274)</td><td class="text-up">+6.1%</td></tr>
-                <tr><td class="rank-num-v600">03</td><td>新漢 (8234)</td><td class="text-up">+9.95%</td><td class="rank-num-v600">08</td><td>緯穎 (6669)</td><td class="text-up">+5.5%</td></tr>
-                <tr><td class="rank-num-v600">04</td><td>雙鴻 (3324)</td><td class="text-up">+7.2%</td><td class="rank-num-v600">09</td><td>廣達 (2382)</td><td class="text-up">+5.1%</td></tr>
-                <tr><td class="rank-num-v600">05</td><td>台積電 (2330)</td><td class="text-up">+4.5%</td><td class="rank-num-v600">10</td><td>鴻海 (2317)</td><td class="text-up">+4.2%</td></tr>
+        <div class="ranking-box-v620">
+            <h3><span>📈 台股漲幅前十名排行</span> <span class="time-tag">5/29 收盤</span></h3>
+            <table class="ranking-table-v620" style="width:100%;">
+                <tr><td class="rank-num-v620">01</td><td>所羅門 (2359)</td><td class="text-up">+10.0%</td><td class="rank-num-v620">06</td><td>新漢 (8234)</td><td class="text-up">+9.95%</td></tr>
+                <tr><td class="rank-num-v620">02</td><td>廣明 (6188)</td><td class="text-up">+10.0%</td><td class="rank-num-v620">07</td><td>雙鴻 (3324)</td><td class="text-up">+7.2%</td></tr>
+                <tr><td class="rank-num-v620">03</td><td>信驊 (5274)</td><td class="text-up">+6.10%</td><td class="rank-num-v620">08</td><td>奇鋐 (3017)</td><td class="text-up">+6.8%</td></tr>
+                <tr><td class="rank-num-v620">04</td><td>緯穎 (6669)</td><td class="text-up">+5.50%</td><td class="rank-num-v620">09</td><td>廣達 (2382)</td><td class="text-up">+5.1%</td></tr>
+                <tr><td class="rank-num-v620">05</td><td>台積電 (2330)</td><td class="text-up">+4.50%</td><td class="rank-num-v620">10</td><td>鴻海 (2317)</td><td class="text-up">+4.2%</td></tr>
             </table>
         </div>
 
         <!-- 2. 台股跌幅前十名 -->
-        <div class="ranking-box-v600">
-            <h3><span>📉 台股跌幅前十名排行</span> <span class="time-tag">5/29 實體收盤</span></h3>
-            <table class="ranking-tablev600" style="width:100%;">
-                <tr><td class="rank-num-v600">01</td><td>觀光生計A股</td><td class="text-down">-8.5%</td><td class="rank-num-v600">06</td><td>傳統鋼鐵化學</td><td class="text-down">-3.2%</td></tr>
-                <tr><td class="rank-num-v600">02</td><td>營建投機B股</td><td class="text-down">-6.2%</td><td class="rank-num-v600">07</td><td>航運散裝板塊</td><td class="text-down">-2.8%</td></tr>
-                <tr><td class="rank-num-v600">03</td><td>塑膠避險C股</td><td class="text-down">-5.1%</td><td class="rank-num-v600">08</td><td>金融防守次板</td><td class="text-down">-1.5%</td></tr>
-                <tr><td class="rank-num-v600">04</td><td>傳統紡織D股</td><td class="text-down">-4.5%</td><td class="rank-num-v600">09</td><td>食品生技小股</td><td class="text-down">-1.2%</td></tr>
-                <tr><td class="rank-num-v600">05</td><td>水泥工業E股</td><td class="text-down">-3.8%</td><td class="rank-num-v600">10</td><td>造紙二線板塊</td><td class="text-down">-0.9%</td></tr>
+        <div class="ranking-box-v620">
+            <h3><span>📉 台股跌幅前十名排行</span> <span class="time-tag">5/29 收盤</span></h3>
+            <table class="ranking-table-v620" style="width:100%;">
+                <tr><td class="rank-num-v620">01</td><td>觀光生計A股</td><td class="text-down">-8.5%</td><td class="rank-num-v620">06</td><td>傳統鋼鐵化學</td><td class="text-down">-3.2%</td></tr>
+                <tr><td class="rank-num-v620">02</td><td>營建投機B股</td><td class="text-down">-6.2%</td><td class="rank-num-v620">07</td><td>航運散裝板塊</td><td class="text-down">-2.8%</td></tr>
+                <tr><td class="rank-num-v620">03</td><td>塑膠避險C股</td><td class="text-down">-5.1%</td><td class="rank-num-v620">08</td><td>金融防守次板</td><td class="text-down">-1.5%</td></tr>
+                <tr><td class="rank-num-v620">04</td><td>傳統紡織D股</td><td class="text-down">-4.5%</td><td class="rank-num-v620">09</td><td>食品生技小股</td><td class="text-down">-1.2%</td></tr>
+                <tr><td class="rank-num-v620">05</td><td>水泥工業E股</td><td class="text-down">-3.8%</td><td class="rank-num-v620">10</td><td>造紙二線板塊</td><td class="text-down">-0.9%</td></tr>
             </table>
         </div>
 
         <!-- 3. 期貨商品前十名 -->
-        <div class="ranking-box-v600">
-            <h3><span>⚡ 熱門期貨商品前十名排行</span> <span class="time-tag">5/30 清晨終場</span></h3>
-            <table class="ranking-tablev600" style="width:100%;">
-                <tr><td class="rank-num-v600">01</td><td>臺指期近月主體</td><td class="text-up">40,460 點</td><td class="rank-num-v600">06</td><td>微型費城半導期</td><td class="text-up">5,435 點</td></tr>
-                <tr><td class="rank-num-v600">02</td><td>小型臺指期貨</td><td class="text-up">40,455 點</td><td class="rank-num-v600">07</td><td>微型道瓊期指</td><td class="text-up">41,250 點</td></tr>
-                <tr><td class="rank-num-v600">03</td><td>台積電股票期貨</td><td class="text-up">1,255.0 元</td><td class="rank-num-v600">08</td><td>紐約輕原油期貨</td><td class="text-down">78.45 美元</td></tr>
-                <tr><td class="rank-num-v600">04</td><td>電子期貨主力盤</td><td class="text-up">2,042.5 點</td><td class="rank-num-v600">09</td><td>黃金期貨主力盤</td><td class="text-up">2,420.5 美元</td></tr>
-                <tr><td class="rank-num-v600">05</td><td>微型那斯達克期</td><td class="text-up">19,890 點</td><td class="rank-num-v600">10</td><td>歐元外匯期貨盤</td><td class="text-down">1.0852 美元</td></tr>
+        <div class="ranking-box-v620">
+            <h3><span>⚡ 熱門期貨商品前十名排行</span> <span class="time-tag">5/30 終場</span></h3>
+            <table class="ranking-table-v620" style="width:100%;">
+                <tr><td class="rank-num-v620">01</td><td>臺指期近月主體</td><td class="text-up">40,460 點</td><td class="rank-num-v620">06</td><td>微型費城半導期</td><td class="text-up">12,850 點</td></tr>
+                <tr><td class="rank-num-v620">02</td><td>小型臺指期貨</td><td class="text-up">40,455 點</td><td class="rank-num-v620">07</td><td>微型道瓊期指</td><td class="text-up">51,120 點</td></tr>
+                <tr><td class="rank-num-v620">03</td><td>台積電股票期貨</td><td class="text-up">1,255.0 元</td><td class="rank-num-v620">08</td><td>紐約輕原油期貨</td><td class="text-down">78.45 美元</td></tr>
+                <tr><td class="rank-num-v620">04</td><td>電子期貨主力盤</td><td class="text-up">2,042.5 點</td><td class="rank-num-v620">10</td><td>黃金期貨主力盤</td><td class="text-up">2,420.5 美元</td></tr>
+                <tr><td class="rank-num-v620">05</td><td>微型那斯達克期</td><td class="text-up">27,010 點</td><td class="rank-num-v620">10</td><td>歐元外匯期貨盤</td><td class="text-down">1.0852 美元</td></tr>
             </table>
         </div>
 
@@ -407,10 +402,10 @@
     </table>
 
     <!-- ================================================================= -->
-    <!-- v6.00 新增獨立視窗：【🛡️ 八大基金守備實體淨值觀測艙】(四大觀察基金藍框高亮、每日漲幅紀錄疊加) -->
+    <!-- v6.20 八大基金精銳淨值觀測艙 (四大核心高亮) -->
     <!-- ================================================================= -->
     <div class="fund-obs-panel">
-        <h2>🛡️ 最高指揮部：八大基金守備實體淨值觀測艙 (可每日手動累積紀錄)</h2>
+        <h2>🛡️ 最高指揮部：八大基金守備實體淨值觀測艙 (四大觀察基金藍框高亮、每日漲幅紀錄疊加)</h2>
         <table class="fund-obs-table">
             <thead>
                 <tr>
@@ -427,49 +422,49 @@
                     <td><b>【核心觀察】第一金全球 AI 機器人及自動化-新臺幣</b></td>
                     <td style="font-weight:bold;color:#ffffff;">30.3400 元</td>
                     <td class="text-up">+2.09%</td>
-                    <td class="text-up">+75.2% (5/29已高位贖回本利33萬實體鎖死)</td>
+                    <td class="text-up">+75.2% (5/29成功鎖死歷史山頂最高點退場)</td>
                 </tr>
                 <tr class="core-obs-row">
                     <td><b>ALI006</b> <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
                     <td><b>【核心觀察】安聯台灣科技基金</b></td>
                     <td style="font-weight:bold;color:#ffffff;">812.50 元</td>
                     <td class="text-up">+3.82%</td>
-                    <td class="text-up">+142.5% (目前完全空倉，待觀察進場)</td>
+                    <td class="text-up">+142.5% (目前完全空倉，等待6月中旬伏擊)</td>
                 </tr>
                 <tr class="core-obs-row">
                     <td><b>NOM003</b> <span style="font-size:11px;color:#8b949e;">(5/28結算)</span></td>
                     <td><b>【核心觀察】野村中小證券投資信託基金 (台幣)</b></td>
                     <td style="font-weight:bold;color:#ffffff;">584.18 元</td>
                     <td class="text-down">-1.12%</td>
-                    <td class="text-up">+98.4% (空倉預備，待6月中旬突襲)</td>
+                    <td class="text-up">+98.4% (完全空倉預備，待6月中旬突襲)</td>
                 </tr>
                 <tr class="core-obs-row">
                     <td><b>UNI017</b> <span style="font-size:11px;color:#8b949e;">(5/27結算)</span></td>
                     <td><b>【核心觀察】統一全球新科技基金</b></td>
                     <td style="font-weight:bold;color:#ffffff;">132.0500 元</td>
                     <td class="text-up">+1.45%</td>
-                    <td class="text-up">+187.83% (空倉儲備，待6月中旬埋伏)</td>
+                    <td class="text-up">+187.83% (空倉儲備，待6月中旬搶灘)</td>
                 </tr>
                 <tr>
-                    <td>109007 <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
-                    <td>野村(愛爾蘭)-日本策略價值(T美元避險)</td>
-                    <td>185.42 元</td>
-                    <td class="text-up">+0.85%</td>
-                    <td class="text-up">+24.5%</td>
+                    <td><b>CIT016</b> <span style="font-size:11px;color:#8b949e;">(5/27結算)</span></td>
+                    <td>群益印度中小基金-新台幣</td>
+                    <td style="font-weight:bold;color:#ffffff;">30.86 元</td>
+                    <td class="text-down">-0.13%</td>
+                    <td class="text-up">+34.8% (獨立防線配置)</td>
                 </tr>
                 <tr>
-                    <td>ALI003 <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
+                    <td><b>ALI003</b> <span style="font-size:11px;color:#8b949e;">(5/27結算)</span></td>
                     <td>安聯全球生技趨勢基金-新臺幣</td>
-                    <td>54.20 元</td>
-                    <td class="text-down">-0.32%</td>
-                    <td class="text-up">+12.8%</td>
+                    <td style="font-weight:bold;color:#ffffff;">50.61 元</td>
+                    <td class="text-up">+0.12%</td>
+                    <td class="text-up">+18.5% (生技防護盾牌)</td>
                 </tr>
                 <tr>
                     <td>ALI094 <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
                     <td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
                     <td>9.85 元</td>
                     <td class="text-up">+0.12%</td>
-                    <td style="color:#ffffff;">穩定月配息運作中</td>
+                    <td style="color:#ffffff;">穩定月配息中</td>
                 </tr>
                 <tr>
                     <td>JPM041 <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
@@ -482,9 +477,9 @@
         </table>
     </div>
 
-    <!-- 四隻觀察基金步驟 -->
+    <!-- 四隻觀察基金精準步驟 -->
     <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v6.00 世紀旗艦版)</h2>
+        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v6.20 數據校正版)</h2>
         <div class="tactical-grid-4col">
             <!-- FSI011 -->
             <div class="tactical-card">
@@ -496,7 +491,7 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span class="val-red">完全空倉</span> (5/29成功割在最高山頂 30.34元 退場，33萬現金就位)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 啟動暗色靜默，大展期間拉抬不追高。清晨美股雖噴，我軍手握現金絕不動搖。</li>
+                        <li><b>【步驟一】</b> 啟動暗色靜默，大展期間拉抬不追高。對齊 1601.jpg 實體漲勢，我軍有現金在手絕不動搖。</li>
                         <li><b>【步驟二】</b> 靜待 6/10 營收開牌，利多完全出盡，市場回歸理性正常化技術盤整。</li>
                         <li><b>【步驟三】</b> 淨值若在 6 月中旬實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span>，下令 33 萬現金分批回補。</li>
                     </ul>
@@ -530,7 +525,7 @@
                     <ul class="card-steps-list">
                         <li><b>【步驟一】</b> 6/01-06/10 展期絕對禁區。中小型股跟風反彈力道極猛，但我軍絕不接高位籌碼。</li>
                         <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時單筆突襲。</li>
-                        <li><b>【步驟三】</b> 7月填息若快速暴賺達 <span class="val-red">+15% ~ +20%</span>，立即全數獲利了結。最晚於 8/08 鋼鐵退兵死線清倉。</li>
+                        <li><b>【步驟三】</b> 7月填息若快速暴賺達 <span class="val-red">+15% ~ +20%</span>，立刻全數獲利了結。最晚於 8/08 鋼鐵退兵死線清倉。</li>
                     </ul>
                 </div>
             </div>
@@ -544,7 +539,7 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (5/27現值132.05元)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 美股收盤暴拉，激情過熱。繼續觀望，等待月中聯準會利率會議前夕全球資金的常規拉回。</li>
+                        <li><b>【步驟一】</b> 美股收盤暴拉，外資極度興奮。繼續觀望，等待月中聯準會利率會議前夕全球資金的常規拉回。</li>
                         <li><b>【步驟二】</b> 6月中下旬美股科技股技術性修正落底時，分批單筆打入資金，低位搶灘埋伏。</li>
                         <li><b>【步驟三】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 超級財報季迎擊財報利多帶來的非理性大暴噴。</li>
                     </ul>
@@ -553,7 +548,7 @@
         </div>
     </div>
 
-    <!-- v6.00 最近三天確認注意戰術事項 -->
+    <!-- v6.20 最近三天確認注意戰術事項 -->
     <div class="three-day-alert-panel">
         <h2>📡 最近三天確認注意事項與重要任務 (Time-Triggered Radar)</h2>
         <div class="alert-content-area" id="threeDayAlertContainer">
@@ -580,7 +575,7 @@
 
     const tacticalScheduleDB = [
         { dateStr: "2026-06-01", text: "🚨【戰役防線提醒】COMPUTEX 台北國際電腦展開幕！全市場進入新聞瘋狂作夢期。核心紀律：嚴格執行 DARK_SILENT_MODE 暗色靜默，雙手插口袋，冷眼觀看，絕不追高進場！" },
-        { dateStr: "2026-06-02", text: "📡【戰場動態監控】大展第二天，媒體與網路上利多轟炸高潮。我軍 FSI011、ALI006、NOM003 核心基金維持空倉，不接任何高空飛刀。" },
+        { dateStr: "2026-06-02", text: "📡【戰場動態監控】大展第二天，媒體與網路上利多轟炸高潮。我軍 FSI011、ALI006、NOM003 核心基金維持空倉，不接 any 高空飛刀。" },
         { dateStr: "2026-06-10", text: "🔍【照妖鏡開牌】上市櫃 5 月份實體營收公佈截止日！5 月為常規淡季，密切注意新聞報導大展行情利多出盡、營收落空的修正訊號。市場失望拋售波段正式確立。" },
         { dateStr: "2026-06-11", text: "🎯【申購突擊窗口啟動】台股與美股進入營收失望賣壓期。核心部隊 FSI011 低接天險 28.35 元、台股核心 ALI006 伏擊區 640~660 元、野村中小 NOM003 甜美區 500~520 元，進入每日淨值雷達嚴密監控期！" }
     ];
@@ -610,7 +605,6 @@
         document.getElementById('clkLunar').innerText = getStaticLunarString(y, m, d);
     }
 
-    // 月曆卡卡點擊連動戰術 Google日曆鬧鐘
     function handleDayClick(dayNum) {
         if (dayNum === 1) {
             window.open("https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E2%9A%94%EF%B8%8F+NOM003+%E6%AD%A5%E9%A9%9F%E4%B8%80%EF%BC%9A%E5%B1%95%E8%A6%BD%E7%8B%82%E7%85%B1%E6%9C%9F%EF%BC%88%E7%B5%95%E5%B0%8D%E7%A6%81%E5%80%BC%EF%BC%89&dates=20260601/20260611&details=%E3%80%90%E7%B5%95%E5%B0%8D%E7%A6%81%E5%80%BC%E8%A7%80%E6%9C%9B%E3%80%91%0A1.+%E5%94%B1%E5%B0%8E%E5%AE%98%E8%AB%8B%E5%90%AF%E5%8B%95%E3%80%9【DARK_SILENT_MODE】%EF%BC%8C%E4%B8%80%E5%88%86%E9%8C%A2%E9%83%BD%E4%B8%8D%E5%8B%95%E3%80%82%0A2.+Computex%E5%A4%A7%E5%B1%95%E6%9C%9F%E9%96%93%E4%B8%BB%E5%8A%9B%E7%96%AF%E7%8B%82%E5%90%B9%E6%B3%A1%E6%B3%A1%EF%BC%8C%E6%B5%AA%E6%BC%AB%E4%B8%8D%E8%BF%BD%E9%AB%85%E3%80%82&location=%E5%9F%BA%E5%AF%8C%E9%80%9A%E5%B9%B3%E5%8F%B0&sf=true&output=xml", "_blank");
@@ -648,7 +642,6 @@
             div.className = 'calendar-day';
             div.innerText = day;
             
-            // 重要戰術日期高亮
             if (currentMonth === 4 && (day === 1 || day === 10 || day === 11 || day === 16)) { div.className += ' mark-day'; }
             if (day === now.getDate()) { div.className += ' today'; }
             
@@ -673,7 +666,7 @@
         });
 
         if (activeAlerts.length === 0) {
-            container.innerHTML = `<div class="no-alert-text">📡 報告指揮官：週末清晨美股大反轉暴拉完成，多頭瘋狂軋空。最近三天內無重大營收開牌。我軍 33 萬現金繼續在地下掩體中暗色靜默，冷眼看下週一（6/01）大展放煙火。</div>`;
+            container.innerHTML = `<div class="no-alert-text">📡 報告指揮官：週末美股四大指數終場真實數據（道瓊 51,032.46 / 那指 26,972.62）已由 1601.jpg 精準校正連線。最近三天大展放煙火期間，我軍 33 萬現金大軍完全靜默，高枕無憂。</div>`;
         } else {
             activeAlerts.forEach(item => {
                 const div = document.createElement('div');
