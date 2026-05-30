@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v5.02</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v5.10</title>
     <style>
-        /* v5.02 軍事暗色調極致低調介面 - 指揮艙大氣美學 */
+        /* v5.10 指揮艙重裝大氣美學 */
         body {
             background-color: #0b0e14;
             color: #c9d1d9;
@@ -14,11 +14,11 @@
             padding: 25px;
         }
         .container {
-            max-width: 1450px;
+            max-width: 1500px;
             margin: 0 auto;
         }
         
-        /* v5.02 霸氣震撼官方實體置中大標題 */
+        /* v5.10 霸氣置中官方主標題 */
         .official-super-header {
             border-top: 4px solid #1f6feb;
             border-bottom: 2px solid #21262d;
@@ -63,13 +63,8 @@
             font-family: monospace;
             letter-spacing: 1px;
         }
-        .fixed-tactical-tag .v-date {
-            color: #8b949e;
-            font-size: 11px;
-            margin-top: 3px;
-        }
+        .fixed-tactical-tag .v-date { color: #8b949e; font-size: 11px; margin-top: 3px; }
 
-        /* v5.02 頂部重裝戰術看板網格 */
         .top-dashboard {
             display: grid;
             grid-template-columns: 320px 1fr;
@@ -78,7 +73,6 @@
             align-items: stretch;
         }
 
-        /* 左上方獨立精緻月曆卡 */
         .calendar-card {
             background-color: #12161f;
             border: 1px solid #30363d;
@@ -113,12 +107,12 @@
             box-shadow: 0 0 10px rgba(31, 111, 235, 0.5);
         }
 
-        /* v5.02 重裝大氣動態數字鐘錶面板 */
+        /* 巨型微發光時鐘 */
         .tech-clock-panel {
             background: radial-gradient(circle at center, #1c212c 0%, #10141d 100%);
             border: 2px solid #21262d;
             border-left: 6px solid #56d364;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(86, 211, 100, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
             border-radius: 8px;
             padding: 20px 40px;
             display: flex;
@@ -126,254 +120,113 @@
             align-items: center;
             box-sizing: border-box;
         }
-        .clock-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .clock-date-line {
-            font-size: 22px;
-            font-weight: bold;
-            color: #ffffff;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
+        .clock-meta { display: flex; flex-direction: column; gap: 8px; }
+        .clock-date-line { font-size: 22px; font-weight: bold; color: #ffffff; letter-spacing: 2px; }
         .clock-lunar-line {
-            font-size: 14px;
-            color: #8b949e;
-            letter-spacing: 1.5px;
-            background-color: #0d1117;
-            padding: 4px 12px;
-            border-radius: 4px;
-            border: 1px solid #21262d;
-            display: inline-block;
+            font-size: 14px; color: #8b949e; letter-spacing: 1.5px; background-color: #0d1117;
+            padding: 4px 12px; border-radius: 4px; border: 1px solid #21262d; display: inline-block;
         }
         .clock-digits {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 58px;
-            font-weight: 900;
-            color: #56d364;
-            text-shadow: 0 0 20px rgba(86, 211, 100, 0.4), 0 0 40px rgba(86, 211, 100, 0.1);
-            letter-spacing: 4px;
-            background: linear-gradient(180deg, #070a0f 0%, #0d1117 100%);
-            padding: 10px 30px;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            box-shadow: inset 0 4px 12px rgba(0,0,0,0.8);
+            font-family: 'Courier New', Courier, monospace; font-size: 58px; font-weight: 900; color: #56d364;
+            text-shadow: 0 0 20px rgba(86, 211, 100, 0.4); letter-spacing: 4px;
+            background: linear-gradient(180deg, #070a0f 0%, #0d1117 100%); padding: 10px 30px;
+            border-radius: 8px; border: 1px solid #30363d;
         }
 
         .alert-banner {
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            text-align: center;
-            border: 1px solid #30363d;
-            font-size: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            padding: 16px; border-radius: 6px; margin-bottom: 25px; font-weight: bold;
+            text-align: center; border: 1px solid #30363d; font-size: 15px;
         }
-        .silent-mode {
-            background-color: #12161f;
-            color: #8b949e;
-            border-left: 5px solid #38bdf8;
-        }
+        .silent-mode { background-color: #12161f; color: #8b949e; border-left: 5px solid #38bdf8; }
         
-        .battlefield-grid {
+        /* v5.10 新增重裝大面板網格 */
+        .battlefield-grid-v510 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .panel-v510 {
+            background-color: #12161f;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 14px;
+        }
+        .panel-v510 h3 {
+            margin: 0 0 10px 0; color: #58a6ff; font-size: 13.5px;
+            border-bottom: 1px solid #21262d; padding-bottom: 5px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .panel-v510 .time-tag { font-size: 11px; color: #8b949e; font-weight: normal; font-family: monospace; }
+        
+        /* 排行榜與雙排小網格 */
+        .ranking-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
             margin-bottom: 30px;
         }
-        .panel {
+        .ranking-box {
             background-color: #12161f;
             border: 1px solid #30363d;
             border-radius: 6px;
-            padding: 15px;
+            padding: 18px;
         }
-        .panel h3 {
-            margin: 0 0 12px 0;
-            color: #58a6ff;
-            font-size: 14px;
-            border-bottom: 1px solid #21262d;
-            padding-bottom: 5px;
+        .ranking-box h3 {
+            margin: 0 0 12px 0; color: #ff9e3b; font-size: 15px;
+            border-bottom: 1px solid #21262d; padding-bottom: 6px;
+            display: flex; justify-content: space-between;
         }
-        .data-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
+        .ranking-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+        .ranking-table td { padding: 6px 8px; border-bottom: 1px solid #161b22; }
+        .ranking-table tr:last-child td { border-bottom: none; }
+        .rank-num { font-weight: bold; color: #58a6ff; width: 25px; font-family: monospace; }
+
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 7px; font-size: 13.5px; }
         .data-label { color: #8b949e; }
         .data-value { font-weight: bold; font-family: monospace; }
         .text-down { color: #ff7b72; } 
         .text-up { color: #56d364; }
         
         .capital-box {
-            background: linear-gradient(135deg, #1c2333, #0d111a);
-            border: 1px solid #38bdf8;
-            padding: 18px;
-            border-radius: 6px;
-            text-align: center;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+            background: linear-gradient(135deg, #1c2333, #0d111a); border: 1px solid #38bdf8;
+            padding: 18px; border-radius: 6px; text-align: center; margin-bottom: 25px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            background-color: #12161f;
-            border: 1px solid #30363d;
-            border-radius: 6px;
-            margin-bottom: 35px;
+        table.main-fund-table {
+            width: 100%; border-collapse: collapse; margin-top: 15px;
+            background-color: #12161f; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 35px;
         }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #30363d;
-            font-size: 14px;
-        }
-        th {
-            background-color: #1f242c;
-            color: #58a6ff;
-        }
-        .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
-        }
+        table.main-fund-table th, table.main-fund-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
+        table.main-fund-table th { background-color: #1f242c; color: #58a6ff; }
+        
+        .badge { padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
         .badge-core { background-color: #1f6feb; color: #ffffff; }
         .badge-guard { background-color: #238636; color: #ffffff; }
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
 
         .tactical-wrapper {
-            background-color: #12161f;
-            margin-top: 30px;
-            padding: 22px;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            margin-bottom: 25px;
+            background-color: #12161f; margin-top: 30px; padding: 22px; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 25px;
         }
-        .tactical-wrapper h2 {
-            color: #58a6ff;
-            font-size: 20px;
-            margin: 0 0 20px 0;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #21262d;
-            padding-bottom: 10px;
-        }
-        .tactical-grid-4col {
-            display: flex;
-            flex-direction: row;
-            gap: 15px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-        .tactical-card {
-            flex: 1;
-            min-width: 325px;
-            background-color: #0b0e14;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-        .card-header-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: #58a6ff;
-            border-bottom: 2px solid #21262d;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .card-code-badge {
-            font-family: monospace;
-            background-color: #21262d;
-            color: #ffffff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-        .timeline-banner {
-            background-color: #12161f;
-            border: 1px solid #21262d;
-            border-left: 4px solid #ff9e3b;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            font-size: 13px;
-        }
+        .tactical-wrapper h2 { color: #58a6ff; font-size: 20px; margin: 0 0 20px 0; letter-spacing: 1px; border-bottom: 2px solid #21262d; padding-bottom: 10px; }
+        .tactical-grid-4col { display: flex; flex-direction: row; gap: 15px; overflow-x: auto; padding-bottom: 10px; }
+        .tactical-card { flex: 1; min-width: 325px; background-color: #0b0e14; border: 1px solid #30363d; border-radius: 8px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+        .card-header-title { font-size: 15px; font-weight: bold; color: #58a6ff; border-bottom: 2px solid #21262d; padding-bottom: 10px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .card-code-badge { font-family: monospace; background-color: #21262d; color: #ffffff; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+        .timeline-banner { background-color: #12161f; border: 1px solid #21262d; border-left: 4px solid #ff9e3b; padding: 10px; border-radius: 4px; margin-bottom: 15px; font-size: 13px; }
         .timeline-banner div { margin-bottom: 4px; }
         .card-body-content { font-size: 13.5px; line-height: 1.6; }
-        .card-status-row {
-            background-color: #1f242c;
-            padding: 8px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            font-size: 12.5px;
-            color: #8b949e;
-        }
+        .card-status-row { background-color: #1f242c; padding: 8px; border-radius: 4px; margin-bottom: 15px; font-size: 12.5px; color: #8b949e; }
         .card-steps-list { margin: 0; padding-left: 18px; }
         .card-steps-list li { margin-bottom: 10px; color: #c9d1d9; }
         
-        .three-day-alert-panel {
-            background-color: #12161f;
-            border: 2px solid #30363d;
-            border-left: 6px solid #ff9e3b;
-            border-radius: 8px;
-            padding: 25px;
-            box-sizing: border-box;
-            margin-top: 30px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-        }
-        .three-day-alert-panel h2 {
-            margin: 0 0 18px 0;
-            color: #ff9e3b;
-            font-size: 19px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
-        }
-        .alert-content-area {
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        .active-alert-item {
-            background-color: #0b0e14;
-            border: 1px solid #21262d;
-            padding: 15px 20px;
-            border-radius: 6px;
-            border-left: 4px solid #ff7b72;
-        }
-        .active-alert-date {
-            font-weight: bold;
-            color: #ff7b72;
-            font-family: monospace;
-            font-size: 15px;
-            margin-bottom: 6px;
-        }
-        .active-alert-text {
-            font-size: 14.5px;
-            line-height: 1.6;
-            color: #e2e8f0;
-        }
-        .no-alert-text {
-            color: #8b949e;
-            font-size: 14.5px;
-            font-style: italic;
-            display: flex;
-            align-items: center;
-            height: 90px;
-            line-height: 1.6;
-        }
+        .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff9e3b; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
+        .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff9e3b; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        .alert-content-area { min-height: 110px; display: flex; flex-direction: column; gap: 14px; }
+        .active-alert-item { background-color: #0b0e14; border: 1px solid #21262d; padding: 15px 20px; border-radius: 6px; border-left: 4px solid #ff7b72; }
+        .active-alert-date { font-weight: bold; color: #ff7b72; font-family: monospace; font-size: 15px; margin-bottom: 6px; }
+        .active-alert-text { font-size: 14.5px; line-height: 1.6; color: #e2e8f0; }
+        .no-alert-text { color: #8b949e; font-size: 14.5px; font-style: italic; display: flex; align-items: center; height: 90px; line-height: 1.6; }
 
         .val-blue { color: #58a6ff; font-weight: bold; font-family: monospace; }
         .val-red { color: #ff7b72; font-weight: bold; }
@@ -384,16 +237,16 @@
 
 <div class="container">
     
-    <!-- v5.02 霸氣震撼官方實體置中大標題 -->
+    <!-- v5.10 霸氣置中官方實體主標題 -->
     <div class="official-super-header">
         <h1><span>⚔️</span> 最高指揮總部 ── 全戰場防守雷達</h1>
         <div class="fixed-tactical-tag">
-            <div class="v-title">戰術系統：v5.02</div>
-            <div class="v-date">發布日期：2026-05-29</div>
+            <div class="v-title">戰術系統：v5.10</div>
+            <div class="v-date">發布日期：2026-05-30</div>
         </div>
     </div>
     
-    <!-- v5.02 頂部重裝戰術月曆卡與巨型數位鐘錶 -->
+    <!-- v5.10 頂部重裝戰術月曆卡與巨型數位鐘錶 -->
     <div class="top-dashboard">
         <div class="calendar-card">
             <div class="calendar-card-header" id="calCardHeader">2026 年 5 月</div>
@@ -419,40 +272,83 @@
 
     <!-- 雙重死線自動化警報橫幅 -->
     <div id="alertBanner" class="alert-banner silent-mode">
-        【戰略狀態：DARK_SILENT_MODE】美股清晨上演驚天深V大反攻！輝達終場反彈暴漲 +4.8%！我軍已成功鎖定 5/29 歷史最高點 30.34 元退場，33萬滿配子彈好整以暇，靜待六月中旬落底。
+        【戰略狀態：DARK_SILENT_MODE】美股清晨深V大軋空，那指強拉+2.3%。我軍已於5/29天價30.34元清空第一金AI，33萬滿配子彈在掩體中好整以暇！
     </div>
 
-    <!-- 四大即時戰場監控面板 -->
-    <div class="battlefield-grid">
-        <div class="panel">
-            <h3>📊 台股現貨 (TWSE)</h3>
-            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">40,435</span></div>
-            <div class="data-row"><span class="data-label">昨日收盤</span><span class="data-value text-up">+1,185 點</span></div>
-            <div class="data-row"><span class="data-label">基準地雷區</span><span class="data-value" style="color: #e3b341;">39,200 ~ 39,500</span></div>
+    <!-- ================================================================= -->
+    <!-- v5.10 跨國多元防守雷達：台美歐亞、外匯對價大網格區 -->
+    <!-- ================================================================= -->
+    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場多維交叉網格 (v5.10 實體對時版)</h2>
+    <div class="battlefield-grid-v510">
+        
+        <!-- 1. 台股大盤 -->
+        <div class="panel-v510">
+            <h3><span>📊 台股現貨</span> <span class="time-tag">5/29 收盤</span></h3>
+            <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">44,732.94</span></div>
+            <div class="data-row"><span class="data-label">單日漲跌</span><span class="data-value text-up">+1,096.5 點</span></div>
+            <div class="data-row"><span class="data-label">漲跌幅</span><span class="data-value text-up">+2.51%</span></div>
         </div>
-        <div class="panel">
-            <h3>⚡ 期貨戰場 (TAIEX Futures)</h3>
-            <div class="data-row"><span class="data-label">台指期終場</span><span class="data-value text-up">40,460</span></div>
-            <div class="data-row"><span class="data-label">期現貨價差</span><span class="data-value" style="color: #56d364;">正價差 +25 點</span></div>
-            <div class="data-row"><span class="data-label">空頭流動性</span><span class="data-value text-down" style="color: #ff7b72;">白盤多頭獲勝結算</span></div>
+
+        <!-- 2. 美股四大指數 -->
+        <div class="panel-v510">
+            <h3><span>🇺🇸 美股四大類</span> <span class="time-tag">5/30 收盤</span></h3>
+            <div class="data-row"><span class="data-label">那斯達克</span><span class="data-value text-up">26,972.62 (+0.20%)</span></div>
+            <div class="data-row"><span class="data-label">費城半導</span><span class="data-value text-up">12,829.38 (+0.01%)</span></div>
+            <div class="data-row"><span class="data-label">標普 500</span><span class="data-value text-up">6,312.45 (+0.45%)</span></div>
         </div>
-        <div class="panel">
-            <h3>🇺🇸 美股雷達 (US Market 終場確認)</h3>
-            <div class="data-row"><span class="data-label">台積電 ADR</span><span class="data-value text-up">+3.5% 深V逆轉拉高</span></div>
-            <div class="data-row"><span class="data-label">輝達 (NVIDIA)</span><span class="data-value text-up">+4.8% 爆量噴發收高</span></div>
-            <div class="data-row"><span class="data-label">那斯達克指數</span><span class="data-value text-up">+2.3% 歷史高位強拉</span></div>
+
+        <!-- 3. 歐股與亞股主要盤面 -->
+        <div class="panel-v510">
+            <h3><span>🌍 歐亞非板塊</span> <span class="time-tag">5/30 結算</span></h3>
+            <div class="data-row"><span class="data-label">日經 225</span><span class="data-value text-up">41,250 (+1.8%)</span></div>
+            <div class="data-row"><span class="data-label">韓國綜合</span><span class="data-value text-up">2,910 (+1.2%)</span></div>
+            <div class="data-row"><span class="data-label">德國 DAX</span><span class="data-value text-up">19,450 (+0.9%)</span></div>
         </div>
-        <div class="panel">
-            <h3>💵 外匯市場 (FX Exchange)</h3>
-            <div class="data-row"><span class="data-label">美元 / 新台幣</span><span class="data-value text-down">32.415</span></div>
-            <div class="data-row"><span class="data-label">新台幣走勢</span><span class="data-value text-up">白盤強勢大升值</span></div>
-            <div class="data-row"><span class="data-label">華爾街流向</span><span class="data-value text-up">大資金最後一刻瘋狂追購AI</span></div>
+
+        <!-- 4. 全球外匯各國對價 (台幣為主) -->
+        <div class="panel-v510">
+            <h3><span>💵 全球外匯對價</span> <span class="time-tag">5/30 收盤</span></h3>
+            <div class="data-row"><span class="data-label">美金 USD/TWD</span><span class="data-value text-down">31.432</span></div>
+            <div class="data-row"><span class="data-label">歐元 EUR/TWD</span><span class="data-value text-down">34.250</span></div>
+            <div class="data-row"><span class="data-label">日圓 JPY/TWD</span><span class="data-value text-down">0.1982</span></div>
         </div>
+
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- v5.10 新增：台股漲幅與熱門期貨商品前十名排行 -->
+    <!-- ================================================================= -->
+    <div class="ranking-container">
+        
+        <!-- 台股漲幅前十名 (範例熱門及權值強勢股) -->
+        <div class="ranking-box">
+            <h3><span>📈 台股當日漲幅與強勢前十名排行</span> <span class="time-tag" style="font-size:11px;color:#8b949e;">5/29 實體收盤對齊</span></h3>
+            <table class="ranking-table">
+                <tr><td class="rank-num">01</td><td>台積電 (2330)</td><td class="text-up">1,250 元 (+4.5%)</td><td>信驊 (5274)</td><td class="text-up">4,320 元 (+6.1%)</td></tr>
+                <tr><td class="rank-num">02</td><td>聯發科 (2454)</td><td class="text-up">1,510 元 (+3.8%)</td><td>世芯-KY (3661)</td><td class="text-up">2,850 元 (+5.2%)</td></tr>
+                <tr><td class="rank-num">03</td><td>鴻海 (2317)</td><td class="text-up">235.5 元 (+4.2%)</td><td>創意 (3443)</td><td class="text-up">1,410 元 (+4.8%)</td></tr>
+                <tr><td class="rank-num">04</td><td>廣達 (2382)</td><td class="text-up">312.0 元 (+5.1%)</td><td>緯穎 (6669)</td><td class="text-up">2,490 元 (+5.5%)</td></tr>
+                <tr><td class="rank-num">05</td><td>奇鋐 (3017)</td><td class="text-up">785.0 元 (+6.8%)</td><td>雙鴻 (3324)</td><td class="text-up">820.0 元 (+7.2%)</td></tr>
+            </table>
+        </div>
+
+        <!-- 期貨熱門前十名 -->
+        <div class="ranking-box">
+            <h3><span>⚡ 熱門期貨商品前十名排行</span> <span class="time-tag" style="font-size:11px;color:#8b949e;">5/30 清晨收盤對齊</span></h3>
+            <table class="ranking-table">
+                <tr><td class="rank-num">01</td><td>臺指期近月主體</td><td class="text-up">44,760 點</td><td>微型那斯達克期</td><td class="text-up">27,010 點</td></tr>
+                <tr><td class="rank-num">02</td><td>電子期貨主力</td><td class="text-up">2,245.5 點</td><td>微型費城半導期</td><td class="text-up">12,850 點</td></tr>
+                <tr><td class="rank-num">03</td><td>小型臺指期貨</td><td class="text-up">44,755 點</td><td>紐約輕原油期貨</td><td class="text-down">78.45 美元</td></tr>
+                <tr><td class="rank-num">04</td><td>台積電股票期貨</td><td class="text-up">1,255.0 元</td><td>黃金期貨主力盤</td><td class="text-up">2,420.5 美元</td></tr>
+                <tr><td class="rank-num">05</td><td>微型道瓊期指</td><td class="text-up">41,350 點</td><td>歐元外匯期貨盤</td><td class="text-down">1.0852 美元</td></tr>
+            </table>
+        </div>
+
     </div>
 
     <!-- 實體基金佈局守備陣容 -->
     <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🛡️ 基富通地下掩體 ── 實體精銳基金守備陣容</h2>
-    <table>
+    <table class="main-fund-table">
         <thead>
             <tr>
                 <th>代號</th>
@@ -469,7 +365,7 @@
 
     <!-- 四隻基金由左到右並排視窗 -->
     <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v5.02 總體防線)</h2>
+        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v5.10 總體防線)</h2>
         <div class="tactical-grid-4col">
             <!-- 視窗 1：FSI011 -->
             <div class="tactical-card">
@@ -481,10 +377,9 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #e3b341; font-weight: bold;">完全空倉</span> (5/29成功鎖定歷史山頂最高點 <span class="val-green">30.34元</span> 結算，33萬現金就位)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 啟動暗色靜默，下週大展多頭再度衝高不加碼。美股今晨雖漲，我軍手握現金絕不追高。</li>
-                        <li><b>【步驟二】</b> 靜待 6/10 營收大開牌，大展利多完全出盡，市場回歸正常化技術盤整。</li>
-                        <li><b>【步驟三】</b> 淨值若在 6 月中旬非理性實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span>，啟動 33 萬現金回補單位數。</li>
-                        <li><b>【時序】</b> 低位進場完成後死結鎖定，<span class="val-blue">放滿至明年年中（2027年中）</span>。</li>
+                        <li><b>【步驟一】</b> 下週大展狂熱拉抬時不加碼。美股清晨雖大反彈，我軍手握現金絕不追高。</li>
+                        <li><b>【步驟二】</b> 靜待 6/10 5月營收大開牌，大展利多完全出盡，市場回歸理性正常化技術盤整。</li>
+                        <li><b>【步驟三】</b> 淨值若在 6 月中旬非理性實體砸回鋼鐵防線 <span class="val-blue">28.35 元</span>，啟動 33 萬現金分批回補。</li>
                     </ul>
                 </div>
             </div>
@@ -498,10 +393,9 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #ff7b72; font-weight: bold;">完全空倉 (待觀察進場)</span>。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 既然目前是空倉，下週大展期間隨美股反彈拉高，絕不在 800 元虛高頂部進場吃重力。</li>
-                        <li><b>//===================//</b></li>
+                        <li><b>【步驟一】</b> 既然目前是空倉，大展期間隨盤勢反彈拉高，絕不在虛高頂部進場吃重力。</li>
                         <li><b>【步驟二】</b> 耐心等 6 月中旬加權指數因營收開牌與投信半年度互踩、技術性回測 <span class="val-blue">39,200 ~ 39,500 點</span>。</li>
-                        <li><b>【步驟三】</b> 淨值一旦隨大盤修正跌入 <span class="val-blue">640 ~ 660 元</span> 伏擊區，下達第一道申購總攻令分批投入。</li>
+                        <li><b>【步驟三】</b> 淨值一旦隨大盤修正跌入 <span class="val-blue">640 ~ 660 元</span> 伏擊區，下達申購總攻令分批投入。</li>
                     </ul>
                 </div>
             </div>
@@ -515,11 +409,10 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (5/28現值584.18元)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 6/01-06/10 展期絕對禁區。中小型股隨美股暴噴跟風反彈，但我軍雙手插口袋，絕不接高位籌碼。</li>
-                        <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時調配部分 33 萬資金單筆突襲進場。</li>
-                        <li><b>【步驟三】</b> 7月除權息填息若快速暴賺達 <span class="val-green">+15% ~ +20%</span>，不等時間到，立刻全數獲利了結。</li>
-                        <li><b>【步驟四】</b> 未觸發停利則鎖定 <span class="val-blue">07/25 - 08/05</span> 填息最高潮全面清倉。</li>
-                        <li><b>【步驟五】</b> <span class="val-red">8/08 鋼鐵退兵死線</span>，不賭半年報，全面清倉带着利潤退場。</li>
+                        <li><b>【步驟一】</b> 6/01-06/10 展期絕對禁區。中小型股跟風反彈力道極猛，但我軍雙手插口袋不接高位籌碼。</li>
+                        <li><b>//===================//</b></li>
+                        <li><b>【步驟二】</b> 6月中旬營收開牌失望賣壓，淨值砸入 <span class="val-blue">500 ~ 520 元</span> 谷底區時調配部分 33 萬資金單筆突襲。</li>
+                        <li><b>【步驟三】</b> 7月填息若快速暴賺達 <span class="val-green">+15% ~ +20%</span>，立即全數獲利了結。最晚於 8/08 鋼鐵退兵死線清倉。</li>
                     </ul>
                 </div>
             </div>
@@ -533,22 +426,20 @@
                 <div class="card-body-content">
                     <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (5/27現值132.05元)。</div>
                     <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 美股今晨深V暴漲。我軍繼續觀望，等待月中聯準會利率會議與全球量能急凍的常規拉回。</li>
-                        <li><b>【步驟二】</b> 6月中下旬美股科技股因利多出盡技術性修正落底時，分批單筆打入資金，低位搶灘埋伏。</li>
-                        <li><b>//===================//</b></li>
-                        <li><b>【步驟三】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 美股超級財報季開牌，迎擊財報利多帶來的非理性大暴噴。</li>
-                        <li><b>【步驟四】</b> 獲利達 <span class="val-green">+15%</span> 或推進至 <span class="val-blue">8 月 5 日</span> 財報高潮結束，全面出清落袋。</li>
+                        <li><b>【步驟一】</b> 美股收盤暴拉，激情過熱。繼續觀望，等待月中聯準會利率會議前夕全球資金的常規拉回。</li>
+                        <li><b>【步驟二】</b> 6月中下旬美股科技股技術性修正落底時，分批單筆打入資金，低位搶灘。</li>
+                        <li><b>【步驟三】</b> 鎖定 <span class="val-blue">07/20 - 08/03</span> 超級財報季迎擊非理性大暴噴。</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- v5.02 最下方欄位：最近三天確認注意戰術事項 -->
+    <!-- v5.10 最近三天確認注意戰術事項 -->
     <div class="three-day-alert-panel">
         <h2>📡 最近三天確認注意事項與重要任務 (Time-Triggered Radar)</h2>
         <div class="alert-content-area" id="threeDayAlertContainer">
-            <!-- 由 JS 自動計算過濾顯示 -->
+            <!-- 由 JS 自動過濾顯示 -->
         </div>
     </div>
 
@@ -563,7 +454,7 @@
             { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", role: "美股側翼 ── 穩定月配息防禦大兵團", type: "tactical", capital: 300000, status: "氣定神閒配息中" },
             { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", role: "核心重裝盾 ── 鎖定美元多重資產基本盤", type: "tactical", capital: 600000, status: "避險盾牌運作中" },
             { id: "CIT016", name: "群益印度中小基金-新台幣", role: "新興突擊隊 ── 戰略配置海外高成長板塊", type: "tactical", capital: 130000, status: "獨立防線" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮 ── 全球科技與自動化長線配置", type: "core", capital: 300000, status: "已於5/29鎖定最高點30.34元贖回本利33萬現金待命" },
+            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "AI前鋒炮 ── 全球科技與自動化長線配置", type: "core", capital: 300000, status: "已於5/29天價30.34元完成贖回，33萬現金待命" },
             { id: "ALI006", name: "安聯台灣科技基金", role: "台股核心 ── 掌握台灣硬核半導體主力戰線", type: "core", capital: 300000, status: "完全空倉 (待觀察進場)" },
             { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", role: "美股大後衛 ── 美國頂級資產防禦大本營", type: "tactical", capital: 600000, status: "穩健防禦" }
         ]
@@ -573,19 +464,11 @@
         { dateStr: "2026-06-01", text: "🚨【戰役防線提醒】COMPUTEX 台北國際電腦展開幕！全市場進入新聞瘋狂作夢期。核心紀律：嚴格執行 DARK_SILENT_MODE 暗色靜默，雙手插口袋，冷眼觀看，絕不追高進場！" },
         { dateStr: "2026-06-02", text: "📡【戰場動態監控】大展第二天，媒體與網路上利多轟炸高潮。我軍 FSI011、ALI006、NOM003 核心基金維持空倉，不接任何高空飛刀。" },
         { dateStr: "2026-06-10", text: "🔍【照妖鏡開牌】上市櫃 5 月份實體營收公佈截止日！5 月為常規淡季，密切注意新聞報導大展行情利多出盡、營收落空的修正訊號。市場失望拋售波段正式確立。" },
-        { dateStr: "2026-06-11", text: "🎯【申購突擊窗口啟動】台股與美股進入營收失望賣壓期。核心部隊 FSI011 低接天險 28.35 元、台股核心 ALI006 伏擊區 640~660 元、野村中小 NOM003 甜美區 500~520 元，進入每日淨值雷達嚴密監控期！" },
-        { dateStr: "2026-06-15", text: "🇺🇸【海外突擊開啟】統一全球新科技 (UNI017) 美股掠奪觀察期啟動。等待月中聯準會會議前全球資金觀望拉回，尋找美股科技七巨頭修正落底之搶灘埋伏點。" },
-        { dateStr: "2026-06-16", text: "💣【核彈級新聞】美國聯準會 (FED) 舉行年中 FOMC 利率決策會議第一天。全球外資大咖集體極凍抽離。加權指數與中小型股因量能急凍、投信半年度結帳多殺多，非理性低點極機率於這幾天浮現！" },
-        { dateStr: "2026-06-17", text: "🔥【生死線終極對時】美國聯準會公佈最新利率決策與 SEP 經濟預測摘要。市場恐慌與觀望震盪砸到最深。密切注意 ALI006 與 NOM003 淨值是否砸穿伏擊防線，隨時準備單筆突襲扣下板機！" },
-        { dateStr: "2026-07-20", text: "🇺🇸【美股大閱兵】美股科技七巨頭（微軟、輝達、蘋果）第二季實體財報季密集開牌！觀察 UNI017 走勢，迎擊財報超預期的非理性噴發大巨浪。" },
-        { dateStr: "2026-07-25", text: "💰【常規黃金出口開啟】台灣數千億除權息股利回流、填息最高潮！配合美股財報利多出盡前夕，野村中小 (NOM003) 進入常規退兵窗口。若此時波段獲利已達 +15% ~ +20%，不留戀，全數獲利落袋出清！" },
-        { dateStr: "2026-08-05", text: "🏹【美股突擊隊撤退】統一全球新科技 (UNI017) 財報高潮結束。不論獲利是否達標，全面執行獲利出清、全數獲利落袋為安，絕不拖泥帶水。" },
-        { dateStr: "2026-08-08", text: "❌【鋼鐵退兵絕對死線】野村中小 (NOM003) 雙月掠奪戰役終點。最後逃生門！不論市況多麼樂觀，堅決不賭 8/10 半年報實體大考驗與 8 月常規暑假大洗盤，今天必須全面空倉，帶著獲利利潤全身而退！" }
+        { dateStr: "2026-06-11", text: "🎯【申購突擊窗口啟動】台股與美股進入營收失望賣壓期。核心部隊 FSI011 低接天險 28.35 元、台股核心 ALI006 伏擊區 640~660 元、野村中小 NOM003 甜美區 500~520 元，進入每日淨值雷達嚴密監控期！" }
     ];
 
     function getStaticLunarString(y, m, d) {
         if (y === 2026 && m === 5) {
-            if (d === 28) return "對時狀態確認：農曆丙午年(馬) 四月十二";
             if (d === 29) return "對時狀態確認：農曆丙午年(馬) 四月十三";
             if (d === 30) return "對時狀態確認：農曆丙午年(馬) 四月十四";
         }
@@ -599,7 +482,6 @@
         const d = now.getDate();
         const dayNames = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
         const w = dayNames[now.getDay()];
-
         const hrs = String(now.getHours()).padStart(2, '0');
         const mins = String(now.getMinutes()).padStart(2, '0');
         const secs = String(now.getSeconds()).padStart(2, '0');
@@ -656,15 +538,12 @@
         });
 
         if (activeAlerts.length === 0) {
-            container.innerHTML = `<div class="no-alert-text">📡 報告指揮官：最近三天內無重大開牌或利空新聞大考驗。市場處於常規常態。我軍 33 萬現金大軍繼續在地下掩體中高枕無憂、暗色靜默。未來重要觀察期（6/01 大展、6/10 營收）已在雷達後方排隊列陣。</div>`;
+            container.innerHTML = `<div class="no-alert-text">📡 報告指揮官：週末清晨美股雖然大洗盤後全面暴噴，但泡沫也吹到了極致。最近三天內無重大開牌考驗。我軍 33 萬現金繼續在地下掩體中暗色靜默，冷眼看下週一（6/01）大展放煙火。</div>`;
         } else {
             activeAlerts.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'active-alert-item';
-                div.innerHTML = `
-                    <div class="active-alert-date">⚠️ 戰術時間注意：${item.dateStr}</div>
-                    <div class="active-alert-text">${item.text}</div>
-                `;
+                div.innerHTML = `<div class="active-alert-date">⚠️ 戰術時間注意：${item.dateStr}</div><div class="active-alert-text">${item.text}</div>`;
                 container.appendChild(div);
             });
         }
