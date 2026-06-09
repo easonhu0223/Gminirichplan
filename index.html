@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v8.10</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v8.00</title>
     <style>
-        /* v8.10 作戰指揮部核實更新 - 雙方陣重裝美學 */
+        /* v8.00 作戰指揮部核實更新 - 史詩重倉大氣美學 */
         body {
             background-color: #0b0e14;
             color: #c9d1d9;
@@ -18,7 +18,7 @@
             margin: 0 auto;
         }
         
-        /* v8.10 官方實體置中大標題 */
+        /* v8.00 官方實體置中大標題 */
         .official-super-header {
             border-top: 4px solid #ff7b72;
             border-bottom: 2px solid #21262d;
@@ -140,10 +140,10 @@
             text-align: center; border: 1px solid #30363d; font-size: 15px;
         }
         
-        /* 戰術條件監控面板 */
+        /* 戰術條件死鎖監控大面板 */
         .tactical-trigger-panel {
-            background-color: #161b22;
-            border: 2px solid #38bdf8;
+            background-color: #221616;
+            border: 2px solid #ff7b72;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
@@ -157,9 +157,9 @@
             padding: 15px;
             border-radius: 6px;
         }
-        .trigger-title { font-size: 15px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .trigger-title { font-size: 15px; font-weight: bold; color: #ff7b72; margin-bottom: 10px; display: flex; justify-content: space-between; }
         .trigger-status { font-size: 13px; font-weight: bold; padding: 2px 8px; border-radius: 4px; }
-        .status-wait { background-color: #1c2d3d; color: #38bdf8; }
+        .status-wait { background-color: #3b0000; color: #ff7b72; }
         .status-go { background-color: #113b18; color: #56d364; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
@@ -238,25 +238,17 @@
         .data-value { font-weight: bold; font-family: monospace; }
         
         .capital-box {
-            background: linear-gradient(135deg, #221616, #0d1117); border: 2px solid #ff9e3b;
+            background: linear-gradient(135deg, #3d1a1a, #1a0b0b); border: 2px solid #ff7b72;
             padding: 18px; border-radius: 6px; text-align: center; margin-bottom: 25px;
-            box-shadow: 0 0 25px rgba(255, 158, 59, 0.2);
+            box-shadow: 0 0 20px rgba(255, 123, 114, 0.2);
         }
-
-        /* 雙方陣看板分割設計 */
-        .phalanx-section-header {
-            font-size: 18px; font-weight: bold; margin: 25px 0 12px 0; padding: 6px 12px;
-            border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
-        }
-        .phalanx-1 { background: rgba(255,123,114,0.15); border-left: 5px solid #ff7b72; color: #ff7b72; }
-        .phalanx-2 { background: rgba(56,189,248,0.15); border-left: 5px solid #38bdf8; color: #38bdf8; }
 
         table.main-fund-table {
-            width: 100%; border-collapse: collapse;
-            background-color: #12161f; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 25px;
+            width: 100%; border-collapse: collapse; margin-top: 15px;
+            background-color: #12161f; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 35px;
         }
-        table.main-fund-table th, table.main-fund-table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid #30363d; font-size: 13.5px; }
-        table.main-fund-table th { background-color: #1f242c; color: #8b949e; }
+        table.main-fund-table th, table.main-fund-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
+        table.main-fund-table th { background-color: #1f242c; color: #58a6ff; }
         
         .badge { padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
         .badge-core { background-color: #1f6feb; color: #ffffff; }
@@ -264,6 +256,17 @@
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
         .badge-action { background-color: #ff7b72; color: #ffffff; }
         
+        /* 八大基金守備實體淨值觀測艙 */
+        .fund-obs-panel {
+            background-color: #12161f; border: 1px solid #30363d; border-radius: 8px; padding: 22px; margin-top: 30px; margin-bottom: 30px;
+        }
+        .fund-obs-panel h2 { color: #58a6ff; font-size: 19px; margin: 0 0 15px 0; border-bottom: 2px solid #21262d; padding-bottom: 10px; }
+        .fund-obs-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+        .fund-obs-table th, .fund-obs-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #21262d; }
+        .fund-obs-table th { background-color: #1f242c; color: #8b949e; }
+        .core-obs-row { border: 2px solid #38bdf8 !important; background-color: #161f2e !important; }
+        .action-obs-row { border: 2px solid #ff7b72 !important; background-color: #241616 !important; }
+
         /* 下半年常規大盤操控行事曆面板 */
         .h2-calendar-panel {
             background-color: #12161f; border: 1px solid #30363d; border-top: 4px solid #ff9e3b; border-radius: 8px; padding: 22px; margin-top: 30px; margin-bottom: 30px;
@@ -292,8 +295,8 @@
         .card-steps-list { margin: 0; padding-left: 18px; }
         .card-steps-list li { margin-bottom: 10px; color: #c9d1d9; }
 
-        .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff9e3b; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
-        .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff9e3b; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff7b72; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
+        .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff7b72; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
         .alert-content-area { min-height: 110px; display: flex; flex-direction: column; gap: 14px; }
         .active-alert-item { background-color: #0b0e14; border: 1px solid #21262d; padding: 15px 20px; border-radius: 6px; border-left: 4px solid #ff7b72; }
         .active-alert-date { font-weight: bold; color: #ff7b72; font-family: monospace; font-size: 15px; margin-bottom: 6px; }
@@ -308,12 +311,12 @@
 
 <div class="container">
     
-    <!-- v8.10 官方大標題 -->
+    <!-- v8.00 官方大標題 -->
     <div class="official-super-header">
         <h1><span>⚔️</span> 最高指揮總部 ── 全戰場防守雷達</h1>
         <div class="fixed-tactical-tag">
-            <div class="v-title">戰術系統：v8.10 (方陣部署完全體)</div>
-            <div class="v-date">對時時間：2026-06-09 12:35</div>
+            <div class="v-title">戰術系統：v8.00 (基金庫存同步更新版)</div>
+            <div class="v-date">更新時間：2026-06-09 12:42</div>
         </div>
     </div>
     
@@ -329,88 +332,70 @@
         <div class="tech-clock-panel">
             <div class="clock-meta">
                 <div class="clock-date-line" id="clkDate">2026 年 06 月 09 日 火曜日</div>
-                <div class="clock-lunar-line" id="clkLunar">對時確認：農曆丙午年四月廿四 (大洗盤後全面建倉鎖死對齊)</div>
+                <div class="clock-lunar-line" id="clkLunar">對時確認：農曆丙午年四月廿四 (大暴跌後強彈軋空，百萬主力重兵合攏入庫)</div>
             </div>
-            <div class="clock-digits" id="clkDigits">12:35:55</div>
+            <div class="clock-digits" id="clkDigits">12:42:04</div>
         </div>
     </div>
 
     <!-- 總資本掩體 -->
     <div class="capital-box">
-        <span style="color: #ff9e3b; font-size: 14px; font-weight: bold; letter-spacing: 1px;">⚙️ 戰略情報室 ── 旗下守備大軍實體部署總覽</span>
-        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">第一方陣（7/06退場變現）：~220 萬 | 第二方陣（常規留存生息）</div>
+        <span style="color: #ff7b72; font-size: 14px; font-weight: bold; letter-spacing: 1px;">🚨 史詩戰略總攻 ── 百萬核心與側翼重兵已全面申購鎖死 (7/06 全軍下庄變現死線已鎖死)</span>
+        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">第一方陣科技 AI 贖回換現部隊：~220 萬 | 鎖死於 2026年7月6日（週一）13:00 準時下庄</div>
     </div>
 
     <!-- ================================================================= -->
-    <!-- 指揮官專屬：戰略突擊條件監控大屏 -->
+    <!-- 指揮官專屬：戰略突擊條件死鎖監控大屏 -->
     <!-- ================================================================= -->
-    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🎯 剩餘備用突擊資金申購雷達 (v8.10 常規指標查證)</h2>
+    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🎯 突擊部隊 130 萬重兵建倉狀態自動化雷達 (v8.00 百萬兵力實體鎖死追蹤)</h2>
     <div class="tactical-trigger-panel">
         <div class="trigger-box">
             <div class="trigger-title">
-                <span>📊 指標一：加權指數回測防線</span>
-                <span class="trigger-status status-wait" id="trigger1_status">🚨 靜默觀望中</span>
+                <span>🇹🇼 重倉核心：安聯台灣科技 (ALI006)</span>
+                <span class="trigger-status status-go" id="trigger1_status">🚀 100萬重兵建倉中</span>
             </div>
-            <div class="data-row"><span class="data-label">伏擊目標區間</span><span class="data-value val-blue">39,200 ~ 39,500 點</span></div>
-            <div class="data-row"><span class="data-label">盤中反彈真值</span><span class="data-value text-up">43,801.30 點</span></div>
-            <div class="data-row"><span class="data-label">當前重力溢價差</span><span class="data-value text-up" id="trigger1_gap">+4,301.30 點 (大洗盤後強彈)</span></div>
+            <div class="data-row"><span class="data-label">前鋒部隊 (30萬)</span><span class="data-value text-down">已入帳前鋒 / 平均申購淨值 783.29 / 庫存 383.0 單位</span></div>
+            <div class="data-row"><span class="data-label">主力部隊 (70萬)</span><span class="data-value val-red">6/08 12:05 單筆強登，死鎖 6/08 大暴跌最低清算值(756.14元)</span></div>
+            <div class="data-row"><span class="data-label">整體單位平均成本</span><span class="data-value val-blue">打入神明級絕對防禦區 ➔ 全力沒收今日大漲逾600點軋空利潤</span></div>
         </div>
         <div class="trigger-box">
             <div class="trigger-title">
-                <span>🛡️ 指標二：安聯台灣科技 (ALI006) 伏擊防線</span>
-                <span class="trigger-status status-wait" id="trigger2_status">🚨 靜默觀望中</span>
+                <span>🇺🇸 閃擊側翼：第一金全球 AI 運算 (FSI011)</span>
+                <span class="trigger-status status-go" id="trigger2_status">🚀 30萬側翼建倉中</span>
             </div>
-            <div class="data-row"><span class="data-label">伏擊目標區間</span><span class="data-value val-blue">640.00 ~ 660.00 元</span></div>
-            <div class="data-row"><span class="data-label">昨夜清算淨值</span><span class="data-value text-down">756.1400 元</span></div>
-            <div class="data-row"><span class="data-label">當前淨值溢價差</span><span class="data-value text-down" id="trigger2_gap">+96.14 元 (跌破百元溢價)</span></div>
+            <div class="data-row"><span class="data-label">本次投入彈藥</span><span class="data-value val-red">NT$ 300,000 元 (在途中)</span></div>
+            <div class="data-row"><span class="data-label">實體建倉特徵</span><span class="data-value text-down">申請 06/05 11:19:15 / 100%全額吞噬美股費半 -10.26% 史詩折扣</span></div>
+            <div class="data-row"><span class="data-label">戰術退場時間點</span><span class="data-value val-red">2026/07/06 13:00 全軍單筆全額贖回變現下庄 (鋼鐵死線)</span></div>
         </div>
     </div>
 
     <!-- 警報橫幅 -->
     <div id="alertBanner" class="alert-banner text-up" style="background-color: rgba(255,123,114,0.1); border: 1px solid #ff7b72;">
-        【最高戰略死線備忘錄】💥 第一方陣總額約 220 萬以上的科技 AI 部隊，定時於 2026年7月6日（週一）13:00 執行全額單筆贖回變現，全軍原地換回滿血純現金！
+        【最高戰略死線備忘錄】💥 第一方陣總額約 220 萬以上的科技 AI 部隊（ALI006、ALI094、ALI092、FSI011）鎖死 7/06 13:00 全額清倉下庄，換回滿血純現金！
     </div>
 
     <!-- ================================================================= -->
-    <!-- v8.10 雙方陣實體資產監控艙 -->
+    <!-- v8.00 五欄多元交叉雷達網 -->
     <!-- ================================================================= -->
-    
-    <!-- 第一方陣 -->
-    <div class="phalanx-section-header phalanx-1">
-        <span>💥 第一方陣：2026年7月6日（週一）13:00 準時單筆全額贖回、變現下庄</span>
-        <span style="font-size:12px; font-family:monospace;">主攻科技、AI、高成長板塊 / 避開7月中旬財報地雷週</span>
-    </div>
-    <table class="main-fund-table" style="border-top: 3px solid #ff7b72;">
-        <thead>
-            <tr>
-                <th style="width: 80px;">代號</th>
-                <th style="width: 320px;">基金品項全銜</th>
-                <th style="width: 140px;">戰戰略定位</th>
-                <th style="width: 120px;">投資本金</th>
-                <th>實體庫存與在途現狀真值</th>
-                <th style="width: 120px;">當前損益</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="action-obs-row">
-                <td><b>ALI006</b></td>
-                <td>安聯台灣科技基金</td>
-                <td><span class="badge badge-core">台股重倉核心</span></td>
-                <td style="font-weight:bold;color:#ffffff;">$1,000,000</td>
-                <td style="font-size:12.5px; line-height:1.5;">
-                    • <b>已入帳前鋒(30萬)</b>：平均淨值 783.29 / 庫存 383.0 單位 / 市值 $289,602 (<span class="text-down">-3.47%</span>)<br>
-                    • <b>在途中主力(70萬)</b>：交易日 06/08，成功死鎖 6/08 大暴跌最低清算值 <b>756.14 元</b>，全額沒收 6/09 今日強彈大軋空利潤！
-                </td>
-                <td class="text-down">建倉追蹤中</td>
-            </tr>
-            <tr>
-                <td><b>ALI094</b></td>
-                <td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
-                <td><span class="badge badge-tactical">海外多重資產大盾</span></td>
-                <td style="font-weight:bold;color:#ffffff;">$600,000</td>
-                <td>最新官方現淨值 <b>12.57</b> / 實體庫存 <b>54,844.6</b> 單位 / 參考市值 <b>$689,397</b></td>
-                <td class="text-up">+102,615<br><span style="font-size:11px;">(+17.10% 含息)</span></td>
-            </tr>
-            <tr>
-                <td><b>ALI092</b></td>
-                <td>安聯
+    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場多維交叉網格 (v8.00 百萬兵力實體校正版)</h2>
+    <div class="battlefield-grid-v750">
+        
+        <!-- 1. 台股大盤 -->
+        <div class="panel-v750">
+            <div>
+                <h3><span>📊 台股現貨</span> <span class="time-tag">6/09 盤中</span></h3>
+                <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-up">43,801.30</span></div>
+                <div class="data-row"><span class="data-label">單日漲跌</span><span class="data-value text-up">強烈反彈大漲逾 600 點</span></div>
+                <div class="data-row"><span class="data-label">市場籌碼現況</span><span class="data-value text-up" style="font-weight:bold;">融資滅絕後史詩軋空</span></div>
+            </div>
+            <div class="tactical-analysis-box">
+                <b>融資滅絕後大強彈：</b>大盤昨日歷史級慘跌1,568點完成窒息大排毒後，今日早盤逢低買盤全面瘋狂湧入！我軍昨日 12:05 單筆砸入的 70 萬重兵精準抄到底部。
+            </div>
+        </div>
+
+        <!-- 2. 美股四大指數 -->
+        <div class="panel-v750" style="border: 1px solid #30363d;">
+            <div>
+                <h3><span>🇺🇸 美股現貨</span> <span class="time-tag">6/09 盤前</span></h3>
+                <div class="data-row"><span class="data-label">道瓊工業</span><span class="data-value text-up">50,220.10 (+0.80%)</span></div>
+                <div class="data-row"><span class
