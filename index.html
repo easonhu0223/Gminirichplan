@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v8.00</title>
+    <title>最高指揮部 - 全球戰場跨國多元防守雷達 v8.10</title>
     <style>
-        /* v8.00 作戰指揮部核實更新 - 史詩重倉大氣美學 */
+        /* v8.10 作戰指揮部核實更新 - 雙方陣重裝美學 */
         body {
             background-color: #0b0e14;
             color: #c9d1d9;
@@ -18,7 +18,7 @@
             margin: 0 auto;
         }
         
-        /* v8.00 官方實體置中大標題 */
+        /* v8.10 官方實體置中大標題 */
         .official-super-header {
             border-top: 4px solid #ff7b72;
             border-bottom: 2px solid #21262d;
@@ -140,10 +140,10 @@
             text-align: center; border: 1px solid #30363d; font-size: 15px;
         }
         
-        /* 戰術條件死鎖監控大面板 */
+        /* 戰術條件監控面板 */
         .tactical-trigger-panel {
-            background-color: #221616;
-            border: 2px solid #ff7b72;
+            background-color: #161b22;
+            border: 2px solid #38bdf8;
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
@@ -157,9 +157,9 @@
             padding: 15px;
             border-radius: 6px;
         }
-        .trigger-title { font-size: 15px; font-weight: bold; color: #ff7b72; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .trigger-title { font-size: 15px; font-weight: bold; color: #38bdf8; margin-bottom: 10px; display: flex; justify-content: space-between; }
         .trigger-status { font-size: 13px; font-weight: bold; padding: 2px 8px; border-radius: 4px; }
-        .status-wait { background-color: #3b0000; color: #ff7b72; }
+        .status-wait { background-color: #1c2d3d; color: #38bdf8; }
         .status-go { background-color: #113b18; color: #56d364; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
@@ -238,17 +238,25 @@
         .data-value { font-weight: bold; font-family: monospace; }
         
         .capital-box {
-            background: linear-gradient(135deg, #3d1a1a, #1a0b0b); border: 2px solid #ff7b72;
+            background: linear-gradient(135deg, #221616, #0d1117); border: 2px solid #ff9e3b;
             padding: 18px; border-radius: 6px; text-align: center; margin-bottom: 25px;
-            box-shadow: 0 0 20px rgba(255, 123, 114, 0.2);
+            box-shadow: 0 0 25px rgba(255, 158, 59, 0.2);
         }
 
-        table.main-fund-table {
-            width: 100%; border-collapse: collapse; margin-top: 15px;
-            background-color: #12161f; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 35px;
+        /* 雙方陣看板分割設計 */
+        .phalanx-section-header {
+            font-size: 18px; font-weight: bold; margin: 25px 0 12px 0; padding: 6px 12px;
+            border-radius: 4px; display: flex; justify-content: space-between; align-items: center;
         }
-        table.main-fund-table th, table.main-fund-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #30363d; font-size: 14px; }
-        table.main-fund-table th { background-color: #1f242c; color: #58a6ff; }
+        .phalanx-1 { background: rgba(255,123,114,0.15); border-left: 5px solid #ff7b72; color: #ff7b72; }
+        .phalanx-2 { background: rgba(56,189,248,0.15); border-left: 5px solid #38bdf8; color: #38bdf8; }
+
+        table.main-fund-table {
+            width: 100%; border-collapse: collapse;
+            background-color: #12161f; border: 1px solid #30363d; border-radius: 6px; margin-bottom: 25px;
+        }
+        table.main-fund-table th, table.main-fund-table td { padding: 11px 14px; text-align: left; border-bottom: 1px solid #30363d; font-size: 13.5px; }
+        table.main-fund-table th { background-color: #1f242c; color: #8b949e; }
         
         .badge { padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; }
         .badge-core { background-color: #1f6feb; color: #ffffff; }
@@ -256,17 +264,6 @@
         .badge-tactical { background-color: #9e6a03; color: #ffffff; }
         .badge-action { background-color: #ff7b72; color: #ffffff; }
         
-        /* 八大基金守備實體淨值觀測艙 */
-        .fund-obs-panel {
-            background-color: #12161f; border: 1px solid #30363d; border-radius: 8px; padding: 22px; margin-top: 30px; margin-bottom: 30px;
-        }
-        .fund-obs-panel h2 { color: #58a6ff; font-size: 19px; margin: 0 0 15px 0; border-bottom: 2px solid #21262d; padding-bottom: 10px; }
-        .fund-obs-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-        .fund-obs-table th, .fund-obs-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #21262d; }
-        .fund-obs-table th { background-color: #1f242c; color: #8b949e; }
-        .core-obs-row { border: 2px solid #38bdf8 !important; background-color: #161f2e !important; }
-        .action-obs-row { border: 2px solid #ff7b72 !important; background-color: #241616 !important; }
-
         /* 下半年常規大盤操控行事曆面板 */
         .h2-calendar-panel {
             background-color: #12161f; border: 1px solid #30363d; border-top: 4px solid #ff9e3b; border-radius: 8px; padding: 22px; margin-top: 30px; margin-bottom: 30px;
@@ -295,8 +292,8 @@
         .card-steps-list { margin: 0; padding-left: 18px; }
         .card-steps-list li { margin-bottom: 10px; color: #c9d1d9; }
 
-        .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff7b72; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
-        .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff7b72; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
+        .three-day-alert-panel { background-color: #12161f; border: 2px solid #30363d; border-left: 6px solid #ff9e3b; border-radius: 8px; padding: 25px; box-sizing: border-box; margin-top: 30px; }
+        .three-day-alert-panel h2 { margin: 0 0 18px 0; color: #ff9e3b; font-size: 19px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
         .alert-content-area { min-height: 110px; display: flex; flex-direction: column; gap: 14px; }
         .active-alert-item { background-color: #0b0e14; border: 1px solid #21262d; padding: 15px 20px; border-radius: 6px; border-left: 4px solid #ff7b72; }
         .active-alert-date { font-weight: bold; color: #ff7b72; font-family: monospace; font-size: 15px; margin-bottom: 6px; }
@@ -311,12 +308,12 @@
 
 <div class="container">
     
-    <!-- v8.00 官方大標題 -->
+    <!-- v8.10 官方大標題 -->
     <div class="official-super-header">
         <h1><span>⚔️</span> 最高指揮總部 ── 全戰場防守雷達</h1>
         <div class="fixed-tactical-tag">
-            <div class="v-title">戰術系統：v8.00 (史詩重倉建倉版)</div>
-            <div class="v-date">更新時間：2026-06-08 12:15</div>
+            <div class="v-title">戰術系統：v8.10 (方陣部署完全體)</div>
+            <div class="v-date">對時時間：2026-06-09 12:35</div>
         </div>
     </div>
     
@@ -331,592 +328,89 @@
 
         <div class="tech-clock-panel">
             <div class="clock-meta">
-                <div class="clock-date-line" id="clkDate">2026 年 06 月 08 日 月曜日</div>
-                <div class="clock-lunar-line" id="clkLunar">對時確認：農曆丙午年四月廿三 (台股暴跌1840點融資大滅絕，我軍主力重兵合攏)</div>
+                <div class="clock-date-line" id="clkDate">2026 年 06 月 09 日 火曜日</div>
+                <div class="clock-lunar-line" id="clkLunar">對時確認：農曆丙午年四月廿四 (大洗盤後全面建倉鎖死對齊)</div>
             </div>
-            <div class="clock-digits" id="clkDigits">12:15:30</div>
+            <div class="clock-digits" id="clkDigits">12:35:55</div>
         </div>
     </div>
 
     <!-- 總資本掩體 -->
     <div class="capital-box">
-        <span style="color: #ff7b72; font-size: 14px; font-weight: bold; letter-spacing: 1px;">🚨 史詩戰略總攻 ── 百萬核心與側翼重兵已全面申購鎖死 (7/06 全軍下庄變現死線)</span>
-        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">本輪大展會戰駁火總計：NT$ 1,300,000 元 (核心安聯台科 100 萬、閃擊第一金 AI 30 萬)</div>
+        <span style="color: #ff9e3b; font-size: 14px; font-weight: bold; letter-spacing: 1px;">⚙️ 戰略情報室 ── 旗下守備大軍實體部署總覽</span>
+        <div style="font-size: 28px; font-weight: bold; color: #ffffff; margin-top: 5px;">第一方陣（7/06退場變現）：~220 萬 | 第二方陣（常規留存生息）</div>
     </div>
 
     <!-- ================================================================= -->
-    <!-- 指揮官專屬：戰略突擊條件死鎖監控大屏 -->
+    <!-- 指揮官專屬：戰略突擊條件監控大屏 -->
     <!-- ================================================================= -->
-    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🎯 突擊部隊 130 萬重兵建倉狀態自動化雷達 (v8.00 百萬兵力實體鎖死追蹤)</h2>
+    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🎯 剩餘備用突擊資金申購雷達 (v8.10 常規指標查證)</h2>
     <div class="tactical-trigger-panel">
         <div class="trigger-box">
             <div class="trigger-title">
-                <span>🇹🇼 重倉核心：安聯台灣科技 (ALI006)</span>
-                <span class="trigger-status status-go" id="trigger1_status">🚀 100萬重兵建倉中</span>
+                <span>📊 指標一：加權指數回測防線</span>
+                <span class="trigger-status status-wait" id="trigger1_status">🚨 靜默觀望中</span>
             </div>
-            <div class="data-row"><span class="data-label">前鋒部隊 (30萬)</span><span class="data-value text-down">6/05 扣款鎖死在 783.29 元歷史低檔</span></div>
-            <div class="data-row"><span class="data-label">主力部隊 (70萬)</span><span class="data-value val-red">6/08 12:05 單筆強登，沒收全台融資大滅絕極致淨值</span></div>
-            <div class="data-row"><span class="data-label">整體單位平均成本</span><span class="data-value val-blue">打入神明級絕對防禦區 ➔ 主動拉平重力</span></div>
+            <div class="data-row"><span class="data-label">伏擊目標區間</span><span class="data-value val-blue">39,200 ~ 39,500 點</span></div>
+            <div class="data-row"><span class="data-label">盤中反彈真值</span><span class="data-value text-up">43,801.30 點</span></div>
+            <div class="data-row"><span class="data-label">當前重力溢價差</span><span class="data-value text-up" id="trigger1_gap">+4,301.30 點 (大洗盤後強彈)</span></div>
         </div>
         <div class="trigger-box">
             <div class="trigger-title">
-                <span>🇺🇸 閃擊側翼：第一金全球 AI 運算 (FSI011)</span>
-                <span class="trigger-status status-go" id="trigger2_status">🚀 30萬側翼建倉中</span>
+                <span>🛡️ 指標二：安聯台灣科技 (ALI006) 伏擊防線</span>
+                <span class="trigger-status status-wait" id="trigger2_status">🚨 靜默觀望中</span>
             </div>
-            <div class="data-row"><span class="data-label">本次投入彈藥</span><span class="data-value val-red">NT$ 300,000 元 (單筆閃擊)</span></div>
-            <div class="data-row"><span class="data-label">實體建倉特徵</span><span class="data-value text-down">100% 完美、全額吞噬美股費半 -10.26% 史詩折扣</span></div>
-            <div class="data-row"><span class="data-label">戰術退場時間點</span><span class="data-value val-red">2026/07/06 全軍下庄變現 (鋼鐵死線)</span></div>
+            <div class="data-row"><span class="data-label">伏擊目標區間</span><span class="data-value val-blue">640.00 ~ 660.00 元</span></div>
+            <div class="data-row"><span class="data-label">昨夜清算淨值</span><span class="data-value text-down">756.1400 元</span></div>
+            <div class="data-row"><span class="data-label">當前淨值溢價差</span><span class="data-value text-down" id="trigger2_gap">+96.14 元 (跌破百元溢價)</span></div>
         </div>
     </div>
 
     <!-- 警報橫幅 -->
     <div id="alertBanner" class="alert-banner text-up" style="background-color: rgba(255,123,114,0.1); border: 1px solid #ff7b72;">
-        【最高作戰部總體彙整】台股今日暴跌近 1,840 點引爆全台散戶多單滅絕！我軍 130 萬鐵血主力在恐慌谷底全部合攏，死鎖 7/06 獲利清倉！
+        【最高戰略死線備忘錄】💥 第一方陣總額約 220 萬以上的科技 AI 部隊，定時於 2026年7月6日（週一）13:00 執行全額單筆贖回變現，全軍原地換回滿血純現金！
     </div>
 
     <!-- ================================================================= -->
-    <!-- v8.00 五欄多元交叉雷達網 -->
+    <!-- v8.10 雙方陣實體資產監控艙 -->
     <!-- ================================================================= -->
-    <h2 style="font-size: 17px; color: #f0f6fc; margin-bottom: 15px;">🌐 全球即時戰場多維交叉網格 (v8.00 百萬兵力實體校正版)</h2>
-    <div class="battlefield-grid-v750">
-        
-        <!-- 1. 台股大盤 -->
-        <div class="panel-v750">
-            <div>
-                <h3><span>📊 台股現貨</span> <span class="time-tag">6/08 12:15</span></h3>
-                <div class="data-row"><span class="data-label">加權指數</span><span class="data-value text-down">43,230.12</span></div>
-                <div class="data-row"><span class="data-label">單日漲跌</span><span class="data-value text-down">暴跌近 -1,840 點</span></div>
-                <div class="data-row"><span class="data-label">市場籌碼現況</span><span class="data-value text-down" style="font-weight:bold;">全台融資大滅絕</span></div>
-            </div>
-            <div class="tactical-analysis-box">
-                <b>黑色星期一真值：</b>大盤承受上週五美股非農爆雷重力砸盤，早盤瘋狂下砸近1,840點！觸發歷史級多殺多斷頭潮。散戶恐慌交出一切底牌，我軍中午 12:05 果斷 70 萬重兵碾壓進場，將平均成本強行拉進絕對防禦安全區！
-            </div>
-        </div>
-
-        <!-- 2. 美股四大指數 -->
-        <div class="panel-v750" style="border: 1px solid #30363d;">
-            <div>
-                <h3><span>🇺🇸 美股現貨</span> <span class="time-tag">6/08 盤前</span></h3>
-                <div class="data-row"><span class="data-label">道瓊工業</span><span class="data-value text-down">49,820.50 (-2.10%)</span></div>
-                <div class="data-row"><span class="data-label">S&P 500</span><span class="data-value text-down">7,320.15 (-2.35%)</span></div>
-                <div class="data-row"><span class="data-label">NASDAQ</span><span class="data-value text-down">25,850.40 (-3.20%)</span></div>
-                <div class="data-row"><span class="data-label">費城半導</span><span class="data-value text-down">11,541.30 (-10.26%)</span></div>
-            </div>
-            <div class="tactical-analysis-box">
-                <b>美股史詩重挫：</b>上週五費半引爆六年來最慘烈暴跌 -10.26%！我軍側翼部隊（FSI011）30萬兵力已在低位設伏，今晚即時清算開牌之實體淨值，將 100% 完美全額吞噬此發超深折扣，具備恐怖彈跳力。
-            </div>
-        </div>
-
-        <!-- 3. 美債長期殖利率防衛盾牌 -->
-        <div class="panel-v750">
-            <div>
-                <h3><span>⚡ 美債殖利率</span> <span class="time-tag">6/08 12:15</span></h3>
-                <div class="data-row"><span class="data-label">2年期美債</span><span class="data-value text-up">4.78%</span></div>
-                <div class="data-row"><span class="data-label">10年期美債</span><span class="data-value text-up">4.52%</span></div>
-                <div class="data-row"><span class="data-label">30年期美債</span><span class="data-value text-up">4.61%</span></div>
-            </div>
-            <div class="tactical-analysis-box">
-                <b>避險資金動態：</b>非農數據走強導致殖利率短線反彈。但我軍後方長債多重資產盾牌（ALI094）結構依舊完備。前方 130 萬突擊大軍已與市場實體駁火，後方防線全力護航。
-            </div>
-        </div>
-
-        <!-- 4. 💵 亞洲核心外匯防線 -->
-        <div class="panel-v720" style="border-left: 3px solid #ff7b72; padding: 14px; background-color: #12161f; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h3><span>💵 亞洲外匯背離</span> <span class="time-tag">6/08 12:15</span></h3>
-                <div class="data-row"><span class="data-label">美金 USD/TWD</span><span class="data-value text-up">31.485</span></div>
-                <div class="data-row"><span class="data-label">美元/日圓</span><span class="data-value text-up">157.12</span></div>
-                <div class="data-row"><span class="data-label">離岸人民幣</span><span class="data-value text-up">7.265</span></div>
-            </div>
-            <div class="tactical-analysis-box">
-                <b>外匯防線監控：</b>台幣因恐慌下砸而微貶至31.485，但仍受控於31.50元天險之內！證實非毀滅性系統金融海嘯，純屬大展過後科技股瘋狂浮額與槓桿多單的良性大排毒清洗。
-            </div>
-        </div>
-
-        <!-- 5. 🇪🇺 全球及南亞外匯戰線 -->
-        <div class="panel-v720" style="border-left: 3px solid #ff9e3b; padding: 14px; background-color: #12161f; border-radius: 6px; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-                <h3><span>🇪🇺 全球戰略外匯</span> <span class="time-tag">6/08 外匯</span></h3>
-                <div class="data-row"><span class="data-label">歐元 EUR/TWD</span><span class="data-value text-up">34.090</span></div>
-                <div class="data-row"><span class="data-label">英鎊 GBP/TWD</span><span class="data-value text-up">39.980</span></div>
-                <div class="data-row"><span class="data-label">澳幣 AUD/TWD</span><span class="data-value text-down">20.750</span></div>
-                <div class="data-row"><span class="data-label">星幣 SGD/TWD</span><span class="data-value text-up">23.150</span></div>
-            </div>
-            <div class="tactical-analysis-box">
-                <b>戰略觀察重點：</b>歐亞避險資產在美股科技股重挫補跌時保持常規橫盤。我軍生技獨立護衛防線（ALI003）配置不受高空神魔拉回干擾，冷眼看科技股籌碼大換手。
-            </div>
-        </div>
-
+    
+    <!-- 第一方陣 -->
+    <div class="phalanx-section-header phalanx-1">
+        <span>💥 第一方陣：2026年7月6日（週一）13:00 準時單筆全額贖回、變現下庄</span>
+        <span style="font-size:12px; font-family:monospace;">主攻科技、AI、高成長板塊 / 避開7月中旬財報地雷週</span>
     </div>
-
-    <!-- ================================================================= -->
-    <!-- 四大排行榜控制艙 -->
-    <!-- ================================================================= -->
-    <div class="ranking-outer-wrapper">
-        
-        <!-- 第一橫排：台股漲幅與台股跌幅 -->
-        <div class="ranking-row-grid">
-            <div class="ranking-box-v750">
-                <div>
-                    <h3><span>📈 台股漲幅前十名排行</span> <span class="time-tag">6/08 盤中</span></h3>
-                    <table class="ranking-table-v750">
-                        <tr><td class="rank-num-v750">01</td><td>傳產造紙防禦板塊</td><td class="text-up">+2.15% (避風港)</td><td class="rank-num-v750">06</td><td>內需食品龍頭</td><td class="text-up">+0.50%</td></tr>
-                        <tr><td class="rank-num-v750">02</td><td>水泥低基期類股</td><td class="text-up">+1.80%</td><td class="rank-num-v750">07</td><td>電信龍頭穩健股</td><td class="text-up">+0.42%</td></tr>
-                        <tr><td class="rank-num-v750">03</td><td>紡織外銷次類股</td><td class="text-up">+1.10%</td><td class="rank-num-v750">08</td><td>高殖利率傳統股</td><td class="text-up">+0.35%</td></tr>
-                        <tr><td class="rank-num-v750">04</td><td>金融少數避險個股</td><td class="text-up">+0.85%</td><td class="rank-num-v750">09</td><td>基礎建設公共股</td><td class="text-up">+0.20%</td></tr>
-                        <tr><td class="rank-num-v750">05</td><td>天然氣內需公用</td><td class="text-up">+0.65%</td><td class="rank-num-v750">10</td><td>觀光生計少數B</td><td class="text-up">+0.15%</td></tr>
-                    </table>
-                </div>
-                <div class="tactical-analysis-box">
-                    <b>避風港特徵核實：</b>在大盤史詩級暴跌1,840點時，僅有極少數低基期傳產、造紙等傳統板塊死守紅盤。全場流動性遭大戶全面抽乾排毒，大盤死不了，此乃黃金撈底特徵！
-                </div>
-            </div>
-
-            <div class="ranking-box-v750">
-                <div>
-                    <h3><span>📉 台股跌幅前十名排行</span> <span class="time-tag">6/08 盤中</span></h3>
-                    <table class="ranking-table-v750">
-                        <tr><td class="rank-num-v750">01</td><td>台積電 (2330)</td><td class="text-down">-8.95% (千點暴跌引信)</td><td class="rank-num-v750">06</td><td>仁寶 (2324)</td><td class="text-down">-9.85% (慘鎖跌停)</td></tr>
-                        <tr><td class="rank-num-v750">02</td><td>聯發科 (2454)</td><td class="text-down">-9.12%</td><td class="rank-num-v750">07</td><td>廣達 (2382)</td><td class="text-down">-8.70%</td></tr>
-                        <tr><td class="rank-num-v750">03</td><td>鴻海 (2317)</td><td class="text-down">-9.35% (重創失守)</td><td class="rank-num-v750">08</td><td>緯創 (3231)</td><td class="text-down">-8.45%</td></tr>
-                        <tr><td class="rank-num-v750">04</td><td>老AI硬體鏈主力</td><td class="text-down">35檔集體亮綠燈</td><td class="rank-num-v750">09</td><td>南亞科 (2408)</td><td class="text-down">-7.90% (多單斷頭)</td></tr>
-                        <tr><td class="rank-num-v750">05</td><td>櫃買中小型妖股</td><td class="text-down">-9.54% (融資滅絕)</td><td class="rank-num-v750">10</td><td>華新科 (2492)</td><td class="text-down">-7.65%</td></tr>
-                    </table>
-                </div>
-                <div class="tactical-analysis-box">
-                    <b>融資大滅絕黑幕：</b>台積電帶頭下砸、中小型櫃買股爆發連鎖斷頭大屠殺！上週盲目追高大展題材的散戶槓桿客在今日一小時內被集體活埋。我軍趁此史詩恐慌在低位合攏百萬重兵！
-                </div>
-            </div>
-        </div>
-
-        <!-- 第二橫排：熱門期貨與 ETF 前十排行 -->
-        <div class="ranking-row-grid">
-            <div class="ranking-box-v750">
-                <div>
-                    <h3><span>⚡ 熱門期貨商品前十名排行</span> <span class="time-tag">6/08 盤中</span></h3>
-                    <table class="ranking-table-v750">
-                        <tr><td class="rank-num-v750">01</td><td>臺指期近月主體</td><td class="text-down">43,110 點 (負價差)</td><td class="rank-num-v750">06</td><td>微型費城半導期</td><td class="text-down">11,540 點</td></tr>
-                        <tr><td class="rank-num-v750">02</td><td>小型臺指期貨</td><td class="text-down">43,105 點</td><td class="rank-num-v750">07</td><td>微型道瓊期指</td><td class="text-down">49,810 點</td></tr>
-                        <tr><td class="rank-num-v750">03</td><td>台積電股票期貨</td><td class="text-down">2,215.0 元</td><td class="rank-num-v750">08</td><td>紐約輕原油期貨</td><td class="text-up">80.15 美元</td></tr>
-                        <tr><td class="rank-num-v750">04</td><td>電子期貨主力盤</td><td class="text-down">1,915.0 點</td><td class="rank-num-v750">09</td><td>黃金期貨主力盤</td><td class="text-up">2,442.0 美元</td></tr>
-                        <tr><td class="rank-num-v750">05</td><td>微型那斯達克期</td><td class="text-down">25,845 點</td><td class="rank-num-v750">10</td><td>歐元外匯期貨盤</td><td class="text-down">1.0810 美元</td></tr>
-                    </table>
-                </div>
-                <div class="tactical-analysis-box">
-                    <b>期貨大屠殺現況：</b>台指期單日血崩逾1,800點，爆出恐怖負價差，槓桿多單慘遭斷頭清洗。市場極端恐慌釋放了趕頂積壓的所有重力風險，為我軍創造了神明級加碼建倉掩體。
-                </div>
-            </div>
-
-            <div class="ranking-box-v750" style="border: 1px solid #38bdf8;">
-                <div>
-                    <h3><span>📊 台股熱門 ETF 現值與漲幅前十名排行</span> <span class="time-tag">6/08 盤中</span></h3>
-                    <table class="ranking-table-v750">
-                        <tr><td class="rank-num-v750">01</td><td>元大台灣50 (0050)</td><td class="text-down">195.50 元 (-6.68%)</td><td class="rank-num-v750">06</td><td>富邦科技 (0052)</td><td class="text-down">56.20 元 (-9.06%)</td></tr>
-                        <tr><td class="rank-num-v750">02</td><td>元大台灣50正2 (00631L)</td><td class="text-down">32.15 元 (-13.0%)</td><td class="rank-num-v750">07</td><td>統一台股增長 (00981A)</td><td class="text-down">30.15 元 (-6.36%)</td></tr>
-                        <tr><td class="rank-num-v750">03</td><td>元大高股息 (0056)</td><td class="text-down">48.15 元 (-5.31%)</td><td class="rank-num-v750">08</td><td>元大美債20年 (00679B)</td><td class="text-down">26.05 元 (-0.38%)</td></tr>
-                        <tr><td class="rank-num-v750">04</td><td>國泰永續高股息 (00878)</td><td class="text-down">29.40 元 (-5.46%)</td><td class="rank-num-v750">09</td><td>大華優利高填息 (00918)</td><td class="text-down">27.65 元 (-5.79%)</td></tr>
-                    ...行
-                        <tr><td class="rank-num-v750">05</td><td>群益台灣精選高息 (00919)</td><td class="text-down">27.50 元 (-5.98%)</td><td class="rank-num-v750">10</td><td>復華台灣科技優息 (00929)</td><td class="text-down">28.60 元 (-6.07%)</td></tr>
-                    </table>
-                </div>
-                <div class="tactical-analysis-box">
-                    <b>被動多殺多爆發：</b>權值型與高股息 ETF 遭到非理性恐慌贖回，爆發連鎖被動多殺多。散戶在高空絕頂集體窒息。我軍主動型百萬重兵此時直搗核心、反向撈底，戰略完全碾壓散戶！
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- 下半年常規大盤操控行事曆面板 -->
-    <div class="h2-calendar-panel">
-        <h2>📅 2026 年下半年：全球主體大盤常規操控與獵殺節奏行事曆 (後台核心數據死鎖)</h2>
-        <div class="h2-grid">
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【七月會戰】大魔王降臨</span> <span class="h2-card-date">07/15 - 07/25</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>市場藉6月營收狂歡後科技股再次缺氧。隨後台積電法說與美股科技巨頭（輝達、微軟、特斯拉）Q2實體財報全面開牌。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>嚴格挑剔財報毛利，發動不計代價的「非理性高檔定點砸盤」，活埋高位追高散戶。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：我軍 7/06 全軍退場換現後，引頸期盼的「7月底二次大撈底」黃金機會！</div>
-            </div>
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【八月會戰】半年報生死線</span> <span class="h2-card-date">08/10 - 08/14</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>8/14 法定半年報截止日。中小型科技股、妖股作夢行情結束，實體獲利一翻開慘不忍睹。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>故意放任甚至加碼砸盤，引發「櫃買中小股集體斷頭潮」，並將抽回資金灌進硬核晶片股。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：極致的「強弱置換」操控局，趁斷頭潮撿拾主力暗中吸籌的硬核巨頭。</div>
-            </div>
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【九月會戰】秋季大肅殺</span> <span class="h2-card-date">09/15 - 09/20</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>美股季底四巫日結算、投信Q3作帳。避險基金面臨10月客戶贖回與結算壓力，大戶有剛性換現需求。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>全年度勝率最低之魔咒月。外資瘋狂做空權值股提款引發市場恐慌，人為製造極端深水坑。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：此時大下砸絕非崩盤，而是大戶為了Q4大牛市建倉刻意砸出的「全年度黃金深水坑」！</div>
-            </div>
-        </div>
-        <div class="h2-grid">
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【十月會戰】第四季哨音</span> <span class="h2-card-date">10/15 - 10/20</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>台積電Q3法說會、美股Q3財報啟動。邁入感恩節、聖誕節傳統拉貨旺季，明年樂觀展望定調。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>開牌前刻意「橫盤震盪、故意不拉」壓盤消磨散戶耐心，逼散戶在低點割肉交出籌碼。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：利多確認後資金將「旱地拔蔥」暴拉，法說會前夕押注是短線套利黃金窗口。</div>
-            </div>
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【十一月會戰】美股收割季</span> <span class="h2-card-date">11/20 - 11/30</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>美國感恩節長假華爾街集體放假，市場「流動性瞬間降到冰點」，外資量能呈現真空期。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>內資「丙種主力、土洋大戶」隻手遮天，瘋狂點火中小型題材妖股，短短幾天拉高20-30%。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：純粹利用「流動性落差」製造的妖股狂歡週，在外資收假前跟隨主力精準割頂。</div>
-            </div>
-            <div class="h2-card">
-                <div>
-                    <div class="h2-card-title"><span>🎯 【十二月終局戰】總謝幕</span> <span class="h2-card-date">12/15 - 12/31</span></div>
-                    <div class="h2-card-box"><b>操盤黑箱：</b>外資聖誕休假不砸盤，內資投信與旗艦集團年終大作帳死線。為美化報表，動用所有底牌護航拉抬。</div>
-                    <div class="h2-card-box"><b>大戶動機：</b>大盤呈現「無量卻死不下跌，穩步向上墊高」的奇特著作帳趨勢。全年度勝率最高（達90%）。</div>
-                </div>
-                <div class="h2-card-action">⚔️ 戰術機會：11月底趁外資清倉低位埋伏，12月坐享集團作帳抬轎的「年度總收割」！</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 基金守備陣容 -->
-    <h2 style="font-size: 18px; color: #f0f6fc; margin-bottom: 15px;">🛡️ 基富通地下掩體 ── 實體精銳基金守備陣容</h2>
-    <table class="main-fund-table">
+    <table class="main-fund-table" style="border-top: 3px solid #ff7b72;">
         <thead>
             <tr>
-                <th>代號</th>
-                <th>基金品項官方完整全銜</th>
-                <th>戰術編制與核心功能</th>
-                <th>原始投資本金</th>
-                <th>基準戰略防線狀態</th>
+                <th style="width: 80px;">代號</th>
+                <th style="width: 320px;">基金品項全銜</th>
+                <th style="width: 140px;">戰戰略定位</th>
+                <th style="width: 120px;">投資本金</th>
+                <th>實體庫存與在途現狀真值</th>
+                <th style="width: 120px;">當前損益</th>
             </tr>
         </thead>
-        <tbody id="fundTableBody">
-            <!-- 由 JS 渲染 -->
-        </tbody>
-    </table>
-
-    <!-- ================================================================= -->
-    <!-- v8.00 八大基金精銳淨值觀測艙 (重倉投彈基金紅框高亮) -->
-    <!-- ================================================================= -->
-    <div class="fund-obs-panel">
-        <h2>🛡️ 最高指揮部：八大基金守備實體淨值觀測艙 (本次開火突擊基金紅框高亮、鎖死追蹤)</h2>
-        <table class="fund-obs-table">
-            <thead>
-                <tr>
-                    <th>基金代號 (日期)</th>
-                    <th>基金品項完整名稱</th>
-                    <th>今日開牌實體淨值</th>
-                    <th>單日漲跌幅 (大漲為紅/大跌為綠)</th>
-                    <th>歷史累積漲幅紀錄 / 戰略配置備註</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- 核心百萬基金 -->
-                <tr class="action-obs-row">
-                    <td><b>ALI006</b> <span style="font-size:11px;color:#8b949e;">(6/05結算)</span></td>
-                    <td><b>【核心重倉】安聯台灣科技基金</b></td>
-                    <td style="font-weight:bold;color:#ff7b72; font-size:15px;">783.2900 元</td>
-                    <td class="text-down">-2.39%</td>
-                    <td style="color:#ff7b72; font-weight:bold;">🚀 總兵力 100 萬全線到位！前鋒30萬(6/05鎖死低檔) + 主力70萬(6/08 12:05強登沒收融資大滅絕極致淨值)！打入神明級防禦成本！</td>
-                </tr>
-                <!-- 閃擊側翼基金 -->
-                <tr class="action-obs-row">
-                    <td><b>FSI011</b> <span style="font-size:11px;color:#8b949e;">(5/29結算)</span></td>
-                    <td><b>【閃擊側翼】第一金全球 AI 機器人及自動化-新臺幣</b></td>
-                    <td style="font-weight:bold;color:#ff7b72; font-size:15px;">30.3400 元</td>
-                    <td class="text-up">+2.09%</td>
-                    <td style="color:#ff7b72; font-weight:bold;">🚀 總兵力 30 萬鎖死建倉！6/05下午12:30單筆打入，100%完美全額吞噬美股費半 -10.26% 史詩折扣，靜候今晚清算！</td>
-                </tr>
-                
-                <!-- 其餘觀察基金 -->
-                <tr class="core-obs-row">
-                    <td><b>NOM003</b> <span style="font-size:11px;color:#8b949e;">(5/28結算)</span></td>
-                    <td><b>【核心觀察】野村中小證券投資信託基金 (台幣)</b></td>
-                    <td style="font-weight:bold;color:#ffffff;">584.18 元</td>
-                    <td class="text-down">-1.12%</td>
-                    <td class="text-up">+98.4% (空倉預備，中小型今日全面引爆融資多殺多斷頭慘烈大洗盤)</td>
-                </tr>
-                <tr class="core-obs-row">
-                    <td><b>UNI017</b> <span style="font-size:11px;color:#8b949e;">(5/27結算)</span></td>
-                    <td><b>【核心觀察】統一全球新科技基金</b></td>
-                    <td style="font-weight:bold;color:#ffffff;">132.0500 元</td>
-                    <td class="text-up">+1.45%</td>
-                    <td class="text-up">+187.83% (空倉儲備，盯防全球科技股極端放量清倉大清洗)</td>
-                </tr>
-                
-                <!-- 六個持有基金 -->
-                <tr>
-                    <td><b>109007</b> <span style="font-size:11px;color:#8b949e;">(5/26結算)</span></td>
-                    <td>野村(愛爾蘭)-日本策略價值(T美元避險)</td>
-                    <td style="font-weight:bold;color:#ffffff;">339.8500 美元</td>
-                    <td class="text-up">+0.36%</td>
-                    <td class="text-up">+239.85% (海外精銳長線戰馬核實)</td>
-                </tr>
-                <tr>
-                    <td><b>ALI003</b> <span style="font-size:11px;color:#8b949e;">(5/22結算)</span></td>
-                    <td>安聯全球生技趨勢基金-新臺幣</td>
-                    <td style="font-weight:bold;color:#ffffff;">50.5800 元</td>
-                    <td class="text-down">-0.16%</td>
-                    <td class="text-up">+18.5% (生技獨立護衛防線)</td>
-                </tr>
-                <tr>
-                    <td><b>ALI092</b> <span style="font-size:11px;color:#8b949e;">(5/28結算)</span></td>
-                    <td>安聯AI收益成長多重資產-B2(月配)-台幣</td>
-                    <td style="font-weight:bold;color:#ffffff; font-size:15px; color:#ff7b72;">13.1800 元</td>
-                    <td class="text-down">-0.45%</td>
-                    <td class="text-down">1617_2.jpg 確證 | 穩定月配息大兵團</td>
-                </tr>
-                <tr>
-                    <td><b>ALI094</b> <span style="font-size:11px;color:#8b949e;">(5/28結算)</span></td>
-                    <td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
-                    <td style="font-weight:bold;color:#ffffff; font-size:15px; color:#ff7b72;">12.7300 元</td>
-                    <td class="text-down">-0.47%</td>
-                    <td class="text-down">1615.jpg 確證 | 核心美債盾牌防線，靜候夜盤避險清算</td>
-                </tr>
-                <tr>
-                    <td><b>CIT016</b> <span style="font-size:11px;color:#8b949e;">(5/27結算)</span></td>
-                    <td>群益印度中小基金-新台幣</td>
-                    <td style="font-weight:bold;color:#ffffff;">30.8600 元</td>
-                    <td class="text-down">-0.13%</td>
-                    <td class="text-up">+34.8% (新興市場海外高成長配置)</td>
-                </tr>
-                <tr>
-                    <td><b>JPM041</b> <span style="font-size:11px;color:#8b949e;">(5/28結算)</span></td>
-                    <td>摩根大美國領先收成多重資產-月配-台幣</td>
-                    <td style="font-weight:bold;color:#ffffff;">10.9700 元</td>
-                    <td class="text-up">+0.27%</td>
-                    <td style="color:#ffffff;">美股大後衛穩健防禦中</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- 四隻觀察基金步驟 -->
-    <div class="tactical-wrapper">
-        <h2>🛠️ 最高指揮部底部獨立視窗：個股操作防線與精準步驟 (v8.00 百萬合攏重裝版)</h2>
-        <div class="tactical-grid-4col">
-            <!-- ALI006 -->
-            <div class="tactical-card" style="border: 2px solid #ff7b72;">
-                <div class="card-header-title"><span>安聯台灣科技基金</span><span class="card-code-badge" style="background-color:#ff7b72;">ALI006</span></div>
-                <div class="timeline-banner" style="border-left:4px solid #ff7b72;">
-                    <div>⏱️ <b>百萬重兵合攏日</b>：<span class="val-red">2026/06/08</span></div>
-                    <div>🎯 <b>核心總兵力</b>：<span class="val-red">1,000,000 元</span></div>
-                </div>
-                <div class="card-body-content">
-                    <div class="card-status-row" style="background-color:#241616; color:#ff7b72;"><b>戰術現狀</b>：<b>🚀 100萬核心重倉鎖死建倉中</b>。</div>
-                    <ul class="card-steps-list">
-                        <li><b>【前鋒部隊-30萬】</b> 6/05趁大跌606點精準投彈，扣款鎖死在 783.29 元歷史性低檔區。</li>
-                        <li><b>【主力部隊-70萬】</b> 6/08 12:05抓準大盤暴跌近1,840點融資斷頭海嘯、一槍定案單筆強登！將平均單位成本強行拉進神明級防禦線。</li>
-                        <li><b>【鋼鐵退兵死線】</b> <b>本卡片百萬重兵嚴格鎖死於 2026 年 7 月 06 日全數獲利清倉變現下庄！</b>絕不參與 7 月中旬超級財報地雷週。</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- FSI011 -->
-            <div class="tactical-card" style="border: 2px solid #ff7b72;">
-                <div class="card-header-title"><span>第一金全球 AI 機器人</span><span class="card-code-badge" style="background-color:#ff7b72;">FSI011</span></div>
-                <div class="timeline-banner" style="border-left:4px solid #ff7b72;">
-                    <div>⏱️ <b>閃擊側翼開火日</b>：<span class="val-red">2026/06/05</span></div>
-                    <div>🎯 <b>側翼總兵力</b>：<span class="val-red">300,000 元</span></div>
-                </div>
-                <div class="card-body-content">
-                    <div class="card-status-row" style="background-color:#241616; color:#ff7b72;"><b>戰術現狀</b>：<b>🚀 30萬閃擊建倉鎖死追蹤中</b>。</div>
-                    <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 5/29成功割在30.34元天價清倉，6/05下午12:30乘勝追擊，30萬重兵全額單筆閃擊砸回！</li>
-                        <li><b>【步驟二】</b> 100%完美全額吞噬美股費半大崩盤 -10.26% 史詩級深水折扣。等7月財報週開啟時將具備恐怖彈跳力。</li>
-                        <li><b>【全軍下庄死線】</b> <b>與大部隊合步，死鎖 2026 年 7 月 06 日單筆全數贖回、換取現金！</b>冷血等待下半年二次撈底信號。</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- NOM003 -->
-            <div class="tactical-card">
-                <div class="card-header-title"><span>野村中小基金</span><span class="card-code-badge">NOM003</span></div>
-                <div class="timeline-banner">
-                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">08/10 － 08/14</span></div>
-                    <div>🎯 <b>低接甜美區</b>：<span class="val-blue">500.00 － 520.00 元</span></div>
-                </div>
-                <div class="card-body-content">
-                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">完全空倉預備</span> (現值584.18元)。</div>
-                    <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 當前130萬重兵（核心百萬+側翼30萬）已全數駁火進場，本基金作為中小型側翼此時保持空倉。</li>
-                        <li><b>【步驟二】</b> 下一階段重點對齊 **【八月半年報生死線會戰】**（8/10-08/14），冷眼盯緊大戶砸盤引發的櫃買中小股斷頭潮。</li>
-                        <li><b>【步驟三】</b> 7/06下庄全變現後，手握 200 多萬滿血現金，在低位強弱置換窗口對邊緣個股進行冷血清洗與撈底。</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- UNI017 -->
-            <div class="tactical-card">
-                <div class="card-header-title"><span>統一全球新科技基金</span><span class="card-code-badge">UNI017</span></div>
-                <div class="timeline-banner">
-                    <div>⏱️ <b>時間點觀察期</b>：<span class="val-blue">07/15 － 07/25</span></div>
-                    <div>🎯 <b>核心戰術定位</b>：<span class="val-blue">美股財報波段獵手</span></div>
-                </div>
-                <div class="card-body-content">
-                    <div class="card-status-row"><b>防線狀態</b>：<span style="color: #8b949e; font-weight: bold;">空倉戰備儲備</span> (現值132.05元)。</div>
-                    <ul class="card-steps-list">
-                        <li><b>【步驟一】</b> 核心與側翼已在台美雙線設伏。本基金死鎖狙擊下半年下一個大操縱局 **【七月超級財報地雷週】**。</li>
-                        <li><b>【步驟二】</b> 7/06全軍清倉下庄後，手握滿編大彈藥，冷眼看華爾街主力在輝達微軟財報法說高位高檔非理性砸盤。</li>
-                        <li><b>【步驟三】</b> 順應大戶活埋散戶砸出來的巨量陰線低位，單筆重兵搶灘低就，收割 Q4 感恩聖誕傳統大牛市起點。</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 最近三天確認注意戰術事項 -->
-    <div class="three-day-alert-panel">
-        <h2>🛡️ 戰略時間線重要提醒 (Time-Triggered Radar 🚀 130萬突擊扣款建倉實體追蹤)</h2>
-        <div class="alert-content-area" id="threeDayAlertContainer">
-            <!-- 由 JS 自動過濾顯示 -->
-        </div>
-    </div>
-
-</div>
-
-<script {nonce}>
-    const globalDefenseConfig = {
-        taiexTriggerLine: 39500,
-        funds: [
-            { id: "109007", name: "野村(愛爾蘭)-日本策略價值(T美元避險)", role: "長線戰馬 ── 捕捉日股結構性拉回", type: "core", capital: 100000, status: "避險增值" },
-            { id: "ALI003", name: "安聯全球生技趨勢基金-新臺幣", role: "生技護衛 ── 獨立於科技股外的生醫防線", type: "guard", capital: 100000, status: "觀望伏擊" },
-            { id: "ALI092", name: "安聯AI收益成長多重資產-B2(月配)-台幣", role: "美股側翼 ── 穩定月配息防禦大兵團", type: "tactical", capital: 300000, status: "1617_2.jpg確證現值 13.1800" },
-            { id: "ALI094", name: "安聯AI收益成長多重資產-HB(月配)-台幣避險", role: "核心重裝盾 ── 鎖定美元多重資產基本盤", type: "tactical", capital: 600000, status: "1615.jpg確證現值 12.7300" },
-            { id: "CIT016", name: "群益印度中小基金-新台幣", role: "新興突擊隊 ── 戰略配置海外高成長板塊", type: "tactical", capital: 130000, status: "獨立防線" },
-            { id: "ALI006", name: "安聯台灣科技基金", role: "重倉核心 ── 百萬總兵力合攏，沒收融資滅絕極致淨值", type: "action", capital: 1000000, status: "🚀 總兵力 100 萬全線到位鎖死！(7/06退兵)" },
-            { id: "FSI011", name: "第一金全球AI機器人及自動化-新臺幣", role: "閃擊側翼 ── 30萬閃擊建倉，100%全額吞噬美股費半-10.26%折扣", type: "action", capital: 300000, status: "🚀 30 萬全線鎖死建倉中！(7/06下庄)" },
-            { id: "JPM041", name: "摩根大美國領先收成多重資產-月配-台幣", role: "美股大後衛 ── 美國頂級資產防禦大本營", type: "tactical", capital: 600000, status: "穩健防禦" }
-        ]
-    };
-
-    const tacticalScheduleDB = [
-        { dateStr: "2026-06-08", text: "🔥<b>【史詩戰略總攻公告】我軍 130 萬鐵血重兵已全數駁火、強登進場！</b>安聯台灣科技追加 70 萬（總額 100 萬核心重倉合攏），第一金全球 AI 30 萬閃擊側翼就位。作戰部全面啟動實體投彈追蹤，<b>死鎖 7/06 全軍下庄變現鋼鐵死線！</b>" },
-        { dateStr: "2026-06-08", text: "📌【市場戰況校對】今日台股大盤在黑色星期一崩盤近 1,840 點引爆融資大滅絕。我軍中午 12:05 一槍定案、精準沒收史詩級恐慌淨值，單筆均價成本直接砸進神明級防禦區！" },
-        { dateStr: "2026-06-10", text: "🔍【照妖鏡開牌】上市櫃 5 月份實體營收公佈截止日！5 月為常規淡季，密切注意展期利多出盡、營收落空的修正訊號。市場失望拋售波段正式確立。" },
-        { dateStr: "2026-06-11", text: "🎯【側翼部隊下半年監控期】台股與美股進入營收失望賣壓期。野村中小 NOM003 甜美區 500~520 元、統一全球新科技 UNI017 全面進入雷達嚴密監控期！" }
-    ];
-
-    function getStaticLunarString(y, m, d) {
-        if (y === 2026 && m === 6 && d === 8) {
-            return "對時狀態確認：農曆丙午年(馬) 四月廿三 (台股暴跌1840點融資大滅絕，我軍百萬重兵合攏投彈日)";
-        }
-        return "對時狀態確認：農曆丙午年(馬) 戰術常規月份";
-    }
-
-    function updateTechClock() {
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = now.getMonth() + 1;
-        const d = now.getDate();
-        const dayNames = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"];
-        const w = dayNames[now.getDay()];
-
-        const hrs = String(now.getHours()).padStart(2, '0');
-        const mins = String(now.getMinutes()).padStart(2, '0');
-        const secs = String(now.getSeconds()).padStart(2, '0');
-        
-        document.getElementById('clkDate').innerText = `${y} 年 ${String(m).padStart(2,'0')} 月 ${String(d).padStart(2,'0')} 日 ${w}`;
-        document.getElementById('clkDigits').innerText = `${hrs}:${mins}:${secs}`;
-        document.getElementById('clkLunar').innerText = getStaticLunarString(y, m, d);
-    }
-
-    function handleDayClick(dayNum) {
-        if (dayNum === 8) {
-            alert("🔥 最高指揮部公告：今日 6/08 趁台股暴跌1840點融資大滅絕，主力70萬加碼強登，百萬核心總兵力全面鎖死合攏！");
-        } else if (dayNum === 10) {
-            alert("📡 最高指揮部提示：6/10 營收照妖鏡截止開牌日！密切關注利多出盡下殺訊號！");
-        } else if (dayNum === 11) {
-            alert("🎯 最高指揮部提示：6/11 側翼部隊下半年狙擊窗口開啟！野村中小、統一全球進入嚴密雷達區！");
-        }
-    }
-
-    function initLeftCalendar() {
-        const now = new Date();
-        const currentMonth = now.getMonth();
-        const currentYear = now.getFullYear();
-        const monthNames = ["1 月", "2 月", "3 月", "4 月", "5 月", "6 月", "7 月", "8 月", "9 月", "10 月", "11 月", "12 月"];
-        
-        document.getElementById('calCardHeader').innerText = `${currentYear} 年 ${monthNames[currentMonth]}`;
-        const grid = document.getElementById('calGridBody');
-        grid.innerHTML = '';
-
-        const headers = ["日", "一", "二", "三", "四", "五", "六"];
-        headers.forEach(h => {
-            const div = document.createElement('div');
-            div.className = 'day-header';
-            div.innerText = h;
-            grid.appendChild(div);
-        });
-
-        const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-        const totalDays = new Date(currentYear, currentMonth + 1, 0).getDate();
-
-        for (let i = 0; i < firstDay; i++) { grid.appendChild(document.createElement('div')); }
-        for (let day = 1; day <= totalDays; day++) {
-            const div = document.createElement('div');
-            div.className = 'calendar-day';
-            div.innerText = day;
-            
-            if (currentMonth === 5 && (day === 8 || day === 10 || day === 11)) { div.className += ' mark-day'; }
-            if (day === now.getDate() && currentMonth === now.getMonth()) { div.className += ' today'; }
-            
-            div.onclick = () => handleDayClick(day);
-            grid.appendChild(div);
-        }
-    }
-
-    function runTimeTriggeredRadar() {
-        const container = document.getElementById('threeDayAlertContainer');
-        container.innerHTML = '';
-        const now = new Date();
-        now.setHours(0,0,0,0);
-        
-        const threeDaysLater = new Date(now);
-        threeDaysLater.setDate(now.getDate() + 2);
-        threeDaysLater.setHours(23,59,59,999);
-
-        const activeAlerts = tacticalScheduleDB.filter(item => {
-            const itemDate = new Date(item.dateStr);
-            return itemDate >= now && itemDate <= threeDaysLater;
-        });
-
-        if (activeAlerts.length === 0) {
-            container.innerHTML = `<div class="no-alert-text">📡 報告指揮官：v8.00 百萬兵力史詩投彈對齊完工。作戰部全面啟動扣款追蹤確認！</div>`;
-        } else {
-            activeAlerts.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'active-alert-item';
-                div.innerHTML = `<div class="active-alert-date">⚠️ 戰術時間注意：${item.dateStr}</div><div class="active-alert-text">${item.text}</div>`;
-                container.appendChild(div);
-            });
-        }
-    }
-
-    function renderFundTable() {
-        const tbody = document.getElementById('fundTableBody');
-        tbody.innerHTML = '';
-        globalDefenseConfig.funds.forEach(fund => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td style="font-family: monospace; font-weight: bold; color: #58a6ff;">${fund.id}</td>
-                <td>${fund.name}</td>
-                <td><span class="badge badge-${fund.type}">${fund.role}</span></td>
-                <td style="font-weight: bold; color: #ffffff;">$${fund.capital.toLocaleString()} 元</td>
-                <td class="text-up" style="font-size: 13px; font-weight: bold;">${fund.status}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-
-    renderFundTable();
-    initLeftCalendar();
-    updateTechClock();
-    runTimeTriggeredRadar();
-    setInterval(updateTechClock, 1000);
-</script>
-</body>
-</html>
+        <tbody>
+            <tr class="action-obs-row">
+                <td><b>ALI006</b></td>
+                <td>安聯台灣科技基金</td>
+                <td><span class="badge badge-core">台股重倉核心</span></td>
+                <td style="font-weight:bold;color:#ffffff;">$1,000,000</td>
+                <td style="font-size:12.5px; line-height:1.5;">
+                    • <b>已入帳前鋒(30萬)</b>：平均淨值 783.29 / 庫存 383.0 單位 / 市值 $289,602 (<span class="text-down">-3.47%</span>)<br>
+                    • <b>在途中主力(70萬)</b>：交易日 06/08，成功死鎖 6/08 大暴跌最低清算值 <b>756.14 元</b>，全額沒收 6/09 今日強彈大軋空利潤！
+                </td>
+                <td class="text-down">建倉追蹤中</td>
+            </tr>
+            <tr>
+                <td><b>ALI094</b></td>
+                <td>安聯AI收益成長多重資產-HB(月配)-台幣避險</td>
+                <td><span class="badge badge-tactical">海外多重資產大盾</span></td>
+                <td style="font-weight:bold;color:#ffffff;">$600,000</td>
+                <td>最新官方現淨值 <b>12.57</b> / 實體庫存 <b>54,844.6</b> 單位 / 參考市值 <b>$689,397</b></td>
+                <td class="text-up">+102,615<br><span style="font-size:11px;">(+17.10% 含息)</span></td>
+            </tr>
+            <tr>
+                <td><b>ALI092</b></td>
+                <td>安聯
